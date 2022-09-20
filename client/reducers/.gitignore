@@ -1,7 +1,9 @@
+//-----import actions ------
 import { SET_FRUITS } from '../actions'
 
-const initialState = []
+//-----initialState	------
 
+//-----reducer function------
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
@@ -12,4 +14,5 @@ const reducer = (state = initialState, action) => {
   }
 }
 
+//------export reducer-----
 export default reducer

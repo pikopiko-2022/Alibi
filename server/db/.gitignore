@@ -1,3 +1,5 @@
+//-----database function file template-----
+
 const connection = require('./connection')
 
 function getFruits(db = connection) {

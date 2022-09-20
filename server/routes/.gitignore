@@ -1,3 +1,4 @@
+//-----routes setup file-----
 const express = require('express')
 
 const db = require('../db/fruits')
