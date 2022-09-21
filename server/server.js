@@ -13,5 +13,4 @@ server.use('/api/v1/users', usersRoutes)
 server.use('/api/v1/create', createRoutes)
 
 module.exports = server
-const express = require('express')
-const path = require('path')
+
