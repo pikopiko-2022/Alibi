@@ -1,22 +1,17 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Create from './Create'
+import HomePage from './HomePage'
 
 function App() {
-  //----- useSelector getting state
-  // const fruits = useSelector((state) => state.fruits)
-
-  const dispatch = useDispatch()
-
- // useEffect(() => {
- //   dispatch() //actions()
- // }, [])
   return (
-    <>
-      <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <Create />
-      </div>
-    </>
+    <div className="app">
+      <h1>ALIBI</h1>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/create" element={<Create />} />
+      </Routes>
+    </div>
   )
 }
 

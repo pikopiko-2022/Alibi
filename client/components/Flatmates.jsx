@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUsers } from '../actions/users'
 
-function ListUsers() {
+function Flatmates() {
   const dispatch = useDispatch()
   const todos = useSelector((state) => state.users)
   useEffect(() => {
@@ -33,4 +33,4 @@ function ListUsers() {
   )
 }
 
-export default ListUsers
+export default Flatmates
