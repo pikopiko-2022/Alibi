@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Nav from './Nav'
@@ -24,6 +25,7 @@ function App() {
       <div className="app">
         <h1>Alibi</h1>
         <Nav />
+
       </div>
     </>
   )
