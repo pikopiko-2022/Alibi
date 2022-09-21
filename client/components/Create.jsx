@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-// import { setError, setLoading } from '../actions/create'
 import { createComplaint } from '../apis/create'
 import styles from './Create.module.scss'
 
 export default function Create() {
-  // const dispatch = useDispatch()
   const [selectedFile, setSelectedFile] = useState(null)
   const [previewURL, setPreviewURL] = useState(null)
-  const isLoading = useSelector((state) => state.create.isLoading)
-  const error = useSelector((state) => state.create.error)
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(null)
+  const isLoading = false
+  const error = false
 
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0])
@@ -18,19 +16,13 @@ export default function Create() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // dispatch(setLoading(true))
     createComplaint({ image: selectedFile })
-      .then((res) => {
-        console.log(res)
-        // dispatch(setLoading(false))
-        // dispatch(setLastUploaded(foods[foods.length - 1]))
+      .then((url) => {
+        setUploadedImageUrl(url)
       })
       .catch((err) => {
         console.error(err.message)
-        // dispatch(setLoading(false))
-        // dispatch(setError(err.message))
       })
-    // setFood(initialData)
     setSelectedFile(null)
     setPreviewURL(null)
   }
@@ -75,13 +67,16 @@ export default function Create() {
           </label>
         </div>
         <div>
-          <button
-            onClick={handleSubmit}
-            // disabled={checkDisabled()}
-            className={styles.addFoodButton}
-          >
+          <button onClick={handleSubmit} className={styles.addFoodButton}>
             ADD COMPLAINT
           </button>
+        </div>
+        <div className={styles.imageContainer}>
+          <img
+            alt="Uploaded"
+            src={uploadedImageUrl}
+            className={styles.previewImage}
+          />
         </div>
       </form>
     </div>

@@ -9,7 +9,7 @@ AWS.config.update({
 
 const bucket = new AWS.S3({
   apiVersion: '2006-03-01',
-  // signatureVersion: 'v4',
+  signatureVersion: 'v4',
   params: { Bucket: process.env.AWS_BUCKET },
   region: process.env.AWS_REGION,
 })

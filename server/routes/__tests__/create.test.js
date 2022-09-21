@@ -1,13 +1,13 @@
 const request = require('supertest')
 const server = require('../../server')
-const { addFood } = require('../../db/create')
+// const { addFood } = require('../../db/create')
 const { getSignedPutUrl } = require('../lib')
 
 jest.mock('../lib')
-jest.mock('../../db/create')
+// jest.mock('../../db/create')
 jest.spyOn(console, 'error')
 
-getSignedPutUrl.mockReturnValue(Promise.resolve('lettuce-meat'))
+getSignedPutUrl.mockReturnValue(Promise.resolve('alibi-alibi'))
 
 afterEach(() => console.error.mockReset())
 
@@ -16,7 +16,7 @@ describe('GET /api/v1/create', () => {
     return request(server)
       .get('/api/v1/create')
       .then((res) => {
-        expect(res.body).toContain('lettuce-meat')
+        expect(res.body).toContain('alibi-alibi')
         return null
       })
   })

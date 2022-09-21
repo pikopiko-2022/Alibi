@@ -16,11 +16,12 @@ router.get('/', (req, res) => {
 
 // TODO add checkJwt middleware
 router.post('/', (req, res) => {
-  // const { name, description, url } = req.body
+  const { url } = req.body
   // const auth0Id = undefined
   // // const auth0Id = req.user?.sub
   // const mockAuth0Id = '42'
-  res.send('Success')
+  console.log(url)
+  return res.send(url)
   // addFood({
   //   name,
   //   description,
