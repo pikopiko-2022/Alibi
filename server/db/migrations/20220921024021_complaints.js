@@ -3,19 +3,19 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable('responses', (table) => {
+  return knex.schema.createTable('complaints', (table) => {
     table.increments('id').primary
-    table.interger('user_id')
-    table.timestamp('date_responded')
-    table.interger('answer_id)')
+    table.integer('issue_id')
+    table.string('img_url')
+    table.integer('complaint_raised_by')
+    table.timestamp('date_raised')
   })
 }
+
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('responses')
+  return knex.schema.dropTable('complaints')
 }
-
-//adding a comment to try make the file show?
