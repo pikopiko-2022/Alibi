@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Create from './Create'
 
 import { fetchFruits } from '../actions'
 
@@ -19,6 +20,7 @@ function App() {
             <li key={fruit}>{fruit}</li>
           ))}
         </ul>
+        <Create />
       </div>
     </>
   )
