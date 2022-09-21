@@ -1,7 +1,6 @@
 # Alibi
 
-## Current Setup
+## Branches
+### Cleanup branch has clean template 
 
-## Cleanup branch has clean template 
-
-## Dev branch is for pulling and merging 
+### Dev branch is for pulling and merging 
