@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-
-//-----import actions-----
-// import { fetchFruits } from '../actions'
+import React from 'react'
+import Create from './Create'
 
 function App() {
   //----- useSelector getting state
@@ -10,14 +7,14 @@ function App() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch() //actions()
-  }, [])
-
+ // useEffect(() => {
+ //   dispatch() //actions()
+ // }, [])
   return (
     <>
       <div className="app">
-        <h1>Alibi</h1>
+        <h1>Fullstack Boilerplate - with Fruits!</h1>
+        <Create />
       </div>
     </>
   )
