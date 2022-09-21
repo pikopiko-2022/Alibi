@@ -5,9 +5,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable('responses', (table) => {
     table.increments('id').primary
-    table.interger('user_id')
+    table.integer('users_id')
     table.timestamp('date_responded')
-    table.interger('answer_id)')
+    table.integer('answers_id')
   })
 }
 /**

@@ -6,6 +6,6 @@ exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex('responses').del()
   await knex('responses').insert([
-    { id: 1, user_id: 1, date_responded: new Date(Date.now()), answer_id: 1 },
+    { id: 1, users_id: 1, date_responded: new Date(Date.now()), answers_id: 1 },
   ])
 }
