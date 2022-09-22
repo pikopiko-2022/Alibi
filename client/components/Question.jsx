@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Question.module.scss'
-import { fetchQuestions } from '../actions/questions'
-import { fetchAnswers } from '../actions/answers'
+// import { fetchQuestions } from '../actions/questions'
+// import { fetchAnswers } from '../actions/answers'
 
 // get all answers where answers.question_id is equal to question.id
 // display the question (text)
@@ -11,7 +11,8 @@ import { fetchAnswers } from '../actions/answers'
 // <Question question={question} />
 
 const Question = ({ question }) => {
-  return <div> </div>
+  return 
+  <div> {answer</div>
 }
 
 export default Question

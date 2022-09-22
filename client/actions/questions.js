@@ -9,7 +9,7 @@ export function setQuestions(questions) {
   }
 }
 
-export function fetchQuestions() {
+export function fetchQuestion() {
   return (dispatch) => {
     return getQuestionsApi()
       .then((questions) => {
@@ -20,3 +20,6 @@ export function fetchQuestions() {
       })
   }
 }
+
+//get single question_id
+//get answers -> at question_id
