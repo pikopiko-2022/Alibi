@@ -5,6 +5,16 @@ function getUsers(db = connection) {
   return db('users').select()
 }
 
+function addUser(newUser, db = connection) {
+  return db('users').insert(newUser)
+}
+
+function userExists(username, db = connection) {
+  return db('users')
+    .where('name', username)
+    .then((usersFound) => usersFound.length > 0)
+}
+
 function getUser(auth0_id, db = connection) {
   return db('users')
     .join('flats', 'users.flat_id', '=', 'flats.id')
@@ -13,4 +23,4 @@ function getUser(auth0_id, db = connection) {
     .first()
 }
 
-module.exports = { getUsers, getUser }
+module.exports = { getUsers, addUser, userExists, getUser }
