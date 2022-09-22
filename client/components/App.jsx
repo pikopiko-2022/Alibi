@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Nav from './Nav'
@@ -55,6 +56,22 @@ function App() {
         <Register />
       </div>
     </>
+=======
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Create from './Create'
+import HomePage from './HomePage'
+
+function App() {
+  return (
+    <div className="app">
+      <h1>ALIBI</h1>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/create" element={<Create />} />
+      </Routes>
+    </div>
+>>>>>>> 4e922c964baf22a5cb67eac6fa6721e9dff05d9f
   )
 }
 

@@ -1,13 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { createComplaint } from '../apis/create'
+import { fetchIssues } from '../actions/create'
 import styles from './Create.module.scss'
 
 export default function Create() {
+  const dispatch = useDispatch()
   const [selectedFile, setSelectedFile] = useState(null)
   const [previewURL, setPreviewURL] = useState(null)
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null)
   const isLoading = false
   const error = false
+
+  const create = useSelector((state) => state.create)
+
+  useEffect(() => {
+    dispatch(fetchIssues())
+  }, [])
 
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0])
@@ -27,9 +36,21 @@ export default function Create() {
     setPreviewURL(null)
   }
 
+  const function1 = () => {
+    console.log('hello')
+  }
+
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
+        <div className="issues">
+          <select className="select" onChange={() => function1()}>
+            {create.map((issues) => (
+              <option key={issues.id}>{issues.name}</option>
+            ))}
+          </select>
+          {/* <Select /> */}
+        </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
             <div>Loading...</div>
