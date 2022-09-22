@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
+import Flatmate from './Flatmate'
+import styles from './Flatmates.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUsers } from '../actions/users'
 
 function Flatmates() {
   const dispatch = useDispatch()
-  const todos = useSelector((state) => state.users)
+  const flatmates = useSelector((state) => state.users)
   useEffect(() => {
     dispatch(fetchUsers())
   }, [])
@@ -13,19 +15,8 @@ function Flatmates() {
     <>
       <ul>
         <li>
-          {todos.map((users) => (
-            <ul key={users.id}>
-              <li>
-                <img
-                  src={users.img_url}
-                  alt="user"
-                  height="300"
-                  width="300"
-                ></img>
-              </li>
-              <li>{users.name}</li>
-              <li>{users.rating}</li>
-            </ul>
+          {flatmates.map((flatmate) => (
+            <Flatmate key={flatmate.id} flatmate={flatmate} />
           ))}
         </li>
       </ul>
