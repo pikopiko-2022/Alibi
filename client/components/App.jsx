@@ -5,11 +5,11 @@ function App() {
   //----- useSelector getting state
   // const fruits = useSelector((state) => state.fruits)
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
- // useEffect(() => {
- //   dispatch() //actions()
- // }, [])
+  // useEffect(() => {
+  //   dispatch() //actions()
+  // }, [])
   return (
     <>
       <div className="app">
