@@ -1,8 +1,8 @@
 const request = require('supertest')
-const server = require('../server')
-const { getUsers } = require('../db/dbUsers.js')
+const server = require('../../server')
+const { getUsers } = require('../../db/dbUsers.js')
 
-jest.mock('../db/dbUsers.js')
+jest.mock('../../db/dbUsers.js')
 
 jest.spyOn(console, 'error')
 afterEach(() => {

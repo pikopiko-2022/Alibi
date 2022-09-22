@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createComplaint } from '../apis/create'
 import { fetchIssues } from '../actions/create'
 import styles from './Create.module.scss'
-import Select from './Select Issue/Select'
 
 export default function Create() {
   const dispatch = useDispatch()
@@ -45,7 +44,7 @@ export default function Create() {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <div className="issues">
-          <select className="select" onChange={function1()}>
+          <select className="select" onChange={() => function1()}>
             {create.map((issues) => (
               <option key={issues.id}>{issues.name}</option>
             ))}
