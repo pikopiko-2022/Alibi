@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 const { getSignedPutUrl } = require('./lib')
+const { getIssues, getQuestions } = require('../db/create')
 
 const router = express.Router()
 
@@ -13,6 +14,34 @@ router.get('/', (req, res) => {
       res.status(500).send(err.message)
     })
 })
+
+//Create Form
+//get Issue
+router.get('/issues', (req, res) => {
+  return getIssues()
+    .then((issues) => {
+      res.json(issues)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
+//getQuestions
+router.get('/questions/:id', (req, res) => {
+  //remember to change to req.body
+  const id = req.params.id
+  console.log(id)
+  return getQuestions(id)
+    .then((questions) => {
+      res.json(questions)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
+//
 
 // TODO add checkJwt middleware
 router.post('/', (req, res) => {

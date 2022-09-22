@@ -7,6 +7,7 @@ const lifeGRoutes = require('./routes/lifeGRoute')
 const questionsRoutes = require('./routes/questionsRoute')
 const answersRoutes = require('./routes/answersRoute')
 const flatsRoutes = require('./routes/flatsRoute')
+const createRoutes = require('./routes/create')
 
 const server = express()
 
@@ -19,5 +20,6 @@ server.use('/api/v1/lifeG', lifeGRoutes)
 server.use('/api/v1/questions', questionsRoutes)
 server.use('/api/v1/answers', answersRoutes)
 server.use('/api/v1/flats', flatsRoutes)
+server.use('/api/v1/create', createRoutes)
 
 module.exports = server
