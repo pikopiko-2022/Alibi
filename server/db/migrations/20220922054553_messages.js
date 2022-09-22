@@ -3,11 +3,14 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable('responses', (table) => {
+  return knex.schema.createTable('messages', (table) => {
     table.increments('id').primary
-    table.integer('users_id')
+    table.integer('recipient_id')
+    table.integer('question_id')
+    table.integer('answer_id')
+    table.integer('life_guidance_id')
+    table.timestamp('date_sent')
     table.timestamp('date_responded')
-    table.integer('answers_id')
   })
 }
 /**
@@ -15,7 +18,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable('responses')
+  return knex.schema.dropTable('messages')
 }
-
-//adding a comment to try make the file show?

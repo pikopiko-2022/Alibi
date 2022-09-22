@@ -9,6 +9,8 @@ exports.up = function (knex) {
     table.string('img_url')
     table.integer('complaint_raised_by')
     table.timestamp('date_raised')
+    table.integer('culprit_id')
+    table.boolean('resolved').defaultTo(0)
   })
 }
 
