@@ -1,0 +1,34 @@
+//                                  //
+// Called by useTimeout in App.jsx  //
+//                                  //
+
+// function sendMessage
+// if current complaints > 0 then
+//    sendQuestion()
+// else send random question
+
+// function sendRandomQuestion
+// get any random question
+// save message in Messages table
+// leave complaint_id NULL
+
+// send question from complaint
+// function sendQuestion
+// get question that has issue_id that matches the complaint.issue_id
+// save message in Messages table
+// save complaint_id in Messages
+
+//                                                        //
+//  Called when user clicks an answer option to question  //
+//                                                        //
+// function receiveAnswer()
+// update the Message with answer_id and date_responded
+// If there is no complaint_id in message, then do nothing (it's a decoy)
+// If alibi
+//    do nothing
+// else if bad answer
+//    1. add -1 to culprits score
+//    2. set answerer to the culprit for that Complaint
+//    3. send the answerer a life guidance message (put into the messages table)
+// else
+//    add +1 to culprits score
