@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createComplaint } from '../apis/create'
 import { fetchIssues } from '../actions/create'
 import styles from './Create.module.scss'
+import Select from './Select Issue/Select'
 
 export default function Create() {
   const dispatch = useDispatch()
@@ -36,15 +37,20 @@ export default function Create() {
     setPreviewURL(null)
   }
 
+  const function1 = () => {
+    console.log('hello')
+  }
+
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <div className="issues">
-          {create.map((issues) => (
-            <div key={issues.id}>
-              <p>{issues.name}</p>
-            </div>
-          ))}
+          <select className="select" onChange={function1()}>
+            {create.map((issues) => (
+              <option key={issues.id}>{issues.name}</option>
+            ))}
+          </select>
+          {/* <Select /> */}
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
