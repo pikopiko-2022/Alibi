@@ -15,12 +15,14 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', checkJwt, (req, res) => {
-  const auth0_id = req.user?.sub
-  const { username, flatID } = req.body
+  // console.log(req)
+  console.log(req.user)
+  const auth0_id = req?.user?.sub
+  const { username, flatId } = req.body
   const userDetails = {
     auth0_id,
-    username,
-    flatID,
+    name: username,
+    flat_id: flatId,
   }
   console.log(userDetails)
 

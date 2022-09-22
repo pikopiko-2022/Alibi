@@ -15,7 +15,7 @@ function Register() {
 
   const [form, setForm] = useState({
     username: '',
-    flat_Id: '',
+    flatId: '',
     //placeholder doppleme avatar
   })
 
@@ -64,14 +64,12 @@ function Register() {
         <label htmlFor="flat_Id">Which FlatID are you joining?</label>
         <input
           type="text"
-          id="flat_Id"
-          name="flat_Id"
-          value={form.flat_Id}
+          id="flatId"
+          name="flatId"
+          value={form.flatId}
           onChange={handleChange}
         />
-        <button disabled={!(form.username && form.flat_Id)}>
-          Save Profile
-        </button>
+        <button disabled={!(form.username && form.flatId)}>Save Profile</button>
       </form>
     </>
   )
