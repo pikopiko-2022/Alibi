@@ -1,0 +1,18 @@
+//-----import actions ------
+import { SET_FRUITS } from '../actions'
+
+//-----initialState	------
+
+//-----reducer function------
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case SET_FRUITS:
+      return payload
+    default:
+      return state
+  }
+}
+
+//------export reducer-----
+export default reducer

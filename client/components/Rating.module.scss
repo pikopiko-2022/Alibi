@@ -1,0 +1,18 @@
+.ratingContainer {
+  height: 100px;
+  display: flex;
+}
+
+svg {
+  height: 40px;
+  width: 40px;
+
+}
+
+.starOn {
+  fill: yellow;
+}
+
+.starOff {
+ fill: black;
+}
