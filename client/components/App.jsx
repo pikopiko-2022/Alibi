@@ -44,8 +44,8 @@ function App() {
         <h1>Alibi</h1>
         <Nav />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/create" element={<Create />} />
+          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/" element={<Create />} />
         </Routes>
 
         {/* <ListUsers /> */}
