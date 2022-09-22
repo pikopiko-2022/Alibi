@@ -11,6 +11,7 @@ import { getUser } from '../apis/authentication'
 import { useNavigate, Routes, Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import Create from './Create'
+import { sendMessage, getRandomNumber } from '../apis/lib'
 
 function App() {
   useCacheUser()
@@ -37,6 +38,10 @@ function App() {
         .catch((err) => console.error(err))
     }
   }, [isAuthenticated])
+
+  useEffect(() => {
+    setTimeout(sendMessage, getRandomNumber(500, 5000))
+  }, [])
 
   return (
     <>
