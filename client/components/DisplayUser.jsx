@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react'
 import styles from './DisplayUser.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchUsers } from '../actions/users'
+import { fetchUser } from '../actions/users'
 import Rating from './Rating'
 
 const DisplayUser = () => {
   const dispatch = useDispatch()
-  const flatmates = useSelector((state) => state.users)
+  const user = useSelector((state) => state.users.user)
   useEffect(() => {
-    dispatch(fetchUsers()) // Change to display only you? Or move dispatch to the HomePage component
-    // TODO knex join flat table to get Flat Name
+    dispatch(fetchUser())
   }, [])
-  const user = flatmates[0]
   console.log(user)
   return (
     <div className={styles.container}>

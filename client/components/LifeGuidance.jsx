@@ -3,7 +3,9 @@ import styles from './Flatmates.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchLifeG } from '../actions/lifeG'
 
-function LifeG() {
+//Do I need a responses table?
+
+function Life_Guidance() {
   const dispatch = useDispatch()
   const guidance = useSelector((state) => state.lifeG)
   useEffect(() => {
@@ -11,10 +13,14 @@ function LifeG() {
   }, [])
 
   return (
-    //takes answer output-bad:true
-    //finds quesion id,
-    <></>
+    //-----foreach user(get responseID->get associated answerID, if answer.is_bad = true => next step),
+
+    //Get answers.question_id -> get questions.issue_id -> display  life_guidances.message
+
+    <>
+      <div>{guidance.message}</div>
+    </>
   )
 }
 
-export default LifeG
+export default Life_Guidance
