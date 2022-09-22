@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     <Auth0Provider
       domain="pikopiko-mac.au.auth0.com"
       clientId="zE3XOAYzrMrSy6GZLZmbeBtRUP99do6i"
-      // redirectUri=""
+      redirectUri={window.location.origin}
       audience="https://alibi/api"
     >
       <Provider store={store}>
         <BrowserRouter>
-        <App />
-      </BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
     </Auth0Provider>,
     document.getElementById('app')
