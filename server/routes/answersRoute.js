@@ -2,10 +2,11 @@ const express = require('express')
 const db = require('../db/dbAnswers')
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  db.getAnswers()
-    .then((answer) => {
-      res.json(answer)
+router.get('/:question_id', (req, res) => {
+  const questionId = req.params.question_id
+  db.getAnswers(questionId)
+    .then((answers) => {
+      res.json(answers)
       return null
     })
     .catch((err) => {

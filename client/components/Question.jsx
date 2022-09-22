@@ -16,11 +16,11 @@ const Question = ({ question }) => {
 
 export default Question
 
-{
-  id, issue_id, question
-}
+// {
+//   id, issue_id, question
+// }
 
-getAnswersForQuestion(question.id) // apis/
+// getAnswersForQuestion(question.id) // apis/
 // get request to some route that will find all answers that match the question.id
 // db.getAnswersForQuestion(question.id)
 // db/
