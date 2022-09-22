@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 //Create Form
 //get Issue
-router.get('/', (req, res) => {
+router.get('/issues', (req, res) => {
   return getIssues()
     .then((issues) => {
       res.json(issues)
@@ -26,6 +26,21 @@ router.get('/', (req, res) => {
       res.status(500).send(err.message)
     })
 })
+
+router.get('/questions/:id', (req, res) => {
+  //remember to change to req.body
+  const id = req.params.id
+  console.log(id)
+  return getQuestions(id)
+    .then((questions) => {
+      res.json(questions)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
+//
 
 // TODO add checkJwt middleware
 router.post('/', (req, res) => {

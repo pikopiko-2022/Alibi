@@ -8,9 +8,13 @@ function getIssues(db = connection) {
 //get question
 function getQuestions(id, db = connection) {
   return db('questions')
-    .join('issues', 'questions.issues_id', 'issues.id')
-    .select('questions.id as questionsId', 'issues.id as issuesId', 'question')
-    .where('issuesId', id)
+    .join('issues', 'questions.issue_id', 'issues.id')
+    .select(
+      'questions.id as questionsId',
+      'questions.issue_id as issueId',
+      'question'
+    )
+    .where('issueId', id)
 }
 
 module.exports = { getIssues, getQuestions }
