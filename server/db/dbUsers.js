@@ -4,4 +4,14 @@ function getUsers(db = connection) {
   return db('users').select()
 }
 
-module.exports = { getUsers }
+function addUser(newUser, db = connection) {
+  return db('users').insert({newUser})
+}
+
+function userExists(username, db = connection) {
+  return db('users')
+    .where('name', username)
+    .then((usersFound) => usersFound.length > 0)
+}
+
+module.exports = { getUsers, addUser, userExists }

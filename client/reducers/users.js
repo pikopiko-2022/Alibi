@@ -8,7 +8,6 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case SET_USERS:
       return payload
-
     default:
       return state
   }

@@ -19,9 +19,11 @@ router.post('/', checkJwt, (req, res) => {
   const { username, flatID } = req.body
   const userDetails = {
     auth0_id,
-    name: username,
-    flat_id: flatID,
+    username,
+    flatID,
   }
+  console.log(userDetails)
+
   db.userExists(username)
     .then((usernameTaken) => {
       if (usernameTaken) throw new Error('Username Taken')
