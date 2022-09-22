@@ -20,3 +20,17 @@ export function createComplaint({ image }) {
       console.error(err.message)
     })
 }
+
+//getIssue
+export function getIssues() {
+  return request.get(rootUrl + '/create/issues').then((res) => {
+    return res.body
+  })
+}
+
+//getQuestions
+export function getQuestions() {
+  return request.get(rootUrl + '/create/issues/:id').then((res) => {
+    return res.body
+  })
+}

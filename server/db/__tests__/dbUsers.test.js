@@ -2,7 +2,7 @@ const config = require('../knexfile')
 const knex = require('knex')
 const testCon = knex(config.test)
 
-const { getUsers } = require('../dbUsers')
+const { getUsers } = require('../dbUsers.js')
 
 beforeAll(() => testCon.migrate.latest())
 

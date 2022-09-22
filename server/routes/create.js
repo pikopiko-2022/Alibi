@@ -27,6 +27,7 @@ router.get('/issues', (req, res) => {
     })
 })
 
+//getQuestions
 router.get('/questions/:id', (req, res) => {
   //remember to change to req.body
   const id = req.params.id

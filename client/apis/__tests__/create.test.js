@@ -11,8 +11,9 @@ afterEach(() => {
   console.error.mockReset()
 })
 
+//MARKED AS TODO - still needs to be completed
 describe('GET /api/v1/create', () => {
-  it('gets url from AWS and sends form data to database', () => {
+  test.todo('gets url from AWS and sends form data to database', () => {
     const scope = nock('http://localhost')
       .get('/api/v1/create')
       .reply(200, JSON.stringify('http://mockUrl/'), {
