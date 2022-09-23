@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import { createAvatar } from '@dicebear/avatars'
+import * as style from '@dicebear/adventurer'
+
 import { newUser } from '../apis/authentication'
 import { updateLoggedInUser } from '../actions/loggedInUser'
 
 function Register() {
+  let svg = createAvatar(style, { dataUri: true, size: 150 })
+
   const user = useSelector((state) => state.loggedInUser)
 
   const navigate = useNavigate()
@@ -44,9 +49,12 @@ function Register() {
   const hideError = () => {
     setErrorMsg('')
   }
+  console.log({ svg })
 
   return (
     <>
+      <img src={svg} alt="Avatar" />
+
       <h2>Complete profile set up</h2>
       {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
       <form onSubmit={handleSubmit}>

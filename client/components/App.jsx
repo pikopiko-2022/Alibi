@@ -54,11 +54,8 @@ function App() {
             element={
               <>
                 <IfAuthenticated>
-                  //--If function that checks for database registration //if
-                  true return homepage
-                  <HomePage />
-                  //if false return to register
                   <Register />
+                  <HomePage />
                 </IfAuthenticated>
                 <IfNotAuthenticated>
                   <Nav />
