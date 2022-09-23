@@ -4,12 +4,10 @@ const rootUrl = '/api/v1'
 
 export function getUser(token) {
   return request
-    .get(`${rootUrl}/registration`)
+    .get(`${rootUrl}/user`)
     .set('Authorization', `Bearer ${token}`)
     .then((res) => res.body)
-    .catch(() => {
-      console.log('err')
-    })
+    .catch((err) => console.error(err.message))
 }
 
 export function newUser(user, token) {
@@ -18,7 +16,5 @@ export function newUser(user, token) {
     .post(`${rootUrl}/registration`)
     .set('Authorization', `Bearer ${token}`)
     .send(user)
-    .catch(() => {
-      console.log('err')
-    })
+    .catch((err) => console.error(err.message))
 }

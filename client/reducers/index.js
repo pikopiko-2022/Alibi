@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import users from './users'
-import loggedInUser from './loggedInUser'
+import user from './user'
 import questions from './questions'
 import lifeG from './lifeG'
 import answers from './answers'
@@ -10,7 +10,7 @@ import create from './create'
 
 export default combineReducers({
   users,
-  loggedInUser,
+  user,
   questions,
   lifeG,
   answers,

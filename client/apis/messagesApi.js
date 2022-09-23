@@ -12,28 +12,34 @@ const rootUrl = '/api/v1'
 // if current complaints > 0 then
 //    sendQuestion()
 // else send random question
-export function sendMessage() {
-  return request.get(`${rootUrl}/complaints/current`).then((res) => {
-    console.log(res.body)
-    const currentComplaints = res.body
-    if (currentComplaints.length > 0) {
-      const complaint =
-        currentComplaints[getRandomNumber(0, currentComplaints.length - 1)]
-      sendComplaintQuestion(complaint)
-    } else sendDecoyQuestion()
-  })
+export function sendMessage(token) {
+  console.log(token)
+  return request
+    .get(`${rootUrl}/complaints/current`)
+    .set('Authorization', `Bearer ${token}`)
+    .then((res) => {
+      const currentComplaints = res.body
+      if (currentComplaints.length > 0) {
+        const complaint =
+          currentComplaints[getRandomNumber(0, currentComplaints.length - 1)]
+        sendComplaintQuestion(complaint, token)
+      } else sendDecoyQuestion(token)
+    })
 }
 
 // function sendRandomQuestion
 // get any random question
 // save message in Messages table
 // leave complaint_id NULL
-function sendDecoyQuestion() {
-  return request.get(`${rootUrl}/questions`).then((res) => {
-    const questions = res.body
-    const question = questions[getRandomNumber(0, questions.length - 1)]
-    sendQuestionAsMessage({ question_id: question.id })
-  })
+function sendDecoyQuestion(token) {
+  return request
+    .get(`${rootUrl}/questions`)
+    .set('authorization', `Bearer ${token}`)
+    .then((res) => {
+      const questions = res.body
+      const question = questions[getRandomNumber(0, questions.length - 1)]
+      sendQuestionAsMessage({ question_id: question.id }, token)
+    })
 }
 
 // send question from complaint
@@ -41,20 +47,27 @@ function sendDecoyQuestion() {
 // get question that has issue_id that matches the complaint.issue_id
 // save message in Messages table
 // save complaint_id in Messages
-function sendComplaintQuestion(complaint) {
-  return request.get(`${rootUrl}/questions/${complaint.id}`).then((res) => {
-    const questions = res.body
-    const question = questions[getRandomNumber(0, questions.length - 1)]
-    sendQuestionAsMessage({
-      question_id: question.id,
-      complaint_id: complaint.id,
+function sendComplaintQuestion(complaint, token) {
+  return request
+    .get(`${rootUrl}/questions/${complaint.id}`)
+    .set('authorization', `Bearer ${token}`)
+    .then((res) => {
+      const questions = res.body
+      const question = questions[getRandomNumber(0, questions.length - 1)]
+      sendQuestionAsMessage(
+        {
+          question_id: question.id,
+          complaint_id: complaint.id,
+        },
+        token
+      )
     })
-  })
 }
 
-function sendQuestionAsMessage(message) {
+function sendQuestionAsMessage(message, token) {
   return request
     .post(`${rootUrl}/messages`)
+    .set('authorization', `Bearer ${token}`)
     .send(message)
     .then((res) => {
       console.log(res)

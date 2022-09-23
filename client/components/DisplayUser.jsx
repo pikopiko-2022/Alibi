@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './DisplayUser.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchUser } from '../actions/users'
+import { useSelector } from 'react-redux'
 import Rating from './Rating'
 
 const DisplayUser = () => {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.users.user)
-  useEffect(() => {
-    dispatch(fetchUser())
-  }, [])
+  const user = useSelector((state) => state.user)
   console.log(user)
   return (
     <div className={styles.container}>

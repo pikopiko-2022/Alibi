@@ -1,15 +1,13 @@
-import { SET_USERS, SET_USER } from '../actions/users'
+import { SET_USERS } from '../actions/users'
 
-const initialState = { users: [], user: null }
+const initialState = []
 
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
     case SET_USERS:
-      return { ...state, users: payload }
-    case SET_USER:
-      return { ...state, user: payload }
+      return payload
     default:
       return state
   }

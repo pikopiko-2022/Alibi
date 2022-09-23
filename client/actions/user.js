@@ -1,3 +1,5 @@
+import { getUser } from '../apis/authentication'
+
 export const UPDATE_LOGGED_IN_USER = 'UPDATE_LOGGED_IN_USER'
 export const CLEAR_LOGGED_IN_USER = 'CLEAR_LOGGED_IN_USER'
 
@@ -12,5 +14,13 @@ export function updateLoggedInUser(userToSave) {
 export function clearLoggedInUser() {
   return {
     type: CLEAR_LOGGED_IN_USER,
+  }
+}
+
+export function fetchUser() {
+  return (dispatch) => {
+    return getUser()
+      .then((user) => dispatch(updateLoggedInUser(user)))
+      .catch((err) => console.error(err.message))
   }
 }
