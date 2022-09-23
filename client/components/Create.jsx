@@ -16,7 +16,7 @@ export default function Create() {
 
   const user = useSelector((state) => state.users.user)
 
-  const create = useSelector((state) => state.create)
+  const issues = useSelector((state) => state.create)
 
   useEffect(() => {
     dispatch(fetchIssues())
@@ -34,16 +34,21 @@ export default function Create() {
       image: selectedFile,
     })
       .then((url) => {
-        setUploadedImageUrl(url)
         console.log(url)
-      })
-      .then(() =>
+        setUploadedImageUrl(url)
         sendComplaint({
-          image: uploadedImageUrl,
+          image: url,
           issue_id: selectedIssue,
           complaint_raised_by: user.id,
         })
-      )
+      })
+      // .then(() =>
+      // sendComplaint({
+      //   image: uploadedImageUrl,
+      //   issue_id: selectedIssue,
+      //   complaint_raised_by: user.id,
+      // })
+      // )
       .catch((err) => {
         console.error(err.message)
       })
@@ -61,7 +66,7 @@ export default function Create() {
       <form onSubmit={handleSubmit}>
         <div className="issues">
           <select className="select" onChange={handleSelect}>
-            {create.map((issue) => (
+            {issues.map((issue) => (
               <option key={issue.id} value={issue.id}>
                 {issue.name}
               </option>
