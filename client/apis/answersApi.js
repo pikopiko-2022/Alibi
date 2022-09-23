@@ -11,8 +11,6 @@ export function getAnswersApi() {
 export function getAnswersByQuestionApi(questionID) {
   console.log(questionID)
   return request.get(`${rootUrl}/answers/${questionID}`).then((res) => {
-    console.log(res.body)
-    console.log('hi')
     return res.body
   })
 }
