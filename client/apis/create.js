@@ -11,9 +11,11 @@ export function createComplaint({ image }) {
     })
     .then((res) => {
       const url = res?.req?.url?.split?.('?')?.[0]
+      console.log(url)
       return request.post(rootUrl + '/create').send({ url })
     })
     .then((res) => {
+      console.log(res.text)
       return res.text
     })
     .catch((err) => {

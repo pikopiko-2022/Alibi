@@ -16,7 +16,7 @@ export default function Create() {
 
   const user = useSelector((state) => state.users.user)
 
-  const issues = useSelector((state) => state.create)
+  const create = useSelector((state) => state.create)
 
   useEffect(() => {
     dispatch(fetchIssues())
@@ -66,7 +66,7 @@ export default function Create() {
       <form onSubmit={handleSubmit}>
         <div className="issues">
           <select className="select" onChange={handleSelect}>
-            {issues.map((issue) => (
+            {create.map((issue) => (
               <option key={issue.id} value={issue.id}>
                 {issue.name}
               </option>
