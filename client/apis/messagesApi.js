@@ -13,7 +13,6 @@ const rootUrl = '/api/v1'
 //    sendQuestion()
 // else send random question
 export function sendMessage(token) {
-  console.log(token)
   return request
     .get(`${rootUrl}/complaints/current`)
     .set('Authorization', `Bearer ${token}`)
@@ -92,4 +91,14 @@ function sendQuestionAsMessage(message, token) {
 
 export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+export function getMessages(token) {
+  return request
+    .get(`${rootUrl}/messages`)
+    .set('authorization', `Bearer ${token}`)
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
 }

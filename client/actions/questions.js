@@ -9,9 +9,9 @@ export function setQuestions(questions) {
   }
 }
 
-export function fetchQuestion() {
+export function fetchQuestion(token) {
   return (dispatch) => {
-    return getQuestionsApi()
+    return getQuestionsApi(token)
       .then((questions) => {
         dispatch(setQuestions(questions))
       })

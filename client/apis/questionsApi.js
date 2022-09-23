@@ -2,9 +2,12 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
-export function getQuestionsApi() {
-  return request.get(`${rootUrl}/questions`).then((res) => {
-    console.log(res.body)
-    return res.body
-  })
+export function getQuestionsApi(token) {
+  return request
+    .get(`${rootUrl}/questions`)
+    .set('authorization', `Bearer ${token}`)
+    .then((res) => {
+      console.log(res.body)
+      return res.body
+    })
 }
