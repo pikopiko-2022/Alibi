@@ -21,8 +21,8 @@ export function sendMessage(token) {
       if (currentComplaints.length > 0) {
         const complaint =
           currentComplaints[getRandomNumber(0, currentComplaints.length - 1)]
-        sendComplaintQuestion(complaint, token)
-      } else sendDecoyQuestion(token)
+        return sendComplaintQuestion(complaint, token)
+      } else return sendDecoyQuestion(token)
     })
 }
 
@@ -37,7 +37,7 @@ function sendDecoyQuestion(token) {
     .then((res) => {
       const questions = res.body
       const question = questions[getRandomNumber(0, questions.length - 1)]
-      sendQuestionAsMessage({ question_id: question.id }, token)
+      return sendQuestionAsMessage({ question_id: question.id }, token)
     })
 }
 
@@ -53,7 +53,7 @@ function sendComplaintQuestion(complaint, token) {
     .then((res) => {
       const questions = res.body
       const question = questions[getRandomNumber(0, questions.length - 1)]
-      sendQuestionAsMessage(
+      return sendQuestionAsMessage(
         {
           question_id: question.id,
           complaint_id: complaint.id,
@@ -69,7 +69,8 @@ function sendQuestionAsMessage(message, token) {
     .set('authorization', `Bearer ${token}`)
     .send(message)
     .then((res) => {
-      return res.body
+      const messages = res.body
+      return messages
     })
     .catch((err) => console.error(err.message))
 }

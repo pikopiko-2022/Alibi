@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Nav from './Nav'
 import Register from './Registration'
 import { useCacheUser } from '../auth0-utils'
@@ -10,14 +10,12 @@ import { getUser } from '../apis/authentication'
 import { useNavigate, Routes, Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import Create from './Create'
-import { sendMessage, getRandomNumber } from '../apis/messagesApi'
 
 function App() {
   useCacheUser()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
-  const token = useSelector((state) => state?.user?.token)
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -33,14 +31,6 @@ function App() {
         .catch((err) => console.error(err))
     }
   }, [isAuthenticated])
-
-  useEffect(() => {
-    token &&
-      setTimeout(() => {
-        console.log('Calling setTimeOut')
-        sendMessage(token)
-      }, getRandomNumber(500, 5000))
-  }, [token])
 
   return (
     <>
