@@ -6,7 +6,10 @@ export function createComplaint({ image }) {
   return request
     .get(rootUrl + '/create')
     .then((res) => {
+      console.log(res)
       const url = res.body
+      console.log(url)
+      console.log(image)
       return request.put(url).send(image)
     })
     .then((res) => {
