@@ -4,8 +4,8 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   db.getQuestions()
-    .then((question) => {
-      res.json(question)
+    .then((questions) => {
+      res.json(questions)
       return null
     })
     .catch((err) => {

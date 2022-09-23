@@ -27,14 +27,39 @@ export function sendMessage() {
 // get any random question
 // save message in Messages table
 // leave complaint_id NULL
-function sendDecoyQuestion() {}
+function sendDecoyQuestion() {
+  return request.get(`${rootUrl}/questions`).then((res) => {
+    const questions = res.body
+    const question = questions[getRandomNumber(0, questions.length - 1)]
+    sendQuestionAsMessage({ question_id: question.id })
+  })
+}
 
 // send question from complaint
 // function sendQuestion
 // get question that has issue_id that matches the complaint.issue_id
 // save message in Messages table
 // save complaint_id in Messages
-function sendComplaintQuestion(complaint) {}
+function sendComplaintQuestion(complaint) {
+  return request.get(`${rootUrl}/questions/${complaint.id}`).then((res) => {
+    const questions = res.body
+    const question = questions[getRandomNumber(0, questions.length - 1)]
+    sendQuestionAsMessage({
+      question_id: question.id,
+      complaint_id: complaint.id,
+    })
+  })
+}
+
+function sendQuestionAsMessage(message) {
+  return request
+    .post(`${rootUrl}/messages`)
+    .send(message)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => console.error(err.message))
+}
 
 //                                                        //
 //  Called when user clicks an answer option to question  //
