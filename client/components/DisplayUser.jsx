@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './DisplayUser.module.scss'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Rating from './Rating'
 
 const DisplayUser = () => {
@@ -23,6 +24,9 @@ const DisplayUser = () => {
         <div className={styles.flatName}>{user?.flatName}</div>
         <div className={styles.flatAddress}>{user?.flatAddress}</div>
       </div>
+      <Link to="/create">
+        <button>Add Complaint</button>
+      </Link>
     </div>
   )
 }

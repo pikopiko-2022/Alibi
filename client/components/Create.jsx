@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createComplaint, sendComplaint } from '../apis/create'
+import { createComplaint } from '../apis/create'
 import { fetchIssues } from '../actions/create'
-import { fetchUser } from '../actions/users'
+import { fetchUser } from '../actions/user'
 import styles from './Create.module.scss'
 
 export default function Create() {
@@ -14,7 +14,7 @@ export default function Create() {
   const isLoading = false
   const error = false
 
-  const user = useSelector((state) => state.users.user)
+  const user = useSelector((state) => state.user)
 
   const create = useSelector((state) => state.create)
 
@@ -32,16 +32,19 @@ export default function Create() {
     event.preventDefault()
     createComplaint({
       image: selectedFile,
+      issue_id: selectedIssue,
+      complaint_raised_by: user.id,
     })
       .then((url) => {
         console.log(url)
         setUploadedImageUrl(url)
-        sendComplaint({
-          image: url,
-          issue_id: selectedIssue,
-          complaint_raised_by: user.id,
-        })
       })
+      //   sendComplaint({
+      //     image: url,
+      //     issue_id: selectedIssue,
+      //     complaint_raised_by: user.id,
+      //   })
+      // })
       // .then(() =>
       // sendComplaint({
       //   image: uploadedImageUrl,

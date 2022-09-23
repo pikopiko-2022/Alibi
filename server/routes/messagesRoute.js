@@ -11,6 +11,7 @@ router.get('/', checkJwt, (req, res) => {
   getUserIdByAuth0Id(auth0_id)
     .then(({ userId }) => db.getMessages(userId))
     .then((messages) => {
+      console.log(messages)
       messagesResult = messages
       return getAnswers(messages)
     })
@@ -21,6 +22,7 @@ router.get('/', checkJwt, (req, res) => {
           (answer) => answer.question_id === message.question_id
         ),
       }))
+      console.log(messagesResult)
       res.json(messagesResult)
       return null
     })

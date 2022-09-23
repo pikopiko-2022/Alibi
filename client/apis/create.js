@@ -2,20 +2,18 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
-export function createComplaint({ image }) {
+export function createComplaint({ issue_id, complaint_raised_by, image }) {
   return request
     .get(rootUrl + '/create')
     .then((res) => {
-      console.log(res)
       const url = res.body
-      console.log(url)
-      console.log(image)
       return request.put(url).send(image)
     })
     .then((res) => {
       const url = res?.req?.url?.split?.('?')?.[0]
-      console.log(url)
-      return request.post(rootUrl + '/create').send({ url })
+      return request
+        .post(rootUrl + '/create/complaints')
+        .send({ issue_id, complaint_raised_by, image: url })
     })
     .then((res) => {
       console.log(res.text)
