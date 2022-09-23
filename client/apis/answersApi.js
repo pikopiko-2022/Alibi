@@ -8,3 +8,5 @@ export function getAnswersApi() {
     return res.body
   })
 }
+
+// /answers/${questionId}
