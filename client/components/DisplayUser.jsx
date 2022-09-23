@@ -25,6 +25,10 @@ const DisplayUser = () => {
       <div className={styles.profileRatingContainer}>
         <Rating rating={user?.rating} total={5} />
       </div>
+      <div className={styles.flatContainer}>
+        <div className={styles.flatName}>{user?.flatName}</div>
+        <div className={styles.flatAddress}>{user?.flatAddress}</div>
+      </div>
     </div>
   )
 }
