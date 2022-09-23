@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Nav from './Nav'
-// import ListUsers from './Users'
-import Register from './Registration'
-import { useCacheUser } from '../auth0-utils'
-import { updateLoggedInUser, clearLoggedInUser } from '../actions/loggedInUser'
-import { useAuth0 } from '@auth0/auth0-react'
-
-import { getUser } from '../apis/authentication'
+import { useDispatch } from 'react-redux'
 import { useNavigate, Routes, Route } from 'react-router-dom'
-import HomePage from './HomePage'
+
+import { useAuth0 } from '@auth0/auth0-react'
+import { useCacheUser } from '../auth0-utils'
+
+import Nav from './Nav'
 import Create from './Create'
+import HomePage from './HomePage'
+import Register from './Registration'
+
+import { updateLoggedInUser, clearLoggedInUser } from '../actions/loggedInUser'
+import { getUser } from '../apis/authentication'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function App() {
-  useCacheUser()
-
-  const dispatch = useDispatch()
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
 
+  useCacheUser()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -26,7 +27,6 @@ function App() {
     } else {
       getAccessTokenSilently()
         .then((token) => {
-          // console.log(token)
           return getUser(token)
         })
         .then((userInDb) => {
@@ -38,18 +38,22 @@ function App() {
     }
   }, [isAuthenticated])
 
+  function ifRegistered() {}
+
   return (
     <>
       <div className="app">
         <h1>Alibi</h1>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/create" element={<Create />} />
-        </Routes>
-
-        {/* <ListUsers /> */}
-        <Register />
+        <IfAuthenticated>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/create" element={<Create />} />
+          </Routes>
+          <Register />
+        </IfAuthenticated>
+        <IfNotAuthenticated>
+          <Nav />
+        </IfNotAuthenticated>
       </div>
     </>
   )

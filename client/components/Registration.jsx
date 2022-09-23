@@ -11,8 +11,6 @@ function Register() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  console.log(user)
-
   const [form, setForm] = useState({
     username: '',
     flatId: '',

@@ -10,7 +10,7 @@ const DisplayUser = () => {
   useEffect(() => {
     dispatch(fetchUser())
   }, [])
-  console.log(user)
+
   return (
     <div className={styles.container}>
       <div className={styles.profileImageContainer}>
