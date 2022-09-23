@@ -11,7 +11,7 @@ import { getUser } from '../apis/authentication'
 import { useNavigate, Routes, Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import Create from './Create'
-import { sendMessage, getRandomNumber } from '../apis/lib'
+import { sendMessage, getRandomNumber } from '../apis/messagesApi'
 
 function App() {
   useCacheUser()

@@ -14,6 +14,7 @@ const rootUrl = '/api/v1'
 // else send random question
 export function sendMessage() {
   return request.get(`${rootUrl}/complaints/current`).then((res) => {
+    console.log(res.body)
     const currentComplaints = res.body
     if (currentComplaints.length > 0) {
       const complaint =
