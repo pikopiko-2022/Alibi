@@ -4,4 +4,8 @@ function getMessages(userId, db = connection) {
   return db('messages').select().where({ recipient_id: userId })
 }
 
-module.exports = { getMessages }
+function addMessage(message, db = connection) {
+  return db('messages').returning(message).insert(message)
+}
+
+module.exports = { getMessages, addMessage }
