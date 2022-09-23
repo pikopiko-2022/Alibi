@@ -69,6 +69,9 @@ export default function Create() {
       <form onSubmit={handleSubmit}>
         <div className="issues">
           <select className="select" onChange={handleSelect}>
+            <option value="" selected disabled hidden>
+              Pick an issue
+            </option>
             {create.map((issue) => (
               <option key={issue.id} value={issue.id}>
                 {issue.name}
