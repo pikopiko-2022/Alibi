@@ -1,10 +1,14 @@
 const connection = require('./connection')
 
-function getAnswers(question_id, db = connection) {
-  return db('answers').select().where('question_id', question_id)
+function getAllAnswers(db = connection) {
+  return db('answers').select()
 }
 
-module.exports = { getAnswers }
+function getAnswers(id, db = connection) {
+  return db('answers').select().where('question_id', id)
+}
+
+module.exports = { getAnswers, getAllAnswers }
 
 //get questions - all questions
 //get answers - all answers

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Question.module.scss'
 import { getQuestionsByIssueApi } from '../apis/questionsApi'
-import { getAnswersApi } from '../apis/answersApi'
+import { getAnswersByQuestionApi } from '../apis/answersApi'
 
 // import { fetchQuestions } from '../actions/questions'
 // import { fetchAnswers } from '../actions/answers'
@@ -23,20 +23,27 @@ const Question = () => {
   const [answer, setAnswer] = useState([])
 
   useEffect(() => {
-    return getQuestionsByIssueApi().then((questions) => {
-      setQuestion(getRandomQuestion(questions)),
-        setAnswer(getAnswersApi(question))
-      return null
-    })
+    getQuestionsByIssueApi()
+      .then((questions) => {
+        return getRandomQuestion(questions)
+      })
+      .then((question) => {
+        setQuestion(question)
+        return getAnswersByQuestionApi(question.id)
+      })
+      .then((answers) => {
+        return setAnswer(answers)
+      })
+      .catch((error) => {
+        return console.error(error)
+      })
   }, [])
-
-  console.log(question.question)
   console.log(answer)
-
+  console.log(question.question)
   return (
     <>
       <div>{question.question}</div>
-      <div>{answer.answer}</div>
+      {/* <div>{answer.answer}</div> */}
       {/* div for Q, div for answers. drop-down */}
     </>
   )
@@ -44,41 +51,10 @@ const Question = () => {
 
 export default Question
 
-// {
-//   id, issue_id, question
-// }
-
-// getAnswersForQuestion(question.id) // apis/
-// get request to some route that will find all answers that match the question.id
-// db.getAnswersForQuestion(question.id)
-// db/
-
-// function App() {
-//   const [sharks, setSharks] = useState([])
-
-//   useEffect(() => {
-//     return getSharks().then((sharks) => {
-//       setSharks(sharks)
-//       return null
-//     })
-//   }, [])
-
-//   const submitShark = (shark) => {
-//     return postShark(shark).then((newShark) => {
-//       setSharks([...sharks, newShark])
-//       return null
-//     })
-//     // TODO: Need some error handling here in case db update fails!
-//   }
-
-//   return (
-//     <div>
-//       <h1>Shark family!</h1>
-//       {sharks.map((shark) => (
-//         <Shark key={shark.id} name={shark.name} colour={shark.colour} />
-//       ))}
-//       <br />
-//       <SharkForm submitShark={submitShark} />
-//     </div>
-//   )
-// }
+{
+  /* <li>
+          {flatmates.map((flatmate) => (
+            <Flatmate key={flatmate.id} flatmate={flatmate} />
+          ))}
+        </li> */
+}

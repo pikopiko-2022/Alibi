@@ -4,7 +4,6 @@ const rootUrl = '/api/v1'
 
 export function getQuestionsApi() {
   return request.get(`${rootUrl}/questions`).then((res) => {
-    console.log(res.body)
     return res.body
   })
 }
@@ -12,7 +11,6 @@ export function getQuestionsApi() {
 const issueID = 1
 export function getQuestionsByIssueApi() {
   return request.get(`${rootUrl}/questions/${issueID}`).then((res) => {
-    console.log(res.body)
     return res.body
   })
 }
