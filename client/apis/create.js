@@ -11,9 +11,11 @@ export function createComplaint({ image }) {
     })
     .then((res) => {
       const url = res?.req?.url?.split?.('?')?.[0]
+      console.log(url)
       return request.post(rootUrl + '/create').send({ url })
     })
     .then((res) => {
+      console.log(res.text)
       return res.text
     })
     .catch((err) => {
@@ -28,9 +30,14 @@ export function getIssues() {
   })
 }
 
-//getQuestions
-export function getQuestions() {
-  return request.get(rootUrl + '/create/issues/:id').then((res) => {
-    return res.body
-  })
+//sendComplaint
+export function sendComplaint(complaint) {
+  console.log(complaint)
+  return request.post(rootUrl + '/create/complaints').send(complaint)
 }
+//getQuestions
+// export function getQuestions() {
+//   return request.get(rootUrl + '/create/issues/:id').then((res) => {
+//     return res.body
+//   })
+// }
