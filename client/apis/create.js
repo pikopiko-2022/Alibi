@@ -28,9 +28,14 @@ export function getIssues() {
   })
 }
 
-//getQuestions
-export function getQuestions() {
-  return request.get(rootUrl + '/create/issues/:id').then((res) => {
-    return res.body
-  })
+//sendComplaint
+export function sendComplaint(complaint) {
+  console.log(complaint)
+  return request.post(rootUrl + '/create/complaints').send(complaint)
 }
+// //getQuestions
+// export function getQuestions() {
+//   return request.get(rootUrl + '/create/issues/:id').then((res) => {
+//     return res.body
+//   })
+// }

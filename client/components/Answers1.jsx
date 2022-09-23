@@ -1,3 +1,5 @@
+import { updateCulprit } from '../apis/complaints'
+
 //                                  //
 // Called by useTimeout in App.jsx  //
 //                                  //
@@ -42,7 +44,8 @@ export function receiveAnswer(messages, answers, complaints, users) {
     return null
   } else if (answers.is_bad === 1) {
     culpritScore - 1
-    complaints.culprit_id = users.id
+    // complaints.culprit_id = users.id
+    updateCulprit({ culprit_id: users.id })
     // sendGuidance()
   } else {
     culpritScore + 1
