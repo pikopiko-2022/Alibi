@@ -13,4 +13,16 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:issueId', (req, res) => {
+  const issueId = req.params.id
+  db.getQuestionsForIssue(issueId)
+    .then((questions) => {
+      res.json(questions)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router

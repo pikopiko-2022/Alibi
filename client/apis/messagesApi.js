@@ -47,8 +47,9 @@ function sendDecoyQuestion(token) {
 // save message in Messages table
 // save complaint_id in Messages
 function sendComplaintQuestion(complaint, token) {
+  console.log(complaint)
   return request
-    .get(`${rootUrl}/questions/${complaint.id}`)
+    .get(`${rootUrl}/questions/${complaint.issue_id}`)
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
       const questions = res.body
