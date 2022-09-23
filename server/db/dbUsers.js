@@ -23,4 +23,8 @@ function getUser(auth0_id, db = connection) {
     .first()
 }
 
-module.exports = { getUsers, addUser, userExists, getUser }
+function getUserIdByAuth0Id(auth0_id, db = connection) {
+  return db('users').select('id as userId').where({ auth0_id }).first()
+}
+
+module.exports = { getUsers, addUser, userExists, getUser, getUserIdByAuth0Id }
