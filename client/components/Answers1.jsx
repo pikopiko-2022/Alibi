@@ -34,12 +34,18 @@
 //    3. send the answerer a life guidance message (put into the messages table)
 // else
 //    add +1 to culprits score
-function receiveAnswer() {
+export function receiveAnswer(messages, answers, complaints, users) {
   const culpritScore = 0
-  if () {
-    //no complainant id, do nothing
+  if (messages.complaint_id === null) {
+    return null
+  } else if (answers.is_alibi === 1) {
+    return null
+  } else if (answers.is_bad === 1) {
+    culpritScore - 1
+    complaints.culprit_id = users.id
+    // sendGuidance()
+  } else {
+    culpritScore + 1
   }
-  else if (answers.is_alibi ) {
-    
-  }
+  return users.rating + culpritScore
 }
