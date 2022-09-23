@@ -7,6 +7,7 @@ import lifeG from './lifeG'
 import answers from './answers'
 import flats from './flats'
 import create from './create'
+import messages from './messages'
 
 export default combineReducers({
   users,
@@ -16,4 +17,5 @@ export default combineReducers({
   answers,
   flats,
   create,
+  messages,
 })
