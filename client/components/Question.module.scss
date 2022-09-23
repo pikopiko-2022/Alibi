@@ -1,0 +1,25 @@
+.questionContainer {
+  background-color: greenyellow;
+  cursor: pointer;
+}
+
+.questionTitle {
+  background-color: yellow;
+  font-weight: bold;
+  padding: 12px;
+}
+
+.questionAnswersContainer {
+  background-color: blue;
+}
+
+.questionAnswer {
+  font-style: italic;
+  background-color: goldenrod;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.questionAnswer:hover {
+  background-color: gold;
+}

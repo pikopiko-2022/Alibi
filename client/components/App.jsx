@@ -35,7 +35,11 @@ function App() {
   }, [isAuthenticated])
 
   useEffect(() => {
-    token && setTimeout(() => sendMessage(token), getRandomNumber(500, 5000))
+    token &&
+      setTimeout(() => {
+        console.log('Calling setTimeOut')
+        sendMessage(token)
+      }, getRandomNumber(500, 5000))
   }, [token])
 
   return (

@@ -69,7 +69,7 @@ function sendQuestionAsMessage(message, token) {
     .set('authorization', `Bearer ${token}`)
     .send(message)
     .then((res) => {
-      console.log(res)
+      return res.body
     })
     .catch((err) => console.error(err.message))
 }
@@ -98,7 +98,7 @@ export function getMessages(token) {
     .get(`${rootUrl}/messages`)
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
-      console.log(res)
+      console.log(res.body)
       return res.body
     })
     .catch((err) => console.error(err.message))

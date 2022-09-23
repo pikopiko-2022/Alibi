@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Question.module.scss'
 // import { fetchQuestions } from '../actions/questions'
 // import { fetchAnswers } from '../actions/answers'
@@ -11,7 +11,41 @@ import styles from './Question.module.scss'
 // <Question question={question} />
 
 const Question = ({ question }) => {
-  return <div> {question.question}</div>
+  console.log(question)
+  const [expanded, setExpanded] = useState(false)
+  const handleAnswerClick = (answer) => {
+    // Set answer_id as selected answer for the message
+    // Set "date_responded" to current time
+    // Handle any checks for if answer is alibi, is bad etc.
+    console.log(answer)
+  }
+  return (
+    <div className={styles.questionContainer}>
+      <div
+        className={styles.questionTitle}
+        onClick={(expanded) => setExpanded(!expanded)}
+        role="button"
+      >
+        {question.question}
+      </div>
+      <div
+        className={`${styles.questionAnswersContainer} ${
+          expanded ? styles.questionAnswersContainerExpanded : ''
+        }`}
+      >
+        {question.answers?.map((answer) => (
+          <div
+            key={answer.id}
+            className={styles.questionAnswer}
+            onClick={() => handleAnswerClick(answer)}
+            role="button"
+          >
+            {answer.answer}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Question
