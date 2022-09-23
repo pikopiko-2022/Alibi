@@ -38,8 +38,6 @@ function App() {
     }
   }, [isAuthenticated])
 
-  function ifRegistered() {}
-
   return (
     <>
       <div className="app">

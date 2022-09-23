@@ -13,7 +13,6 @@ export function getUser(token) {
 }
 
 export function newUser(user, token) {
-  console.log('NewUser', user)
   return request
     .post(`${rootUrl}/registration`)
     .set('Authorization', `Bearer ${token}`)
