@@ -4,7 +4,6 @@ export const UPDATE_LOGGED_IN_USER = 'UPDATE_LOGGED_IN_USER'
 export const CLEAR_LOGGED_IN_USER = 'CLEAR_LOGGED_IN_USER'
 
 export function updateLoggedInUser(userToSave) {
-  console.log('loggedInUser action', userToSave)
   return {
     type: UPDATE_LOGGED_IN_USER,
     payload: userToSave,

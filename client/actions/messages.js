@@ -13,6 +13,7 @@ export function fetchMessages(token) {
   return (dispatch) => {
     return getMessages(token)
       .then((messages) => {
+        console.log(messages)
         dispatch(setMessages(messages))
       })
       .catch((err) => {

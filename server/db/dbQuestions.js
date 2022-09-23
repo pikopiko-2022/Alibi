@@ -1,7 +1,11 @@
 const connection = require('./connection')
 
-function getQuestion(id, db = connection) {
-  return db('questions').select().where('id', id)
+function getQuestions(db = connection) {
+  return db('questions').select()
 }
 
-module.exports = { getQuestion }
+function getQuestion(id, db = connection) {
+  return db('questions').select().where('id', id).first()
+}
+
+module.exports = { getQuestion, getQuestions }

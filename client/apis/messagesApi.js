@@ -98,6 +98,7 @@ export function getMessages(token) {
     .get(`${rootUrl}/messages`)
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
+      console.log(res)
       return res.body
     })
     .catch((err) => console.error(err.message))
