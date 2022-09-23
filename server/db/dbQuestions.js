@@ -5,7 +5,7 @@ function getQuestions(db = connection) {
 }
 
 function getQuestion(id, db = connection) {
-  return db('questions').select().where('id', id).first()
+  return db('questions').select().where('issue_id', id)
 }
 
 module.exports = { getQuestions, getQuestion }
