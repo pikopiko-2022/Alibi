@@ -27,4 +27,17 @@ function getUserIdByAuth0Id(auth0_id, db = connection) {
   return db('users').select('id as userId').where({ auth0_id }).first()
 }
 
-module.exports = { getUsers, addUser, userExists, getUser, getUserIdByAuth0Id }
+function updateUserScore(userId, score, db = connection) {
+  return db('users')
+    .where('id', userId)
+    .update({ rating: db.raw(`rating + ${score}`) })
+}
+
+module.exports = {
+  getUsers,
+  addUser,
+  userExists,
+  getUser,
+  getUserIdByAuth0Id,
+  updateUserScore,
+}

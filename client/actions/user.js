@@ -1,4 +1,4 @@
-import { getUser } from '../apis/authentication'
+import { getUser, addUserScore } from '../apis/authentication'
 
 export const UPDATE_LOGGED_IN_USER = 'UPDATE_LOGGED_IN_USER'
 export const CLEAR_LOGGED_IN_USER = 'CLEAR_LOGGED_IN_USER'
@@ -16,9 +16,18 @@ export function clearLoggedInUser() {
   }
 }
 
-export function fetchUser() {
+export function fetchUser(token) {
   return (dispatch) => {
-    return getUser()
+    return getUser(token)
+      .then((user) => dispatch(updateLoggedInUser(user)))
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function updateUserScore(score, token) {
+  return (dispatch) => {
+    return addUserScore(score, token)
+      .then(() => getUser(token))
       .then((user) => dispatch(updateLoggedInUser(user)))
       .catch((err) => console.error(err.message))
   }

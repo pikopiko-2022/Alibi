@@ -3,8 +3,15 @@
   cursor: pointer;
 }
 
-.questionTitle {
+.questionTitleContainer {
   background-color: yellow;
+}
+
+.questionDate {
+  font-size: 10px;
+}
+
+.questionTitle {
   font-weight: bold;
   padding: 12px;
 }

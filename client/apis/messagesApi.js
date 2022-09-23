@@ -47,7 +47,6 @@ function sendDecoyQuestion(token) {
 // save message in Messages table
 // save complaint_id in Messages
 function sendComplaintQuestion(complaint, token) {
-  console.log(complaint)
   return request
     .get(`${rootUrl}/questions/${complaint.issue_id}`)
     .set('authorization', `Bearer ${token}`)
@@ -58,6 +57,7 @@ function sendComplaintQuestion(complaint, token) {
         {
           question_id: question.id,
           complaint_id: complaint.id,
+          // issue_id: complaint.issue_id,
         },
         token
       )
@@ -100,7 +100,17 @@ export function getMessages(token) {
     .get(`${rootUrl}/messages`)
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
-      console.log(res.body)
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
+}
+
+export function addAnswerToMessage(messageId, answerId, token) {
+  return request
+    .put(`${rootUrl}/messages/${messageId}`)
+    .set('authorization', `Bearer ${token}`)
+    .send({ answerId })
+    .then((res) => {
       return res.body
     })
     .catch((err) => console.error(err.message))

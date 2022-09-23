@@ -16,10 +16,15 @@ function getMessages(userId, db = connection) {
       'life_guidance.url as lifeGuidanceUrl'
     )
     .where('messages.recipient_id', '=', userId)
+    .orderBy('messages.id', 'desc')
 }
 
 function addMessage(message, db = connection) {
   return db('messages').returning(message).insert(message)
 }
 
-module.exports = { getMessages, addMessage }
+function updateMessage(messageId, update, db = connection) {
+  return db('messages').where('id', messageId).update(update)
+}
+
+module.exports = { getMessages, addMessage, updateMessage }
