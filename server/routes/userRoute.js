@@ -2,6 +2,7 @@ const express = require('express')
 const db = require('../db/dbUsers')
 const router = express.Router()
 
+//-----Get user by auth0 id -----
 // add jwt middleware
 router.get('/', (req, res) => {
   const auth0_id = req.user?.sub || '2'

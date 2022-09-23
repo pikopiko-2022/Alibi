@@ -3,6 +3,8 @@ const checkJwt = require('../auth0')
 const db = require('../db/dbUsers')
 const router = express.Router()
 
+//----- Authentications user functions ------
+
 router.get('/', (req, res) => {
   db.getUsers()
     .then((users) => {

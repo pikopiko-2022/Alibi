@@ -11,8 +11,7 @@ import styles from './Question.module.scss'
 // <Question question={question} />
 
 const Question = ({ question }) => {
-  return 
-  <div> {answer</div>
+  return <div> {answer}</div>
 }
 
 export default Question

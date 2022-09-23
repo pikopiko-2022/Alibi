@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
     })
 })
 
-//Create Form
 //get Issue
 router.get('/issues', (req, res) => {
   return getIssues()
@@ -40,8 +39,6 @@ router.get('/questions/:id', (req, res) => {
       res.status(500).send(err.message)
     })
 })
-
-//
 
 // TODO add checkJwt middleware
 router.post('/', (req, res) => {

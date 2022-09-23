@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Nav from './Nav'
 // import ListUsers from './Users'
 import Register from './Registration'
@@ -11,7 +11,8 @@ import { getUser } from '../apis/authentication'
 import { useNavigate, Routes, Route } from 'react-router-dom'
 import HomePage from './HomePage'
 import Create from './Create'
-import { sendMessage, getRandomNumber } from '../apis/lib'
+import { sendMessage, getRandomNumber } from '../apis/messages'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function App() {
   useCacheUser()
@@ -27,7 +28,6 @@ function App() {
     } else {
       getAccessTokenSilently()
         .then((token) => {
-          // console.log(token)
           return getUser(token)
         })
         .then((userInDb) => {
@@ -47,14 +47,30 @@ function App() {
     <>
       <div className="app">
         <h1>Alibi</h1>
-        <Nav />
+
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <IfAuthenticated>
+                  //--If function that checks for database registration //if
+                  true return homepage
+                  <HomePage />
+                  //if false return to register
+                  <Register />
+                </IfAuthenticated>
+                <IfNotAuthenticated>
+                  <Nav />
+                </IfNotAuthenticated>
+              </>
+            }
+          />
           <Route path="/create" element={<Create />} />
         </Routes>
 
         {/* <ListUsers /> */}
-        <Register />
+        {/* <Register /> */}
       </div>
     </>
   )

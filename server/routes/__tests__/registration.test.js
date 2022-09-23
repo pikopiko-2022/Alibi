@@ -1,11 +1,14 @@
 const request = require('supertest')
 const server = require('../../server')
-const { getUsers, addUser } = require('../../db/dbUsers')
+const { getUsers, addUser, userExists } = require('../../db/dbUsers')
+const checkJwt = require('../../auth0')
 // const { newUser } = require('../../../client/apis/authentication')
 
 jest.mock('../../db/dbUsers')
+jest.mock('../../auth0')
 
 jest.spyOn(console, 'error')
+
 afterEach(() => {
   console.error.mockReset()
 })
@@ -48,6 +51,11 @@ describe('GET /api/v1/registration', () => {
   })
 })
 
+checkJwt.mockImplementation((req, res, next) => {
+  req.user = { sub: '1' }
+  next()
+})
+
 describe('POST /api/v1/registration', () => {
   it('Post new user to database', () => {
     addUser.mockImplementation(() => Promise.resolve(true))
@@ -61,6 +69,20 @@ describe('POST /api/v1/registration', () => {
       .then((res) => {
         expect(res.body).toBeTruthy()
         return null
+      })
+  })
+
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    userExists.mockImplementation(() =>
+      Promise.reject(new Error('Something went wrong'))
+    )
+    return request(server)
+      .post('/api/v1/registration')
+      .then((res) => {
+        console.log(res)
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Something went wrong')
       })
   })
 })

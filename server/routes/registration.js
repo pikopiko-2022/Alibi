@@ -15,8 +15,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', checkJwt, (req, res) => {
-  // console.log(req)
-  console.log(req.user)
   const auth0_id = req?.user?.sub
   const { username, flatId } = req.body
   const userDetails = {
@@ -24,7 +22,6 @@ router.post('/', checkJwt, (req, res) => {
     name: username,
     flat_id: flatId,
   }
-  console.log(userDetails)
 
   db.userExists(username)
     .then((usernameTaken) => {
