@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './Question.module.scss'
+import { updateUserScore } from '../actions/user'
+import { updateMessageAnswer } from '../actions/messages'
 // import { fetchQuestions } from '../actions/questions'
 // import { fetchAnswers } from '../actions/answers'
 
@@ -11,8 +14,7 @@ import styles from './Question.module.scss'
 // <Question question={question} />
 
 const Question = ({ question }) => {
-  return 
-  <div> {answer</div>
+  return <div>{answer}</div> //div for Q, div for answers. drop-downs
 }
 
 export default Question
