@@ -13,4 +13,16 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/issue/:id', (req, res) => {
+  const issue_id = req.params.id
+  db.getLifeGforIssue(issue_id)
+    .then((directive) => {
+      res.json(directive)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router
