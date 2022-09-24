@@ -11,12 +11,7 @@ import styles from './Question.module.scss'
 // <Question question={question} />
 
 const Question = ({ question }) => {
-<<<<<<< HEAD
-  return
-  ;<div> {answer}</div>
-=======
-  return <div>{answer}</div> //div for Q, div for answers. drop-down
->>>>>>> e7983ef0755e2f10fa25a6748505dff17530969e
+  return <div>{answer}</div> //div for Q, div for answers. drop-downs
 }
 
 export default Question
