@@ -7,6 +7,8 @@ exports.up = function (knex) {
     table.increments('id').primary
     table.string('name')
     table.string('address')
+    table.timestamp('date_established').defaultTo(knex.fn.now())
+    table.timestamp('date_disolved')
   })
 }
 

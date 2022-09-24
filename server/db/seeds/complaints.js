@@ -9,7 +9,7 @@ exports.seed = async function (knex) {
     {
       id: 1,
       issue_id: 1,
-      img_url: null,
+      image: null,
       complaint_raised_by: 1,
       date_raised: new Date(Date.now()),
       culprit_id: null,
@@ -18,7 +18,7 @@ exports.seed = async function (knex) {
     {
       id: 2,
       issue_id: 2,
-      img_url: null,
+      image: null,
       complaint_raised_by: 2,
       date_raised: new Date(Date.now()),
       culprit_id: null,

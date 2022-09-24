@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './Question.module.scss'
+import { updateUserScore } from '../actions/user'
+import { updateMessageAnswer } from '../actions/messages'
 // import { fetchQuestions } from '../actions/questions'
 // import { fetchAnswers } from '../actions/answers'
 
@@ -15,12 +18,3 @@ const Question = ({ question }) => {
 }
 
 export default Question
-
-{
-  id, issue_id, question
-}
-
-getAnswersForQuestion(question.id) // apis/
-// get request to some route that will find all answers that match the question.id
-// db.getAnswersForQuestion(question.id)
-// db/
