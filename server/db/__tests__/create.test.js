@@ -15,7 +15,7 @@ beforeEach(() => {
 describe('GET issues', () => {
   test('returns an array of ISSUES of the correct length from seeds', () => {
     return db.getIssues(testDb).then((issues) => {
-      expect(issues).toHaveLength(3)
+      expect(issues).toHaveLength(4)
       return null
     })
   })
