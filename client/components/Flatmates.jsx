@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Flatmate from './Flatmate'
-// import styles from './Flatmates.module.scss'
+import styles from './Flatmates.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUsers } from '../actions/users'
 
@@ -12,15 +12,13 @@ function Flatmates() {
   }, [])
 
   return (
-    <>
-      <ul>
-        {flatmates.map((flatmate) => (
-          <li key={flatmate.id}>
-            <Flatmate key={flatmate.id} flatmate={flatmate} />
-          </li>
+    <div className={styles.flatmatesContainer}>
+      {flatmates
+        .sort((a, b) => b.rating - a.rating)
+        .map((flatmate) => (
+          <Flatmate key={flatmate.id} flatmate={flatmate} />
         ))}
-      </ul>
-    </>
+    </div>
   )
 }
 
