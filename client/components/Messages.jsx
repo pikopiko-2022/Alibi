@@ -4,6 +4,7 @@ import { fetchMessages, addMessage } from '../actions/messages'
 import { fetchQuestions } from '../actions/questions'
 import { fetchLifeG } from '../actions/lifeG'
 import Question from './Question'
+import LifeGuidance from './LifeGuidance'
 import styles from './Messages.module.scss'
 
 const Messages = () => {
@@ -25,10 +26,6 @@ const Messages = () => {
 
   return (
     <div className={styles.messagesContainer}>
-<<<<<<< HEAD
-      Messages
-      <Question />
-=======
       <div className={styles.messagesTitle}>Messages</div>
       <button onClick={testSendMessage}>Test Send Message</button>
       {messages?.map((message) =>
@@ -38,7 +35,6 @@ const Messages = () => {
           <LifeGuidance key={message.id} message={message} />
         )
       )}
->>>>>>> ef4e575b4a4beece31065cee684d2c366b2edbfa
     </div>
   )
 }

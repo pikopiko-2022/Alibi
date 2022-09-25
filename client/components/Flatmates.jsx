@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Flatmate from './Flatmate'
-// import styles from './Flatmates.module.scss'
+import styles from './Flatmates.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUsers } from '../actions/users'
 

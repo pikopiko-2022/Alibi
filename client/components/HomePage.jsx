@@ -1,6 +1,6 @@
 import React from 'react'
 import DisplayUser from './DisplayUser'
-import Messages from './temp/Messages'
+import Messages from './Messages'
 import Flatmates from './Flatmates'
 import styles from './HomePage.module.scss'
 
