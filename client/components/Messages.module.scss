@@ -1,4 +1,8 @@
 .messagesContainer {
   flex: 0 1 40%;
   background-color: whitesmoke;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
 }

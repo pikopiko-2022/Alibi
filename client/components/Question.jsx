@@ -42,7 +42,7 @@ const Question = ({ message }) => {
       .catch((error) => {
         return console.error(error)
       })
-  }, [])
+  }, [questions])
 
   return (
     <div className={styles.questionContainer}>
@@ -56,27 +56,29 @@ const Question = ({ message }) => {
         <div className={styles.questionDate}>{question?.date_sent}</div>
         <div className={styles.questionTitle}>{question?.question}</div>
       </div>
-      <div
-        className={`${styles.questionAnswersContainer} ${
-          expanded ? styles.questionAnswersContainerExpanded : ''
-        }`}
-      >
-        {answer?.map((answer, i) => (
-          <div
-            key={i}
-            className={styles.questionAnswer}
-            onClick={() => handleAnswerSelect(answer)}
-            role="button"
-            onKeyDown={(e) => handleAnswerKey(e, answer)}
-            tabIndex={i + 1}
-          >
-            {answer?.answer}
-            {answer?.id === question?.answer_id && (
-              <div style={{ backgroundColor: 'red' }}>SELECTED</div>
-            )}
-          </div>
-        ))}
-      </div>
+      {expanded && (
+        <div
+          className={`${styles.questionAnswersContainer} ${
+            expanded ? styles.questionAnswersContainerExpanded : ''
+          }`}
+        >
+          {answer?.map((answer, i) => (
+            <div
+              key={i}
+              className={styles.questionAnswer}
+              onClick={() => handleAnswerSelect(answer)}
+              role="button"
+              onKeyDown={(e) => handleAnswerKey(e, answer)}
+              tabIndex={i + 1}
+            >
+              {answer?.answer}
+              {answer?.id === question?.answer_id && (
+                <div style={{ backgroundColor: 'red' }}>SELECTED</div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
