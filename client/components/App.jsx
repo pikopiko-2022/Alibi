@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useCacheUser } from '../auth0-utils'
 
 import Nav from './Nav'
-import Create from './Create'
+import Complaint from './Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
 
@@ -47,7 +47,7 @@ function App() {
         <IfAuthenticated>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/create" element={<Create />} />
+            <Route path="/create" element={<Complaint />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </IfAuthenticated>
