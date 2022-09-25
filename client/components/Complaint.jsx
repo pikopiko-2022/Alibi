@@ -6,6 +6,7 @@ import { fetchUser } from '../actions/user'
 import styles from './Create.module.scss'
 
 export default function Create() {
+  const token = useSelector((state) => state?.user?.token)
   const dispatch = useDispatch()
   const [selectedFile, setSelectedFile] = useState(null)
   const [selectedIssue, setSelectedIssue] = useState(null)
@@ -30,11 +31,14 @@ export default function Create() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    createComplaint({
-      image: selectedFile,
-      issue_id: selectedIssue,
-      complaint_raised_by: user.id,
-    })
+    createComplaint(
+      {
+        image: selectedFile,
+        issue_id: selectedIssue,
+        complaint_raised_by: user.id,
+      },
+      token
+    )
       .then((url) => {
         console.log(url)
         setUploadedImageUrl(url)

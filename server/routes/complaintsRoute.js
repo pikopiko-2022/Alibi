@@ -4,7 +4,7 @@ const { getUserIdByAuth0Id } = require('../db/dbUsers')
 const router = express.Router()
 const checkJwt = require('../auth0')
 
-router.post('/', (req, res) => {
+router.post('/', checkJwt, (req, res) => {
   const complaint = req.body
   db.addComplaint(complaint)
     .then(() => {

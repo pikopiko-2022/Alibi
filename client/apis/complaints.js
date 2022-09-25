@@ -2,7 +2,10 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
-export function createComplaint({ issue_id, complaint_raised_by, image }) {
+export function createComplaint(
+  { issue_id, complaint_raised_by, image },
+  token
+) {
   return request
     .get(rootUrl + '/complaints')
     .then((res) => {
@@ -13,6 +16,7 @@ export function createComplaint({ issue_id, complaint_raised_by, image }) {
       const url = res?.req?.url?.split?.('?')?.[0]
       return request
         .post(rootUrl + '/complaints')
+        .set('Authorization', `Bearer ${token}`)
         .send({ issue_id, complaint_raised_by, image: url })
     })
     .then((res) => {

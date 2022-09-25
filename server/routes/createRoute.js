@@ -1,12 +1,13 @@
 const express = require('express')
-const { getIssues } = require('../db/dbIssues')
-
+require('dotenv').config()
 const router = express.Router()
 
+const { getSignedPutUrl } = require('./lib')
+
 router.get('/', (req, res) => {
-  return getIssues()
-    .then((issues) => {
-      res.json(issues)
+  return getSignedPutUrl()
+    .then((url) => {
+      res.json(url)
     })
     .catch((err) => {
       res.status(500).send(err.message)
