@@ -16,17 +16,19 @@ const Question = ({ message }) => {
 
   const handleAnswerSelect = (answer) => {
     // TODO Add Answer logic here
-    dispatch(updateUserScore(userScore, token))
-    dispatch(updateMessageAnswer(question.id, answer.id, token))
+    console.log(answer, ' clicked')
+    // dispatch(updateUserScore(userScore, token))
+    // dispatch(updateMessageAnswer(question.id, answer.id, token))
   }
   const handleAnswerKey = (e, answer) => {
-    if (e.key === 'Enter') handleAnswerSelect(answer)
+    if (e.key === 'Enter' || e.key === 'Space') handleAnswerSelect(answer)
   }
 
   const handleExpandKey = (e) => {
     if (e.key === 'ArrowDown') setExpanded(true)
     else if (e.key === 'ArrowUp') setExpanded(false)
-    else if (e.key === 'Enter') setExpanded((expanded) => !expanded)
+    else if (e.key === 'Enter' || e.key === 'Space')
+      setExpanded((expanded) => !expanded)
   }
 
   useEffect(() => {
@@ -41,8 +43,7 @@ const Question = ({ message }) => {
         return console.error(error)
       })
   }, [])
-  console.log(question)
-  console.log(answer)
+
   return (
     <div className={styles.questionContainer}>
       <div

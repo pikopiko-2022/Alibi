@@ -28,9 +28,9 @@ const Messages = () => {
       <button onClick={testSendMessage}>Test Send Message</button>
       {messages?.map((message) =>
         message.question_id ? (
-          <Question key={message.id} question={message} />
+          <Question key={message.id} message={message} />
         ) : (
-          <LifeGuidance key={message.id} lifeGuidance={message} />
+          <LifeGuidance key={message.id} message={message} />
         )
       )}
     </div>
