@@ -4,6 +4,18 @@ const { getUserIdByAuth0Id } = require('../db/dbUsers')
 const router = express.Router()
 const checkJwt = require('../auth0')
 
+router.post('/', (req, res) => {
+  const complaint = req.body
+  db.addComplaint(complaint)
+    .then(() => {
+      res.send(complaint.image)
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).send('no worky')
+    })
+})
+
 router.get('/current', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub || 1
   getUserIdByAuth0Id(auth0_id)
@@ -17,7 +29,7 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
-router.put('/:complaintsId', checkJwt, (req, res) => {
+router.put('/:id', checkJwt, (req, res) => {
   const complaintsId = req.params.complaintsId
   const { culpritId } = req.body
   db.updateCulpritDb(complaintsId, { culprit_id: culpritId })

@@ -1,5 +1,9 @@
 const connection = require('./connection')
 
+function addComplaint(complaint, db = connection) {
+  return db('complaints').insert(complaint)
+}
+
 function getCurrentComplaints(userId, db = connection) {
   return db('complaints')
     .select()
@@ -10,4 +14,4 @@ function updateCulpritDb(id, updatedComplaint, db = connection) {
   return db('complaints').where('id', id).update(updatedComplaint)
 }
 
-module.exports = { updateCulpritDb, getCurrentComplaints }
+module.exports = { addComplaint, updateCulpritDb, getCurrentComplaints }

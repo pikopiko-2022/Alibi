@@ -4,7 +4,6 @@ import { fetchMessages, addMessage } from '../actions/messages'
 import Question from './Question'
 import LifeGuidance from './LifeGuidance'
 import styles from './Messages.module.scss'
-import Question from './Question'
 
 const Messages = () => {
   return (

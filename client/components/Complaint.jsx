@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createComplaint } from '../apis/create'
-import { fetchIssues } from '../actions/create'
+import { createComplaint } from '../apis/complaints'
+import { fetchIssues } from '../actions/issues'
 import { fetchUser } from '../actions/user'
 import styles from './Create.module.scss'
 
@@ -16,7 +16,7 @@ export default function Create() {
 
   const user = useSelector((state) => state.user)
 
-  const issues = useSelector((state) => state.create)
+  const issues = useSelector((state) => state.issues)
 
   useEffect(() => {
     dispatch(fetchIssues())
@@ -78,7 +78,6 @@ export default function Create() {
               </option>
             ))}
           </select>
-          {/* <Select /> */}
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
