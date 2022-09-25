@@ -40,8 +40,6 @@ router.post('/complaints', (req, res) => {
     })
 })
 
-<<<<<<< HEAD
-=======
 //getQuestions
 // router.get('/questions/:id', (req, res) => {
 //   //remember to change to req.body
@@ -58,7 +56,6 @@ router.post('/complaints', (req, res) => {
 
 //
 
->>>>>>> ef4e575b4a4beece31065cee684d2c366b2edbfa
 // TODO add checkJwt middleware
 // router.post('/', (req, res) => {
 //   const { url } = req.body

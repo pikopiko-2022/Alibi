@@ -15,9 +15,7 @@ function Flatmates() {
     <>
       <ul>
         {flatmates.map((flatmate) => (
-          <li key={flatmate.id}>
-            <Flatmate key={flatmate.id} flatmate={flatmate} />
-          </li>
+          <Flatmate key={flatmate.id} flatmate={flatmate} />
         ))}
       </ul>
     </>
