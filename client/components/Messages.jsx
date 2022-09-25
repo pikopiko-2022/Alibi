@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchMessages, addMessage } from '../actions/messages'
 import { fetchQuestions } from '../actions/questions'
+import { fetchLifeG } from '../actions/lifeG'
 import Question from './Question'
 import LifeGuidance from './LifeGuidance'
 import styles from './Messages.module.scss'
@@ -15,6 +16,7 @@ const Messages = () => {
     if (token) {
       dispatch(fetchMessages(token))
       dispatch(fetchQuestions(token))
+      dispatch(fetchLifeG(token))
     }
   }, [token])
 
