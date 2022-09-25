@@ -7,7 +7,7 @@ const DisplayUser = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <div className={styles.container}>
+    <div className={styles.displayUserContainer}>
       <div className={styles.profileImageContainer}>
         <img
           src={user?.img_url}
