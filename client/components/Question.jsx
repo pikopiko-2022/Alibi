@@ -53,8 +53,8 @@ const Question = ({ message }) => {
         onKeyDown={handleExpandKey}
         tabIndex={0}
       >
-        <div className={styles.questionDate}>{question.date_sent}</div>
-        <div className={styles.questionTitle}>{question.question}</div>
+        <div className={styles.questionDate}>{question?.date_sent}</div>
+        <div className={styles.questionTitle}>{question?.question}</div>
       </div>
       <div
         className={`${styles.questionAnswersContainer} ${
@@ -70,8 +70,8 @@ const Question = ({ message }) => {
             onKeyDown={(e) => handleAnswerKey(e, answer)}
             tabIndex={i + 1}
           >
-            {answer.answer}
-            {answer.id === question.answer_id && (
+            {answer?.answer}
+            {answer?.id === question?.answer_id && (
               <div style={{ backgroundColor: 'red' }}>SELECTED</div>
             )}
           </div>
