@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { createComplaint } from '../apis/complaints'
 import { fetchIssues } from '../actions/issues'
 import { fetchUser } from '../actions/user'
@@ -9,7 +8,6 @@ import styles from './Create.module.scss'
 export default function Create() {
   const token = useSelector((state) => state?.user?.token)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState(null)
   const [selectedIssue, setSelectedIssue] = useState(null)
   const [previewURL, setPreviewURL] = useState(null)
@@ -50,7 +48,6 @@ export default function Create() {
       })
     setSelectedFile(null)
     setPreviewURL(null)
-    navigate('/')
   }
 
   const handleSelect = (event) => {
