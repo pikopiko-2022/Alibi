@@ -34,12 +34,15 @@ router.put('/', checkJwt, (req, res) => {
 
 router.post('/', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
-  const { username, flatID } = req.body
+  const { username, flatId, description, img_url } = req.body
   const userDetails = {
     auth0_id,
     name: username,
-    flat_id: flatID,
+    flat_id: flatId,
+    description: description,
+    img_url: img_url,
   }
+
   db.userExists(username)
     .then((usernameTaken) => {
       if (usernameTaken) throw new Error('Username Taken')

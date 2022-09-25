@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { useNavigate } from 'react-router-dom'
 import Avatar from './Avatar'
 import { getRandomNumber } from '../apis/messages'
-
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
+// import videoBg from '../../server/public/assets/videoBG.mp4'
 
 function Register() {
   const user = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const [seedData, setSeedData] = useState(getRandomNumber(1, 10000))
 
   const [form, setForm] = useState({
@@ -39,6 +39,7 @@ function Register() {
     newUser(userInfo, user.token)
       .then(() => dispatch(updateLoggedInUser(userInfo)))
       .catch((err) => setErrorMsg(err.message))
+    navigate('/')
   }
 
   const hideError = () => {
@@ -47,6 +48,7 @@ function Register() {
 
   return (
     <>
+      {/* <video src={videoBg} autoPlay loop muted /> */}
       <Avatar seedData={seedData} />
 
       <h2>Complete profile set up</h2>
