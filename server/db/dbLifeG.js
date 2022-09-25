@@ -4,8 +4,8 @@ function getLifeG(db = connection) {
   return db('life_guidance').select()
 }
 
-function getLifeGforIssue(issue_id, db = connection) {
-  return db('life_guidance').select().where('issue_id', issue_id)
+function getLifeGforIssue(issueId, db = connection) {
+  return db('life_guidance').select().where('issue_id', issueId)
 }
 
 module.exports = { getLifeG, getLifeGforIssue }

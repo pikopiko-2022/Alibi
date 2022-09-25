@@ -115,3 +115,13 @@ export function addAnswerToMessage(messageId, answerId, token) {
     })
     .catch((err) => console.error(err.message))
 }
+
+export function getLifeGforIssueApi(issueId, token) {
+  return request
+    .get(`${rootUrl}/lifeG/issue/${issueId}`)
+    .set('authorization', `Bearer ${token}`)
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
+}

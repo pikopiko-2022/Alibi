@@ -14,8 +14,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/issue/:id', (req, res) => {
-  const issue_id = req.params.id
-  db.getLifeGforIssue(issue_id)
+  const issueId = req.params.id
+  db.getLifeGforIssue(issueId)
     .then((directive) => {
       res.json(directive)
       return null
