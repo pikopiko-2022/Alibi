@@ -33,7 +33,7 @@ function sendComplaintQuestion(complaint, token) {
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
       const questions = res.body
-      const question = questions[getRandomNumber(0, questions.length - 1)]
+      const question = getRandomQuestion(questions)
       return sendQuestionAsMessage(
         {
           question_id: question.id,
@@ -42,6 +42,10 @@ function sendComplaintQuestion(complaint, token) {
         token
       )
     })
+}
+
+function getRandomQuestion(questionArray) {
+  return questionArray[Math.floor(Math.random() * questionArray.length)]
 }
 
 function sendQuestionAsMessage(message, token) {

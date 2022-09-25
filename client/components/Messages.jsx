@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchMessages, addMessage } from '../actions/messages'
+import { fetchQuestions } from '../actions/questions'
+import { fetchLifeG } from '../actions/lifeG'
 import Question from './Question'
 import LifeGuidance from './LifeGuidance'
 import styles from './Messages.module.scss'
@@ -11,7 +13,11 @@ const Messages = () => {
   const token = useSelector((state) => state.user?.token)
 
   useEffect(() => {
-    token && dispatch(fetchMessages(token))
+    if (token) {
+      dispatch(fetchMessages(token))
+      dispatch(fetchQuestions(token))
+      dispatch(fetchLifeG(token))
+    }
   }, [token])
 
   const testSendMessage = () => {
@@ -24,9 +30,9 @@ const Messages = () => {
       <button onClick={testSendMessage}>Test Send Message</button>
       {messages?.map((message) =>
         message.question_id ? (
-          <Question key={message.id} question={message} />
+          <Question key={message.id} message={message} />
         ) : (
-          <LifeGuidance key={message.id} lifeGuidance={message} />
+          <LifeGuidance key={message.id} message={message} />
         )
       )}
     </div>

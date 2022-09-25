@@ -8,4 +8,8 @@ export function getAnswersApi() {
   })
 }
 
-// /answers/${questionId}
+export function getAnswersByQuestionApi(questionID) {
+  return request.get(`${rootUrl}/answers/${questionID}`).then((res) => {
+    return res.body
+  })
+}
