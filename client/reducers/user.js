@@ -4,6 +4,8 @@ const emptyUser = {
   auth0Id: '',
   username: '',
   flat_Id: '',
+  img_url: '',
+  description: '',
 }
 
 export default function user(state = emptyUser, action) {
