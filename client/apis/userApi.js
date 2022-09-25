@@ -12,7 +12,7 @@ export function getUser(token) {
 
 export function newUser(user, token) {
   return request
-    .post(`${rootUrl}/registration`)
+    .post(`${rootUrl}/user`)
     .set('Authorization', `Bearer ${token}`)
     .send(user)
     .catch((err) => console.error(err.message))
@@ -24,7 +24,6 @@ export function addUserScore(score, token) {
     .set('Authorization', `Bearer ${token}`)
     .send({ score })
     .then((res) => {
-      console.log(res)
       return res.body
     })
     .catch((err) => console.error(err.message))

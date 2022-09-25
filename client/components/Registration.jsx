@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { newUser } from '../apis/authentication'
+import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
 
 function Register() {

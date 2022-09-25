@@ -43,6 +43,11 @@ const Question = ({ message }) => {
         return console.error(error)
       })
   }, [])
+<<<<<<< HEAD
+  // console.log(answer)
+  // console.log(question.question)
+=======
+>>>>>>> ad32f5f4a52d7fc22df34e9c017e15c2fa8f363f
   return (
     <div className={styles.questionContainer}>
       <div
@@ -81,3 +86,14 @@ const Question = ({ message }) => {
 }
 
 export default Question
+<<<<<<< HEAD
+
+{
+  /* <li>
+          {flatmates.map((flatmate) => (
+            <Flatmate key={flatmate.id} flatmate={flatmate} />
+          ))}
+        </li> */
+}
+=======
+>>>>>>> ad32f5f4a52d7fc22df34e9c017e15c2fa8f363f
