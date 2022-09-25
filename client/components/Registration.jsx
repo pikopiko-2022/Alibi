@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Avatar from './Avatar'
@@ -15,7 +15,7 @@ function Register() {
   const [seedData, setSeedData] = useState(getRandomNumber(1, 10000))
 
   const [form, setForm] = useState({
-    username: '',
+    name: '',
     flatId: '',
     description: '',
   })
@@ -54,12 +54,12 @@ function Register() {
       <h2>Complete profile set up</h2>
       {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="name">Username:</label>
         <input
           type="text"
-          id="username"
-          name="username"
-          value={form.username}
+          id="name"
+          name="name"
+          value={form.name}
           onChange={handleChange}
         />
         <label htmlFor="flat_Id">Which FlatID are you joining?</label>
@@ -78,7 +78,7 @@ function Register() {
           value={form.description}
           onChange={handleChange}
         />
-        <button disabled={!(form.username && form.flatId && form.description)}>
+        <button disabled={!(form.name && form.flatId && form.description)}>
           Save Profile
         </button>
       </form>
