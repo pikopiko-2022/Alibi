@@ -9,6 +9,7 @@ export function getQuestionsApi() {
 }
 
 const issueID = 1
+
 export function getQuestionsByIssueApi() {
   return request.get(`${rootUrl}/questions/${issueID}`).then((res) => {
     return res.body
