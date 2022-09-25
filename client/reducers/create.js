@@ -1,4 +1,4 @@
-import { SET_ISSUES, SET_QUESTIONS } from '../actions/create'
+import { SET_ISSUES, SET_COMPLAINT } from '../actions/create'
 
 const initialState = []
 
@@ -8,7 +8,7 @@ const create = (state = initialState, action) => {
   switch (type) {
     case SET_ISSUES:
       return payload
-    case SET_QUESTIONS:
+    case SET_COMPLAINT:
       return payload
     default:
       return state

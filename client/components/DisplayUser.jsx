@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from './DisplayUser.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchUser } from '../actions/users'
-import Rating from './Rating'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const DisplayUser = () => {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.users.user)
-  useEffect(() => {
-    dispatch(fetchUser())
-  }, [])
-  console.log(user)
+  const user = useSelector((state) => state.user)
+
   return (
     <div className={styles.container}>
       <div className={styles.profileImageContainer}>
@@ -22,9 +17,14 @@ const DisplayUser = () => {
       </div>
       <div className={styles.profileName}>{user?.name}</div>
       <div className={styles.profileDescription}>{user?.description}</div>
-      <div className={styles.profileRatingContainer}>
-        <Rating rating={user?.rating} total={5} />
+      <div className={styles.profileRatingContainer}>{user.rating}</div>
+      <div className={styles.flatContainer}>
+        <div className={styles.flatName}>{user?.flatName}</div>
+        <div className={styles.flatAddress}>{user?.flatAddress}</div>
       </div>
+      <Link to="/create">
+        <button>Add Complaint</button>
+      </Link>
     </div>
   )
 }

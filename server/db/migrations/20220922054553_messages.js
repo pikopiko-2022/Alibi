@@ -10,7 +10,7 @@ exports.up = function (knex) {
     table.integer('question_id')
     table.integer('answer_id')
     table.integer('life_guidance_id')
-    table.timestamp('date_sent')
+    table.timestamp('date_sent').defaultTo(knex.fn.now())
     table.timestamp('date_responded')
   })
 }

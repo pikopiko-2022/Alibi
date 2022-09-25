@@ -6,7 +6,7 @@ import { fetchUsers } from '../actions/users'
 
 function Flatmates() {
   const dispatch = useDispatch()
-  const flatmates = useSelector((state) => state.users.users)
+  const flatmates = useSelector((state) => state.users)
   useEffect(() => {
     dispatch(fetchUsers())
   }, [])

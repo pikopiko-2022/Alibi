@@ -3,7 +3,7 @@ const checkJwt = require('../auth0')
 const db = require('../db/dbUsers')
 const router = express.Router()
 
-router.get('/', (req, res) => {
+router.get('/', checkJwt, (req, res) => {
   db.getUsers()
     .then((users) => {
       res.json(users)
@@ -15,8 +15,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', checkJwt, (req, res) => {
-  // console.log(req)
-  console.log(req.user)
   const auth0_id = req?.user?.sub
   const { username, flatId } = req.body
   const userDetails = {
@@ -24,7 +22,6 @@ router.post('/', checkJwt, (req, res) => {
     name: username,
     flat_id: flatId,
   }
-  console.log(userDetails)
 
   db.userExists(username)
     .then((usernameTaken) => {
@@ -33,7 +30,6 @@ router.post('/', checkJwt, (req, res) => {
     .then(() => db.addUser(userDetails))
     .then(() => res.sendStatus(201))
     .catch((err) => {
-      console.error(err)
       if (err.message === 'Username Taken') {
         res.status(403).send('Username Taken')
       } else {
