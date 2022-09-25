@@ -50,7 +50,7 @@ export default function Create() {
       })
     setSelectedFile(null)
     setPreviewURL(null)
-    navigate('/play')
+    navigate('/')
   }
 
   const handleSelect = (event) => {
