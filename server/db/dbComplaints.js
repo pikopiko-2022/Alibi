@@ -10,8 +10,10 @@ function getCurrentComplaints(userId, db = connection) {
     .where({ culprit_id: null, complaint_raised_by: userId })
 }
 
-function updateCulpritDb(id, updatedComplaint, db = connection) {
-  return db('complaints').where('id', id).update(updatedComplaint)
+function updateCulpritDb(complaintId, userId, db = connection) {
+  return db('complaints')
+    .where('id', complaintId)
+    .update({ culprit_id: userId })
 }
 
 module.exports = { addComplaint, updateCulpritDb, getCurrentComplaints }

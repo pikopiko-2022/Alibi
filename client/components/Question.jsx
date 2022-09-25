@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Question.module.scss'
-import { getQuestionsByIssueApi } from '../apis/questionsApi'
 import { getAnswersByQuestionApi } from '../apis/answersApi'
 import { updateCulprit } from '../actions/answers'
 import { updateUserScore } from '../actions/user'
@@ -28,13 +27,11 @@ const Question = ({ message }) => {
     } else {
       culpritScore = 1
     }
-    // return user.rating + culpritScore
-
-    // complaint.culprit_id = user.id
-    // dispatch(updateCulprit(complaint.id, complaint.culprit_id, token))
+    dispatch(updateCulprit(message.complaint_id, token))
     dispatch(updateUserScore(culpritScore, token))
     dispatch(updateMessageAnswer(question.id, answer.id, token))
   }
+
   const handleAnswerKey = (e, answer) => {
     if (e.key === 'Enter' || e.key === 'Space') handleAnswerSelect(answer)
   }

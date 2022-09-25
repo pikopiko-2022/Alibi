@@ -29,11 +29,16 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
-router.put('/:id', checkJwt, (req, res) => {
+router.put('/:complaintsId', checkJwt, (req, res) => {
+  const auth0_id = req.user?.sub
   const complaintsId = req.params.complaintsId
-  const culprit_id = req.body
-  db.updateCulpritDb(complaintsId, culprit_id)
+  console.log(complaintsId)
+  db.getUserIdByAuth0Id(auth0_id)
+    .then(({ userId }) => {
+      return db.updateCulpritDb(complaintsId, userId)
+    })
     .then((result) => {
+      req.io.emit('users updated')
       res.json(result)
       return null
     })

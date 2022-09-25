@@ -24,9 +24,9 @@ export function fetchAnswers() {
 
 //get answers at answers.question_ID
 
-export function updateCulprit(complaintId, culpritId, token) {
+export function updateCulprit(complaintId, token) {
   return (dispatch) => {
-    return addCulpritToComplaint(complaintId, culpritId, token)
+    return addCulpritToComplaint(complaintId, token)
       .then((answers) => dispatch(setAnswers(answers)))
       .catch((err) => console.error(err.message))
   }
