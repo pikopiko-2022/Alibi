@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Avatar from './Avatar'
 import { getRandomNumber } from '../apis/messages'
 
-import { newUser } from '../apis/authentication'
+import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
 
 function Register() {

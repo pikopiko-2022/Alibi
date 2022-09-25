@@ -9,6 +9,7 @@ const Flatmate = ({ flatmate }) => {
       <div className={styles.flatmateDetailsContainer}>
         <div className={styles.flatmateName}>{flatmate.name}</div>
         <div className={styles.flatmateDescription}>{flatmate.description}</div>
+        <div className={styles.flatmateRating}>{flatmate.rating}</div>
       </div>
     </div>
   )

@@ -43,6 +43,7 @@ const Question = ({ message }) => {
         return console.error(error)
       })
   }, [])
+
   return (
     <div className={styles.questionContainer}>
       <div
