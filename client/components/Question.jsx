@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './Question.module.scss'
 import { getQuestionsByIssueApi } from '../apis/questionsApi'
 import { getAnswersByQuestionApi } from '../apis/answersApi'
+import { updateCulprit } from '../actions/answers'
 import { updateUserScore } from '../actions/user'
 import { updateMessageAnswer } from '../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,10 +16,24 @@ const Question = ({ message }) => {
   const [answer, setAnswer] = useState([])
 
   const handleAnswerSelect = (answer) => {
-    // TODO Add Answer logic here
     console.log('clicked: ', answer)
-    // dispatch(updateUserScore(userScore, token))
-    // dispatch(updateMessageAnswer(question.id, answer.id, token))
+    let culpritScore = 0
+    if (message.complaint_id === null) {
+      return null
+    } else if (answer.is_alibi === 1) {
+      return null
+    } else if (answer.is_bad === 1) {
+      culpritScore = -1
+      // sendLifeG()
+    } else {
+      culpritScore = 1
+    }
+    // return user.rating + culpritScore
+
+    // complaint.culprit_id = user.id
+    // dispatch(updateCulprit(complaint.id, complaint.culprit_id, token))
+    dispatch(updateUserScore(culpritScore, token))
+    dispatch(updateMessageAnswer(question.id, answer.id, token))
   }
   const handleAnswerKey = (e, answer) => {
     if (e.key === 'Enter' || e.key === 'Space') handleAnswerSelect(answer)

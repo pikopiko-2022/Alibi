@@ -29,13 +29,7 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
-<<<<<<< HEAD
 router.put('/:id', checkJwt, (req, res) => {
-=======
-//remember to put checkJwt back in!!
-//make sure req.body comes back as an object
-router.put('/:complaintsId', checkJwt, (req, res) => {
->>>>>>> b50c9688ac3544c72047dd798c2c9e16335c2715
   const complaintsId = req.params.complaintsId
   const culprit_id = req.body
   db.updateCulpritDb(complaintsId, culprit_id)
