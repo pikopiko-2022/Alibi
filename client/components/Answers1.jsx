@@ -1,3 +1,5 @@
+import { updateCulprit, addCulpritToComplaint } from '../apis/complaints'
+
 //                                  //
 // Called by useTimeout in App.jsx  //
 //                                  //
@@ -34,7 +36,7 @@
 //    3. send the answerer a life guidance message (put into the messages table)
 // else
 //    add +1 to culprits score
-export function receiveAnswer(messages, answers, complaints, users) {
+export function receiveAnswer(messages, answers, complaints, users, token) {
   const culpritScore = 0
   if (messages.complaint_id === null) {
     return null
@@ -43,6 +45,9 @@ export function receiveAnswer(messages, answers, complaints, users) {
   } else if (answers.is_bad === 1) {
     culpritScore - 1
     complaints.culprit_id = users.id
+    // complaints.culprit_id = users.id
+    // updateCulprit({ culprit_id: users.id })
+    addCulpritToComplaint(complaints.id, complaints.culprit_id, token)
     // sendGuidance()
   } else {
     culpritScore + 1

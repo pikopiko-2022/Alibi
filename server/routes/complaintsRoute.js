@@ -17,4 +17,17 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
+router.put('/:complaintsId', checkJwt, (req, res) => {
+  const complaintsId = req.params.complaintsId
+  const { culpritId } = req.body
+  db.updateCulpritDb(complaintsId, { culprit_id: culpritId })
+    .then((result) => {
+      res.json(result)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router

@@ -16,7 +16,7 @@ export default function Create() {
 
   const user = useSelector((state) => state.user)
 
-  const create = useSelector((state) => state.create)
+  const issues = useSelector((state) => state.create)
 
   useEffect(() => {
     dispatch(fetchIssues())
@@ -72,7 +72,7 @@ export default function Create() {
             <option value="" selected disabled hidden>
               Pick an issue
             </option>
-            {create.map((issue) => (
+            {issues.map((issue) => (
               <option key={issue.id} value={issue.id}>
                 {issue.name}
               </option>
