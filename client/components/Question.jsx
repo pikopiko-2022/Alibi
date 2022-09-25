@@ -15,20 +15,25 @@ const Question = ({ message }) => {
   const [answer, setAnswer] = useState([])
 
   const handleAnswerSelect = (answer) => {
-    console.log('clicked: ', answer)
     let culpritScore = 0
     if (message.complaint_id === null) {
-      return null
+      console.log('This is a dummy question')
     } else if (answer.is_alibi === 1) {
-      return null
+      console.log('is an alibi answer')
     } else if (answer.is_bad === 1) {
+      console.log('is a bad answer')
       culpritScore = -1
       // sendLifeG()
     } else {
+      console.log('is a good answer')
       culpritScore = 1
     }
-    dispatch(updateCulprit(message.complaint_id, token))
-    dispatch(updateUserScore(culpritScore, token))
+    console.log('clicked: ', answer)
+    console.log(culpritScore)
+    if (message.complaint_id !== null) {
+      dispatch(updateCulprit(message.complaint_id, token))
+      dispatch(updateUserScore(culpritScore, token))
+    }
     dispatch(updateMessageAnswer(question.id, answer.id, token))
   }
 
@@ -55,6 +60,8 @@ const Question = ({ message }) => {
         return console.error(error)
       })
   }, [questions])
+
+  console.log(question)
 
   return (
     <div className={styles.questionContainer}>

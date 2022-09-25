@@ -8,6 +8,7 @@ export function sendMessage(token) {
     .set('Authorization', `Bearer ${token}`)
     .then((res) => {
       const currentComplaints = res.body
+      console.log(currentComplaints)
       if (currentComplaints.length > 0) {
         const complaint =
           currentComplaints[getRandomNumber(0, currentComplaints.length - 1)]

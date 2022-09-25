@@ -33,8 +33,9 @@ router.put('/:complaintsId', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   const complaintsId = req.params.complaintsId
   console.log(complaintsId)
-  db.getUserIdByAuth0Id(auth0_id)
+  getUserIdByAuth0Id(auth0_id)
     .then(({ userId }) => {
+      console.log(userId, complaintsId)
       return db.updateCulpritDb(complaintsId, userId)
     })
     .then((result) => {
