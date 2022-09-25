@@ -39,19 +39,6 @@ export default function Create() {
         console.log(url)
         setUploadedImageUrl(url)
       })
-      //   sendComplaint({
-      //     image: url,
-      //     issue_id: selectedIssue,
-      //     complaint_raised_by: user.id,
-      //   })
-      // })
-      // .then(() =>
-      // sendComplaint({
-      //   image: uploadedImageUrl,
-      //   issue_id: selectedIssue,
-      //   complaint_raised_by: user.id,
-      // })
-      // )
       .catch((err) => {
         console.error(err.message)
       })

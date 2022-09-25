@@ -4,7 +4,7 @@ const rootUrl = '/api/v1'
 
 export function createComplaint({ issue_id, complaint_raised_by, image }) {
   return request
-    .get(rootUrl + '/create')
+    .get(rootUrl + '/complaints')
     .then((res) => {
       const url = res.body
       return request.put(url).send(image)
@@ -12,7 +12,7 @@ export function createComplaint({ issue_id, complaint_raised_by, image }) {
     .then((res) => {
       const url = res?.req?.url?.split?.('?')?.[0]
       return request
-        .post(rootUrl + '/create/complaints')
+        .post(rootUrl + '/complaints')
         .send({ issue_id, complaint_raised_by, image: url })
     })
     .then((res) => {
@@ -24,14 +24,9 @@ export function createComplaint({ issue_id, complaint_raised_by, image }) {
     })
 }
 
-export function sendComplaint(complaint) {
-  console.log(complaint)
-  return request.post(rootUrl + '/complaints').send(complaint)
-}
-
 export function addCulpritToComplaint(complaintId, culpritId, token) {
   return request
-    .put(`${rootUrl}/create/complaints/${complaintId}`)
+    .put(`${rootUrl}/complaints/${complaintId}`)
     .set('authorization', `Bearer ${token}`)
     .send({ culpritId })
 }
