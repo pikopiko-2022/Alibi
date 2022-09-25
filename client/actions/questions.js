@@ -1,25 +1,20 @@
-// import { getQuestionByIssueApi } from '../apis/questionsApi'
+import { getQuestionsApi } from '../apis/questionsApi'
 
-// export const SET_QUESTION = 'SET_QUESTION'
+export const SET_QUESTIONS = 'SET_QUESTIONS'
 
-// export function setQuestion(question) {
-//   return {
-//     type: SET_QUESTION,
-//     payload: question,
-//   }
-// }
+export function setQuestions(questions) {
+  return {
+    type: SET_QUESTIONS,
+    payload: questions,
+  }
+}
 
-// export function fetchQuestion() {
-//   return (dispatch) => {
-//     return getQuestionByIssueApi()
-//       .then((question) => {
-//         dispatch(setQuestion(question))
-//       })
-//       .catch((err) => {
-//         console.error(err)
-//       })
-//   }
-// }
-
-//get single question_id
-//get answers -> at question_id
+export function fetchQuestions() {
+  return (dispatch) => {
+    return getQuestionsApi()
+      .then((questions) => dispatch(setQuestions(questions)))
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+}

@@ -3,13 +3,13 @@ import styles from './Flatmate.module.scss'
 
 const Flatmate = ({ flatmate }) => {
   return (
-    <ul key={flatmate.id}>
-      <li>
-        <img src={flatmate.img_url} alt="user" height="300" width="300"></img>
-      </li>
-      <li>{flatmate.name}</li>
-      <li>{flatmate.rating}</li>
-    </ul>
+    <div className={styles.flatmateContainer}>
+      <img className={styles.flatmateImage} src={flatmate.img_url} alt="user" />
+      <div className={styles.flatmateDetailsContainer}>
+        <div className={styles.flatmateName}>{flatmate.name}</div>
+        <div className={styles.flatmateDescription}>{flatmate.description}</div>
+      </div>
+    </div>
   )
 }
 

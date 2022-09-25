@@ -1,0 +1,24 @@
+.flatmateContainer {
+  display: flex;
+  background-color: aqua;
+  padding: 20px;
+}
+
+.flatmateDetailsContainer {
+  margin-left: 20px;
+}
+
+.flatmateImage {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.flatmateName {
+  font-weight: bold;
+  font-size: 18;
+}
+
+.flatmateDescription {
+  font-style: italic;
+}

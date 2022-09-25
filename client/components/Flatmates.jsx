@@ -12,15 +12,13 @@ function Flatmates() {
   }, [])
 
   return (
-    <>
-      <ul>
-        <li>
-          {flatmates.map((flatmate) => (
-            <Flatmate key={flatmate.id} flatmate={flatmate} />
-          ))}
-        </li>
-      </ul>
-    </>
+    <div className={styles.flatmatesContainer}>
+      {flatmates
+        .sort((a, b) => b.rating - a.rating)
+        .map((flatmate) => (
+          <Flatmate key={flatmate.id} flatmate={flatmate} />
+        ))}
+    </div>
   )
 }
 
