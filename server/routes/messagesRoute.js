@@ -1,11 +1,8 @@
 const express = require('express')
 const db = require('../db/dbMessages')
-const { getAnswersForQuestions } = require('../db/dbAnswers')
 const { getUserIdByAuth0Id } = require('../db/dbUsers')
 const router = express.Router()
 const checkJwt = require('../auth0')
-
-// TODO replace these with getQuestions, getAnswers, etc. from components
 
 router.get('/', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub

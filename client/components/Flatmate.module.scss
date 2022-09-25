@@ -1,7 +1,10 @@
 .flatmateContainer {
   display: flex;
-  background-color: aqua;
   padding: 20px;
+}
+
+.flatmateContainer:hover {
+  background-color: rgb(93, 141, 159);
 }
 
 .flatmateDetailsContainer {
@@ -21,4 +24,9 @@
 
 .flatmateDescription {
   font-style: italic;
+}
+
+.flatmateRating {
+  color: maroon;
+  font-size: 18;
 }

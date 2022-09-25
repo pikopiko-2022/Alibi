@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id
-  db.getQuestion(id)
+  db.getQuestionsForIssue(id)
     .then((question) => {
       res.json(question)
     })

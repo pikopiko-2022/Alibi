@@ -6,12 +6,12 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useCacheUser } from '../auth0-utils'
 
 import Nav from './Nav'
-import Create from './Create'
+import Complaint from './Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
-import { getUser } from '../apis/authentication'
+import { getUser } from '../apis/userApi'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function App() {
@@ -38,12 +38,16 @@ function App() {
   return (
     <>
       <div className="app">
+        <img
+          src="https://static.miraheze.org/closinglogosgroupwiki/a/ab/Alibi14.jpeg"
+          alt="logo"
+        />
         <h1>Alibi</h1>
         <Nav />
         <IfAuthenticated>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/create" element={<Create />} />
+            <Route path="/create" element={<Complaint />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </IfAuthenticated>
