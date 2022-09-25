@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styles from './Question.module.scss'
-import { updateUserScore } from '../actions/user'
-import { updateMessageAnswer } from '../actions/messages'
+import { updateUserScore } from '../../actions/user'
+import { updateMessageAnswer } from '../../actions/messages'
 // import { fetchQuestions } from '../actions/questions'
 // import { fetchAnswers } from '../actions/answers'
 

@@ -1,6 +1,6 @@
 const express = require('express')
 const db = require('../db/dbMessages')
-const { getAnswers } = require('../db/dbAnswers')
+const { getAnswersForQuestions } = require('../db/dbAnswers')
 const { getUserIdByAuth0Id } = require('../db/dbUsers')
 const router = express.Router()
 const checkJwt = require('../auth0')
@@ -14,7 +14,7 @@ router.get('/', checkJwt, (req, res) => {
     .then(({ userId }) => db.getMessages(userId))
     .then((messages) => {
       messagesResult = messages
-      return getAnswers(messages)
+      return getAnswersForQuestions(messages)
     })
     .then((answers) => {
       messagesResult = messagesResult.map((message) => ({

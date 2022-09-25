@@ -15,7 +15,7 @@ function getMessages(userId, db = connection) {
       'life_guidance.message as lifeGuidanceMessage',
       'life_guidance.url as lifeGuidanceUrl'
     )
-    .where('messages.recipient_id', '=', userId)
+    .where({ 'messages.recipient_id': userId, 'messages.answer_id': null })
     .orderBy('messages.id', 'desc')
 }
 

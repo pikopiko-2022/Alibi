@@ -4,16 +4,13 @@ import { fetchMessages, addMessage } from '../actions/messages'
 import Question from './Question'
 import LifeGuidance from './LifeGuidance'
 import styles from './Messages.module.scss'
-import Question from './Question'
 
 const Messages = () => {
   return (
-    <>
-      <div className={styles.container}>
-        Messages
-        <Question />
-      </div>
-    </>
+    <div className={styles.messagesContainer}>
+      Messages
+      <Question />
+    </div>
   )
 }
 
