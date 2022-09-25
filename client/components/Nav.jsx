@@ -10,13 +10,11 @@ function Nav() {
 
   const handleLogOff = (e) => {
     e.preventDefault()
-    console.log('log off')
     logout()
   }
 
   const handleSignIn = (e) => {
     e.preventDefault()
-    console.log('sign in')
     loginWithRedirect()
   }
 
@@ -33,8 +31,6 @@ function Nav() {
           Sign In
         </Link>
       </IfNotAuthenticated>
-
-      <h1>Alibi FTW!</h1>
     </>
   )
 }
