@@ -54,6 +54,8 @@
     "knex": "^2.3.0",
     "nock": "^13.2.9",
     "pg": "^8.7.1",
+    "socket.io": "^4.5.2",
+    "socket.io-client": "^4.5.2",
     "sqlite3": "^5.0.8",
     "superagent": "7.1.1"
   },

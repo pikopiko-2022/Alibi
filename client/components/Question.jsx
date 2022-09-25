@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import styles from './Question.module.scss'
 import { getQuestionsByIssueApi } from '../apis/questionsApi'
@@ -39,8 +38,8 @@ const Question = () => {
         return console.error(error)
       })
   }, [])
-  console.log(answer)
-  console.log(question.question)
+  // console.log(answer)
+  // console.log(question.question)
   return (
     <>
       <div>{question.question}</div>
@@ -59,4 +58,3 @@ export default Question
           ))}
         </li> */
 }
-

@@ -39,7 +39,6 @@ const Question = ({ question }) => {
     dispatch(updateMessageAnswer(question.id, answer.id, token))
   }
 
-  console.log(question)
   return (
     <div className={styles.questionContainer}>
       <div

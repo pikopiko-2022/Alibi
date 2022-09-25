@@ -1,4 +1,4 @@
-import { getUser, addUserScore } from '../apis/authentication'
+import { getUser, addUserScore } from '../apis/userApi'
 
 export const UPDATE_LOGGED_IN_USER = 'UPDATE_LOGGED_IN_USER'
 export const CLEAR_LOGGED_IN_USER = 'CLEAR_LOGGED_IN_USER'

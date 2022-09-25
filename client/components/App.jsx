@@ -11,7 +11,7 @@ import HomePage from './HomePage'
 import Register from './Registration'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
-import { getUser } from '../apis/authentication'
+import { getUser } from '../apis/userApi'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function App() {

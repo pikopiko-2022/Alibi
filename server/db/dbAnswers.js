@@ -10,7 +10,6 @@ function getAnswers(id, db = connection) {
 
 function getAnswersForQuestions(questions, db = connection) {
   const ids = questions.map((question) => question.question_id)
-  console.log(ids)
   return db('answers').select().whereIn('question_id', ids)
 }
 
