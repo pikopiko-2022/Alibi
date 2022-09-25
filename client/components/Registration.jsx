@@ -3,15 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { newUser } from '../apis/authentication'
-import { updateLoggedInUser } from '../actions/loggedInUser'
+import { updateLoggedInUser } from '../actions/user'
 
 function Register() {
-  const user = useSelector((state) => state.loggedInUser)
+  const user = useSelector((state) => state.user)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-  console.log(user)
 
   const [form, setForm] = useState({
     username: '',

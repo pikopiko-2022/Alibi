@@ -1,5 +1,9 @@
-import React from 'react'
+
+import React, { useEffect, useState } from 'react'
 import styles from './Question.module.scss'
+import { getQuestionsByIssueApi } from '../apis/questionsApi'
+import { getAnswersByQuestionApi } from '../apis/answersApi'
+
 // import { fetchQuestions } from '../actions/questions'
 // import { fetchAnswers } from '../actions/answers'
 
@@ -8,19 +12,51 @@ import styles from './Question.module.scss'
 // below it map the answers as <div>
 // when an answer is clicked it should send the message to a function that handles the game logic
 
-// <Question question={question} />
+//arr[Math.floor(Math.random() * arr.length)]
 
-const Question = ({ question }) => {
-  return <div>{answer}</div> //div for Q, div for answers. drop-down
+function getRandomQuestion(questionArray) {
+  // questionArray = null
+  return questionArray[Math.floor(Math.random() * questionArray.length)]
+}
+
+const Question = () => {
+  const [question, setQuestion] = useState([])
+  const [answer, setAnswer] = useState([])
+
+  useEffect(() => {
+    getQuestionsByIssueApi()
+      .then((questions) => {
+        return getRandomQuestion(questions)
+      })
+      .then((question) => {
+        setQuestion(question)
+        return getAnswersByQuestionApi(question.id)
+      })
+      .then((answers) => {
+        return setAnswer(answers)
+      })
+      .catch((error) => {
+        return console.error(error)
+      })
+  }, [])
+  console.log(answer)
+  console.log(question.question)
+  return (
+    <>
+      <div>{question.question}</div>
+      {/* <div>{answer.answer}</div> */}
+      {/* div for Q, div for answers. drop-down */}
+    </>
+  )
 }
 
 export default Question
 
 {
-  id, issue_id, question
+  /* <li>
+          {flatmates.map((flatmate) => (
+            <Flatmate key={flatmate.id} flatmate={flatmate} />
+          ))}
+        </li> */
 }
 
-getAnswersForQuestion(question.id) // apis/
-// get request to some route that will find all answers that match the question.id
-// db.getAnswersForQuestion(question.id)
-// db/

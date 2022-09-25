@@ -1,14 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
-
 import { useAuth0 } from '@auth0/auth0-react'
-
-import { updateLoggedInUser } from './actions/loggedInUser'
+import { updateLoggedInUser } from './actions/user'
 
 export function useCacheUser() {
   const dispatch = useDispatch()
-  const tokenInRedux = useSelector((state) =>
-    Boolean(state.loggedInUser?.token)
-  )
+  const tokenInRedux = useSelector((state) => Boolean(state.user?.token))
 
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0()
 
@@ -16,7 +12,6 @@ export function useCacheUser() {
     try {
       getAccessTokenSilently()
         .then((token) => {
-          console.log(token)
           const userToSave = {
             auth0Id: user?.sub,
             email: user?.email,
@@ -24,7 +19,7 @@ export function useCacheUser() {
           }
           dispatch(updateLoggedInUser(userToSave))
         })
-        .catch((err) => console.log('err', err))
+        .catch((err) => console.error(err.message))
     } catch (err) {
       console.error(err)
     }

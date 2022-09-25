@@ -7,6 +7,11 @@ exports.seed = async function (knex) {
   await knex('issues').del()
   await knex('issues').insert([
     {
+      id: 0,
+      name: `Please select an issue`,
+      details: null,
+    },
+    {
       id: 1,
       name: `There's no hot water left`,
       details: `I'm involuntarily doing the Wim Hof method`,
