@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createComplaint } from '../apis/create'
-import { fetchIssues } from '../actions/create'
+import { createComplaint } from '../apis/complaints'
+import { fetchIssues } from '../actions/issues'
 import { fetchUser } from '../actions/user'
 import styles from './Create.module.scss'
 
 export default function Create() {
+  const token = useSelector((state) => state?.user?.token)
   const dispatch = useDispatch()
   const [selectedFile, setSelectedFile] = useState(null)
   const [selectedIssue, setSelectedIssue] = useState(null)
@@ -16,7 +17,7 @@ export default function Create() {
 
   const user = useSelector((state) => state.user)
 
-  const create = useSelector((state) => state.create)
+  const issues = useSelector((state) => state.issues)
 
   useEffect(() => {
     dispatch(fetchIssues())
@@ -30,28 +31,18 @@ export default function Create() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    createComplaint({
-      image: selectedFile,
-      issue_id: selectedIssue,
-      complaint_raised_by: user.id,
-    })
+    createComplaint(
+      {
+        image: selectedFile,
+        issue_id: selectedIssue,
+        complaint_raised_by: user.id,
+      },
+      token
+    )
       .then((url) => {
         console.log(url)
         setUploadedImageUrl(url)
       })
-      //   sendComplaint({
-      //     image: url,
-      //     issue_id: selectedIssue,
-      //     complaint_raised_by: user.id,
-      //   })
-      // })
-      // .then(() =>
-      // sendComplaint({
-      //   image: uploadedImageUrl,
-      //   issue_id: selectedIssue,
-      //   complaint_raised_by: user.id,
-      // })
-      // )
       .catch((err) => {
         console.error(err.message)
       })
@@ -72,13 +63,12 @@ export default function Create() {
             <option value="" selected disabled hidden>
               Pick an issue
             </option>
-            {create.map((issue) => (
+            {issues.map((issue) => (
               <option key={issue.id} value={issue.id}>
                 {issue.name}
               </option>
             ))}
           </select>
-          {/* <Select /> */}
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (

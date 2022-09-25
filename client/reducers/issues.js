@@ -1,4 +1,5 @@
-import { SET_ISSUES, SET_COMPLAINT } from '../actions/create'
+import { SET_ISSUES } from '../actions/issues'
+import { SET_COMPLAINT } from '../actions/complaints'
 
 const initialState = []
 

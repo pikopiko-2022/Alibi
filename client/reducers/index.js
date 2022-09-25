@@ -6,7 +6,7 @@ import questions from './questions'
 import lifeG from './lifeG'
 import answers from './answers'
 import flats from './flats'
-import create from './create'
+import issues from './issues'
 import messages from './messages'
 
 export default combineReducers({
@@ -16,6 +16,6 @@ export default combineReducers({
   lifeG,
   answers,
   flats,
-  create,
+  issues,
   messages,
 })
