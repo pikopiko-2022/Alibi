@@ -10,7 +10,7 @@ exports.up = function (knex) {
     table.string('name')
     table.string('description')
     table.string('img_url')
-    table.integer('rating')
+    table.integer('rating').defaultTo(0)
   })
 }
 
@@ -21,5 +21,3 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return knex.schema.dropTable('users')
 }
-
-//adding a comment to try make the file show?

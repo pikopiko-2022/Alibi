@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { createComplaint } from '../apis/create'
+import { fetchIssues } from '../actions/create'
+import { fetchUser } from '../actions/user'
 import styles from './Create.module.scss'
 
 export default function Create() {
+  const dispatch = useDispatch()
   const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedIssue, setSelectedIssue] = useState(null)
   const [previewURL, setPreviewURL] = useState(null)
   const [uploadedImageUrl, setUploadedImageUrl] = useState(null)
   const isLoading = false
   const error = false
+
+  const user = useSelector((state) => state.user)
+
+  const create = useSelector((state) => state.create)
+
+  useEffect(() => {
+    dispatch(fetchIssues())
+    dispatch(fetchUser())
+  }, [])
 
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0])
@@ -16,10 +30,28 @@ export default function Create() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    createComplaint({ image: selectedFile })
+    createComplaint({
+      image: selectedFile,
+      issue_id: selectedIssue,
+      complaint_raised_by: user.id,
+    })
       .then((url) => {
+        console.log(url)
         setUploadedImageUrl(url)
       })
+      //   sendComplaint({
+      //     image: url,
+      //     issue_id: selectedIssue,
+      //     complaint_raised_by: user.id,
+      //   })
+      // })
+      // .then(() =>
+      // sendComplaint({
+      //   image: uploadedImageUrl,
+      //   issue_id: selectedIssue,
+      //   complaint_raised_by: user.id,
+      // })
+      // )
       .catch((err) => {
         console.error(err.message)
       })
@@ -27,9 +59,27 @@ export default function Create() {
     setPreviewURL(null)
   }
 
+  const handleSelect = (event) => {
+    console.log(event.target.value)
+    setSelectedIssue(event.target.value)
+  }
+
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
+        <div className="issues">
+          <select className="select" onChange={handleSelect}>
+            <option value="" selected disabled hidden>
+              Pick an issue
+            </option>
+            {create.map((issue) => (
+              <option key={issue.id} value={issue.id}>
+                {issue.name}
+              </option>
+            ))}
+          </select>
+          {/* <Select /> */}
+        </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
             <div>Loading...</div>

@@ -2,6 +2,4 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
-export function /*function Name*/ () {
-  
-}
+// Add all complaints related APIs here
