@@ -33,8 +33,6 @@ function Nav() {
           Sign In
         </Link>
       </IfNotAuthenticated>
-
-      <h1>Alibi FTW!</h1>
     </>
   )
 }

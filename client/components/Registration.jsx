@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { createAvatar } from '@dicebear/avatars'
-import * as style from '@dicebear/adventurer'
+import Avatar from './Avatar'
 
 import { newUser } from '../apis/authentication'
 import { updateLoggedInUser } from '../actions/loggedInUser'
 
 function Register() {
-  let svg = createAvatar(style, { dataUri: true, size: 150 })
-
   const user = useSelector((state) => state.loggedInUser)
 
   const navigate = useNavigate()
@@ -19,7 +16,8 @@ function Register() {
   const [form, setForm] = useState({
     username: '',
     flatId: '',
-    //placeholder doppleme avatar
+    img_url: '',
+    description: '',
   })
 
   const [errorMsg, setErrorMsg] = useState('')
@@ -49,11 +47,10 @@ function Register() {
   const hideError = () => {
     setErrorMsg('')
   }
-  console.log({ svg })
 
   return (
     <>
-      <img src={svg} alt="Avatar" />
+      <Avatar />
 
       <h2>Complete profile set up</h2>
       {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
@@ -75,7 +72,18 @@ function Register() {
           value={form.flatId}
           onChange={handleChange}
         />
-        <button disabled={!(form.username && form.flatId)}>Save Profile</button>
+
+        <label htmlFor="description">Enter a description of yourself</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+        />
+        <button disabled={!(form.username && form.flatId && form.description)}>
+          Save Profile
+        </button>
       </form>
     </>
   )

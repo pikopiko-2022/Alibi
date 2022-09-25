@@ -46,7 +46,12 @@ function App() {
   return (
     <>
       <div className="app">
+        <img
+          src="https://static.miraheze.org/closinglogosgroupwiki/a/ab/Alibi14.jpeg"
+          alt="logo"
+        />
         <h1>Alibi</h1>
+        <br></br>
 
         <Routes>
           <Route
