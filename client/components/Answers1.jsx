@@ -1,4 +1,5 @@
 import { updateCulprit, addCulpritToComplaint } from '../apis/complaints'
+import { getMessages, addAnswerToMessage } from '../apis/messagesApi'
 
 //                                  //
 // Called by useTimeout in App.jsx  //
@@ -37,6 +38,7 @@ import { updateCulprit, addCulpritToComplaint } from '../apis/complaints'
 // else
 //    add +1 to culprits score
 export function receiveAnswer(messages, answers, complaints, users, token) {
+  //we need to get messages answers complainst and users tables? How do we do this?
   const culpritScore = 0
   if (messages.complaint_id === null) {
     return null
@@ -51,6 +53,7 @@ export function receiveAnswer(messages, answers, complaints, users, token) {
     // sendGuidance()
   } else {
     culpritScore + 1
+    addAnswerToMessage(messages.id, answers.id, token)
   }
   return users.rating + culpritScore
 }
