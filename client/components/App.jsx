@@ -43,7 +43,7 @@ function App() {
           alt="logo"
         />
         <h1>Alibi</h1>
-
+        <Nav />
         <IfAuthenticated>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -51,9 +51,6 @@ function App() {
             <Route path="/register" element={<Register />} />
           </Routes>
         </IfAuthenticated>
-        <IfNotAuthenticated>
-          <Nav />
-        </IfNotAuthenticated>
       </div>
     </>
   )
