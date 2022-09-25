@@ -1,0 +1,109 @@
+import request from 'superagent'
+
+const rootUrl = '/api/v1'
+
+//-----Authentication Api Functions-----
+export function getUser(token) {
+  return request
+    .get(`${rootUrl}/registration`)
+    .set('Authorization', `Bearer ${token}`)
+    .then((res) => res.body)
+    .catch(() => {
+      console.log('err')
+    })
+}
+
+export function newUser(user, token) {
+  console.log('NewUser', user)
+  return request
+    .post(`${rootUrl}/registration`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(user)
+    .catch(() => {
+      console.log('err')
+    })
+}
+
+//-----User Api-----
+export function getUsersApi() {
+  return request.get(`${rootUrl}/users`).then((res) => {
+    return res.body
+  })
+}
+
+export function getUserApi() {
+  return request.get(`${rootUrl}/user`).then((res) => {
+    return res.body
+  })
+}
+
+//------Flats Api Functions-----
+export function getFlatsApi() {
+  return request.get(`${rootUrl}/flats`).then((res) => {
+    console.log(res.body)
+    return res.body
+  })
+}
+
+//-----Create Api Functions-----
+export function createComplaint({ image }) {
+  return request
+    .get(rootUrl + '/create')
+    .then((res) => {
+      const url = res.body
+      return request.put(url).send(image)
+    })
+    .then((res) => {
+      const url = res?.req?.url?.split?.('?')?.[0]
+      return request.post(rootUrl + '/create').send({ url })
+    })
+    .then((res) => {
+      return res.text
+    })
+    .catch((err) => {
+      console.error(err.message)
+    })
+}
+
+    //getIssue
+export function getIssues() {
+  return request.get(rootUrl + '/create/issues').then((res) => {
+    return res.body
+  })
+}
+
+  //getQuestions
+export function getQuestions() {
+  return request.get(rootUrl + '/create/issues/:id').then((res) => {
+    return res.body
+  })
+}
+
+//-----Questions Api Functions-----
+export function getQuestionsApi() {
+  return request.get(`${rootUrl}/questions`).then((res) => {
+    console.log(res.body)
+    return res.body
+  })
+}
+
+//-----Answers Api Functions-----
+export function getAnswersApi() {
+  return request.get(`${rootUrl}/answers`).then((res) => {
+    console.log(res.body)
+    return res.body
+  })
+}
+
+//-----Life Guidance Api Fucntion-----
+export function getLifeGApi() {
+  return request.get(`${rootUrl}/lifeG`).then((res) => {
+    console.log(res.body)
+    return res.body
+  })
+}
+
+
+
+
+
