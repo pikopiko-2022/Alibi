@@ -16,7 +16,7 @@ const Question = ({ message }) => {
 
   const handleAnswerSelect = (answer) => {
     // TODO Add Answer logic here
-    console.log(answer, ' clicked')
+    console.log('clicked: ', answer)
     // dispatch(updateUserScore(userScore, token))
     // dispatch(updateMessageAnswer(question.id, answer.id, token))
   }
@@ -33,7 +33,7 @@ const Question = ({ message }) => {
 
   useEffect(() => {
     setQuestion(
-      questions.filter((question) => question.id === message.question_id)
+      questions.find((question) => question.id === message.question_id)
     )
     getAnswersByQuestionApi(message.question_id)
       .then((answers) => {
