@@ -17,10 +17,12 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
+//remember to put checkJwt back in!!
+//make sure req.body comes back as an object
 router.put('/:complaintsId', checkJwt, (req, res) => {
   const complaintsId = req.params.complaintsId
-  const { culpritId } = req.body
-  db.updateCulpritDb(complaintsId, { culprit_id: culpritId })
+  const culprit_id = req.body
+  db.updateCulpritDb(complaintsId, culprit_id)
     .then((result) => {
       res.json(result)
       return null

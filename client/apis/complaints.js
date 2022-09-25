@@ -6,9 +6,9 @@ const rootUrl = '/api/v1'
 //   return request.put(rootUrl + '/create/complaints').send(culprit_id)
 // }
 
-export function addCulpritToComplaint(complaintId, culpritId, token) {
+export function addCulpritToComplaint(complaintId, culprit_id, token) {
   return request
-    .put(`${rootUrl}/create/complaints/${complaintId}`)
+    .put(`${rootUrl}/complaints/${complaintId}`)
     .set('authorization', `Bearer ${token}`)
-    .send({ culpritId })
+    .send({ culprit_id })
 }
