@@ -4,11 +4,11 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable('complaints', (table) => {
-    table.increments('id').primary
+    table.increments('id').primary()
     table.integer('issue_id')
-    table.string('img_url')
+    table.string('image')
     table.integer('complaint_raised_by')
-    table.timestamp('date_raised')
+    table.timestamp('date_raised').defaultTo(knex.fn.now())
     table.integer('culprit_id')
     table.boolean('resolved').defaultTo(0)
   })

@@ -5,10 +5,10 @@ import Avatar from './Avatar'
 import { getRandomNumber } from '../apis/messages'
 
 import { newUser } from '../apis/authentication'
-import { updateLoggedInUser } from '../actions/loggedInUser'
+import { updateLoggedInUser } from '../actions/user'
 
 function Register() {
-  const user = useSelector((state) => state.loggedInUser)
+  const user = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
 

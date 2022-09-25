@@ -10,13 +10,11 @@ function Nav() {
 
   const handleLogOff = (e) => {
     e.preventDefault()
-    console.log('log off')
     logout()
   }
 
   const handleSignIn = (e) => {
     e.preventDefault()
-    console.log('sign in')
     loginWithRedirect()
   }
 

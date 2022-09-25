@@ -1,26 +1,20 @@
-import React, { useEffect } from 'react'
-import styles from './Flatmates.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchLifeG } from '../actions/lifeG'
+import React from 'react'
+import styles from './LifeGuidance.module.scss'
+import { useSelector } from 'react-redux'
 
-//Do I need a responses table?
-
-function Life_Guidance() {
-  const dispatch = useDispatch()
-  const guidance = useSelector((state) => state.lifeG)
-  useEffect(() => {
-    dispatch(fetchLifeG())
-  }, [])
-
+function LifeGuidance({ message }) {
+  const lifeGuidances = useSelector((state) => state.lifeG)
+  const lifeGuidance = lifeGuidances?.find(
+    (lifeGuidance) => lifeGuidance.id === message.life_guidance_id
+  )
   return (
-    //-----foreach user(get responseID->get associated answerID, if answer.is_bad = true => next step),
-
-    //Get answers.question_id -> get questions.issue_id -> display  life_guidances.message
-
-    <>
-      <div>{guidance.message}</div>
-    </>
+    <div className={styles.lifeGuidanceContainer}>
+      <div className={styles.lifeGuidanceMessage}>{lifeGuidance.message}</div>
+      <a href={lifeGuidance.url} className={styles.lifeGuidanceUrl}>
+        Learn More!
+      </a>
+    </div>
   )
 }
 
-export default Life_Guidance
+export default LifeGuidance

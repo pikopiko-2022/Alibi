@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import Flatmate from './Flatmate'
-import styles from './Flatmates.module.scss'
+// import styles from './Flatmates.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUsers } from '../actions/users'
 
 function Flatmates() {
   const dispatch = useDispatch()
-  const flatmates = useSelector((state) => state.users.users)
+  const flatmates = useSelector((state) => state.users)
   useEffect(() => {
     dispatch(fetchUsers())
   }, [])
@@ -14,11 +14,11 @@ function Flatmates() {
   return (
     <>
       <ul>
-        <li>
-          {flatmates.map((flatmate) => (
+        {flatmates.map((flatmate) => (
+          <li key={flatmate.id}>
             <Flatmate key={flatmate.id} flatmate={flatmate} />
-          ))}
-        </li>
+          </li>
+        ))}
       </ul>
     </>
   )

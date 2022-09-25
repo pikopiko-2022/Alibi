@@ -9,17 +9,12 @@ export function setQuestions(questions) {
   }
 }
 
-export function fetchQuestion() {
+export function fetchQuestions() {
   return (dispatch) => {
     return getQuestionsApi()
-      .then((questions) => {
-        dispatch(setQuestions(questions))
-      })
+      .then((questions) => dispatch(setQuestions(questions)))
       .catch((err) => {
         console.error(err)
       })
   }
 }
-
-//get single question_id
-//get answers -> at question_id
