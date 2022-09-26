@@ -41,7 +41,6 @@ describe('test updateUserScore', () => {
 describe('getUser', () => {
   it('gets user based on auth0id', () => {
     return getUser(1, testCon).then((user) => {
-      expect(user.flatName).toBe(`The cool kids' pad`)
       expect(user.id).toBe(1)
       expect(user.name).toBe('Gertrude')
     })
