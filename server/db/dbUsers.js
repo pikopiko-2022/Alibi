@@ -1,13 +1,7 @@
 const connection = require('./connection')
 
-// TODO change to getFlatmates? and look only for users that match your flat_id
-function getUsers(flat_id = 1, db = connection) {
-  return db('users').where('flat_id', flat_id).select()
-}
-
 function addUser(newUser, db = connection) {
   return db('users').insert(newUser)
-  // .then(() => getUsers())
 }
 
 function userExists(username, db = connection) {
@@ -39,7 +33,6 @@ function updateUserEnough(userId, db = connection) {
 }
 
 module.exports = {
-  getUsers,
   addUser,
   userExists,
   getUser,

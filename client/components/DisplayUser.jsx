@@ -21,7 +21,7 @@ const DisplayUser = () => {
         <div className={styles.flatName}>{user?.flatName}</div>
         <div className={styles.flatAddress}>{user?.flatAddress}</div>
       </div>
-      <Link to="/create">
+      <Link to="/complaint">
         <button>Add Complaint</button>
       </Link>
     </div>

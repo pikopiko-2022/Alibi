@@ -1,9 +1,9 @@
 const express = require('express')
 const path = require('path')
 
-const usersRoutes = require('./routes/usersRoute')
+const flatmateRoutes = require('./routes/flatmatesRoute')
 const userRoutes = require('./routes/userRoute')
-const createRoutes = require('./routes/createRoute')
+const imageUrlRoutes = require('./routes/imageUrlRoute')
 const issuesRoutes = require('./routes/issuesRoute')
 const lifeGRoutes = require('./routes/lifeGRoute')
 const questionsRoutes = require('./routes/questionsRoute')
@@ -25,13 +25,9 @@ app.use((req, res, next) => {
   next()
 })
 
-// io.on('connection', () => {
-//   console.log('a user connected')
-// })
-
-app.use('/api/v1/users', usersRoutes)
+app.use('/api/v1/flatmates', flatmateRoutes)
 app.use('/api/v1/user', userRoutes)
-app.use('/api/v1/create', createRoutes)
+app.use('/api/v1/imageUrl', imageUrlRoutes)
 app.use('/api/v1/issues', issuesRoutes)
 app.use('/api/v1/lifeG', lifeGRoutes)
 app.use('/api/v1/questions', questionsRoutes)

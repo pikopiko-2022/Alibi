@@ -1,10 +1,9 @@
 const express = require('express')
-// const checkJwt = require('../auth0')
-const db = require('../db/dbUsers')
+const db = require('../db/dbFlatmates')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getUsers()
+  db.getFlatmates()
     .then((users) => {
       res.json(users)
       return null
