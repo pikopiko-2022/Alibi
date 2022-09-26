@@ -12,7 +12,12 @@ function LifeGuidance({ message }) {
     <div className={styles.messageContainer}>
       <MessageDate message={message} />
       <div className={styles.messageMessage}>{lifeGuidance.message}</div>
-      <a href={lifeGuidance.url} className={styles.messageUrl}>
+      <a
+        href={lifeGuidance.url}
+        target="_blank"
+        rel="noreferrer"
+        className={styles.messageUrl}
+      >
         Learn More!
       </a>
     </div>

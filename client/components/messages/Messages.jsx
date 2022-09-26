@@ -39,7 +39,7 @@ const Messages = () => {
         <div className={styles.messagesTitle}>Messages</div>
         <button onClick={testSendMessage}>Test Send Message</button>
       </div>
-      <div className={styles.messagesScrollContainer}>
+      <div className={styles.messagesScrollContainer} role="log">
         {messages?.map((message) =>
           message.question_id ? (
             <Question key={message.id} message={message} />
