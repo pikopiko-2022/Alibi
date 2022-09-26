@@ -24,9 +24,3 @@ describe('getAllAnswers', () => {
     })
   })
 })
-
-// describe('getAnswers', () => {
-//   it('gets answers to corresponding question_id', () => {
-//     return
-//   })
-// })

@@ -13,7 +13,12 @@ afterEach(() => {
   console.error.mockReset()
 })
 
-describe('GET /api/v1/registration', () => {
+checkJwt.mockImplementation((req, res, next) => {
+  req.user = { sub: '1' }
+  next()
+})
+
+describe('GET /api/v1/user', () => {
   it('Get Users from database', () => {
     const fakeUser = [
       {
@@ -42,26 +47,22 @@ describe('GET /api/v1/registration', () => {
     expect.assertions(3)
 
     return request(server)
-      .get('/api/v1/registration')
+      .get('/api/v1/user')
       .then((res) => {
-        expect(res.body[0].name).toBe('Holloway'),
+        console.log(res.body)
+        expect(res.body?.name).toBe('Holloway'),
           expect(res.body).toHaveLength(2),
-          expect(res.body[0].description).toContain('lazy')
+          expect(res.body.description).toContain('lazy')
       })
   })
 })
 
-checkJwt.mockImplementation((req, res, next) => {
-  req.user = { sub: '1' }
-  next()
-})
-
-describe('POST /api/v1/registration', () => {
+describe('POST /api/v1/user', () => {
   it('Post new user to database', () => {
     addUser.mockImplementation(() => Promise.resolve(true))
 
     return request(server)
-      .post('/api/v1/registration')
+      .post('/api/v1/user')
       .send({
         flat_id: '1',
         name: 'Homer',
@@ -78,9 +79,9 @@ describe('POST /api/v1/registration', () => {
       Promise.reject(new Error('Something went wrong'))
     )
     return request(server)
-      .post('/api/v1/registration')
+      .post('/api/v1/user')
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         expect(res.status).toBe(500)
         expect(res.text).toContain('Something went wrong')
       })
