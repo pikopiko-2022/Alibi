@@ -1,6 +1,6 @@
-import { SET_FLATS } from '../../actions/flats'
+import { SET_FLAT } from '../../actions/flat'
 
-import flats from '../flats'
+import flats from '../flat'
 
 const mockFlats = [
   {
@@ -14,7 +14,7 @@ describe('flats reducer', () => {
   it('returns flats payload for the type SET_FLATS', () => {
     expect.assertions(2)
     const action = {
-      type: SET_FLATS,
+      type: SET_FLAT,
       payload: mockFlats,
     }
     const initialState = []

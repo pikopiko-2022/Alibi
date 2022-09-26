@@ -20,7 +20,7 @@ describe('GET /api/v1/flatmates', () => {
           flat_id: 1,
           name: 'Harry',
           description: 'lazy and selfish',
-          img_url: 'https://pbs.twimg.com/media/EVU8UYAUEAI-csw.jpg',
+          img_seed: 'https://pbs.twimg.com/media/EVU8UYAUEAI-csw.jpg',
           rating: 5,
         },
         {
@@ -29,7 +29,7 @@ describe('GET /api/v1/flatmates', () => {
           flat_id: 1,
           name: 'Sally',
           description: 'lazy and selfish',
-          img_url: 'https://pbs.twimg.com/media/EVU8UYAUEAI-csw.jpg',
+          img_seed: 'https://pbs.twimg.com/media/EVU8UYAUEAI-csw.jpg',
           rating: 5,
         },
       ])
