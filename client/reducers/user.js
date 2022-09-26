@@ -4,7 +4,7 @@ const emptyUser = {
   auth0Id: '',
   username: '',
   flat_Id: '',
-  img_url: '',
+  img_seed: '',
   description: '',
 }
 

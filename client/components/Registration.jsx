@@ -33,7 +33,7 @@ function Register() {
     evt.preventDefault()
     const userInfo = {
       auth0Id: user.auth0Id,
-      img_url: seedData,
+      img_seed: seedData,
       ...form,
     }
     newUser(userInfo, user.token)

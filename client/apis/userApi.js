@@ -29,11 +29,10 @@ export function addUserScore(score, token) {
     .catch((err) => console.error(err.message))
 }
 
-export function userEnough(token) {
+export function addUserEnough(token) {
   return request
-    .put(`${rootUrl}/user`)
+    .put(`${rootUrl}/user/enough`)
     .set('Authorization', `Bearer ${token}`)
-    .send({ had_enough })
     .then((res) => {
       return res.body
     })

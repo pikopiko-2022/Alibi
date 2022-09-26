@@ -16,7 +16,7 @@ describe('<DisplayUser />', () => {
         name: 'Test Name',
         description: 'A test user object',
         rating: 10,
-        img_url: 'testimage.jpg',
+        img_seed: 'testimage.jpg',
         flatName: 'Test Flat',
         flatAddress: '123 Test Street',
       },
