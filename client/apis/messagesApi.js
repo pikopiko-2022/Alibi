@@ -16,6 +16,25 @@ export function sendMessage(userId, token) {
     })
 }
 
+export function sendLifeGuidance(userId, issueId, token) {
+  return request
+    .get(`${rootUrl}/lifeG/issue/${issueId}`)
+    .set('Authorization', `Bearer ${token}`)
+    .then((res) => {
+      const lifeGuidances = res.body
+      const lifeGuidance =
+        lifeGuidances[getRandomNumber(0, lifeGuidances.length - 1)]
+      return request
+        .post(`${rootUrl}/messages`)
+        .set('Authorization', `Bearer ${token}`)
+        .send({ life_guidance_id: lifeGuidance.id, recipient_id: userId })
+    })
+    .then((res) => {
+      const messages = res.body
+      return messages
+    })
+}
+
 function sendDecoyQuestion(userId, token) {
   return request
     .get(`${rootUrl}/questions`)

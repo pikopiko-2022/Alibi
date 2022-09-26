@@ -3,16 +3,19 @@ import styles from './Message.module.scss'
 import { getAnswersByQuestionApi } from '../apis/answersApi'
 import { updateCulprit } from '../actions/answers'
 import { updateUserScore } from '../actions/user'
-import { updateMessageAnswer } from '../actions/messages'
+import { updateMessageAnswer, addLifeGMessage } from '../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
+import { getRandomNumber } from '../apis/messagesApi'
 
 const Question = ({ message }) => {
   const [expanded, setExpanded] = useState(false)
   const dispatch = useDispatch()
   const token = useSelector((state) => state.user?.token)
+  const userId = useSelector((state) => state.user?.id)
   const questions = useSelector((state) => state.questions)
   const [question, setQuestion] = useState([])
-  const [answer, setAnswer] = useState([])
+  const [answers, setAnswers] = useState([])
+  const disabled = Boolean(message.answer_id)
 
   const handleAnswerSelect = (answer) => {
     let culpritScore = 0
@@ -23,7 +26,10 @@ const Question = ({ message }) => {
     } else if (answer.is_bad === 1) {
       console.log('is a bad answer')
       culpritScore = -1
-      // sendLifeG()
+      setTimeout(
+        () => dispatch(addLifeGMessage(userId, question.issue_id, token)),
+        getRandomNumber(500, 10000)
+      )
     } else {
       console.log('is a good answer')
       culpritScore = 1
@@ -54,7 +60,7 @@ const Question = ({ message }) => {
     )
     getAnswersByQuestionApi(message.question_id)
       .then((answers) => {
-        return setAnswer(answers)
+        return setAnswers(answers)
       })
       .catch((error) => {
         return console.error(error)
@@ -79,10 +85,16 @@ const Question = ({ message }) => {
             expanded ? styles.questionAnswersContainerExpanded : ''
           }`}
         >
-          {answer?.map((answer, i) => (
+          {answers?.map((answer, i) => (
             <div
               key={i}
-              className={styles.questionAnswer}
+              className={
+                answer?.id === message?.answer_id
+                  ? styles.questionAnswerSelected
+                  : disabled
+                  ? styles.questionAnswerDisabled
+                  : styles.questionAnswer
+              }
               onClick={() => handleAnswerSelect(answer)}
               role="button"
               onKeyDown={(e) => handleAnswerKey(e, answer)}

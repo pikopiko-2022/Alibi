@@ -10,7 +10,7 @@ const DisplayUser = () => {
 
   return (
     <div className={styles.displayUserContainer}>
-      {user?.auth0Id ? (
+      {user?.img_url ? (
         <>
           <div className={styles.profileImageContainer}>
             <Avatar seedData={user.img_url} size={300} />

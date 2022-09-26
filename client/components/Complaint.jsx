@@ -6,7 +6,7 @@ import { fetchIssues } from '../actions/issues'
 import styles from './Complaint.module.scss'
 import LoadingSpinner from './LoadingSpinner'
 
-export default function Create() {
+export default function Complaint() {
   const token = useSelector((state) => state?.user?.token)
   const dispatch = useDispatch()
   const navigate = useNavigate()

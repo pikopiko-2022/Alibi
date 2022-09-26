@@ -2,6 +2,7 @@ import {
   addAnswerToMessage,
   getMessages,
   sendCustomMessage,
+  sendLifeGuidance,
   sendMessage,
 } from '../apis/messagesApi'
 
@@ -38,6 +39,15 @@ export function addMessage(userId, token) {
 export function addCustomMessage(message, token) {
   return (dispatch) => {
     return sendCustomMessage(message, token)
+      .then(() => getMessages(token))
+      .then((messages) => dispatch(setMessages(messages)))
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function addLifeGMessage(userId, issueId, token) {
+  return (dispatch) => {
+    return sendLifeGuidance(userId, issueId, token)
       .then(() => getMessages(token))
       .then((messages) => dispatch(setMessages(messages)))
       .catch((err) => console.error(err.message))
