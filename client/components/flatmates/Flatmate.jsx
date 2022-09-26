@@ -1,5 +1,5 @@
 import React from 'react'
-import Avatar from './Avatar'
+import Avatar from '../widgets/Avatar'
 import styles from './Flatmate.module.scss'
 
 const Flatmate = ({ flatmate }) => {

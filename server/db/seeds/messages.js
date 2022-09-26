@@ -12,9 +12,7 @@ exports.seed = async function (knex) {
       recipient_id: 2,
       question_id: 6,
       answer_id: 17,
-      life_guidance_id: null,
       date_sent: new Date(Date.now()),
-      date_responded: new Date(Date.now()),
     },
     {
       id: 2,
@@ -24,7 +22,28 @@ exports.seed = async function (knex) {
       answer_id: 0,
       life_guidance_id: 1,
       date_sent: new Date(Date.now()),
-      date_responded: new Date(Date.now()),
+    },
+    {
+      id: 3,
+      message: 'Hi there',
+      recipient_id: 1,
+    },
+    {
+      id: 4,
+      message: 'How are you?',
+      recipient_id: 2,
+      sender_id: 3,
+    },
+    {
+      id: 5,
+      message: 'Fine thanks',
+      recipient_id: 2,
+      sender_id: 1,
+    },
+    {
+      id: 6,
+      message: 'Everyone can read this',
+      sender_id: 2,
     },
   ])
 }

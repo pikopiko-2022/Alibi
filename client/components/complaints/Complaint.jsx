@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createComplaint } from '../apis/complaintsApi'
-import { fetchIssues } from '../actions/issues'
+import { createComplaint } from '../../apis/complaintsApi'
+import { fetchIssues } from '../../actions/issues'
 import styles from './Complaint.module.scss'
-import LoadingSpinner from './LoadingSpinner'
+import LoadingSpinner from '../widgets/LoadingSpinner'
 
 export default function Complaint() {
   const token = useSelector((state) => state?.user?.token)

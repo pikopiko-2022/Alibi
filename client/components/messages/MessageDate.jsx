@@ -11,7 +11,11 @@ const MessageDate = ({ message }) => {
     minute: 'numeric',
     second: 'numeric',
   })
-  return <div className={styles.messageDate}>{dateString}</div>
+  return (
+    <div className={styles.messageDate} role="time">
+      {dateString}
+    </div>
+  )
 }
 
 export default MessageDate
