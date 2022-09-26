@@ -40,14 +40,6 @@ describe('test updateUserScore', () => {
   })
 })
 
-describe('test getUsers', () => {
-  it('returns all records in users table', () => {
-    return getFlatmates(1, testCon).then((data) => {
-      expect(data).toHaveLength(2)
-    })
-  })
-})
-
 describe('getUser', () => {
   it('gets user based on auth0id', () => {
     return getUser(1, testCon).then((user) => {

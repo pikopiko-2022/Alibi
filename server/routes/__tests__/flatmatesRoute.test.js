@@ -1,20 +1,13 @@
 const request = require('supertest')
 const server = require('../../server')
 const { getFlatmates } = require('../../db/dbFlatmates')
-const checkJwt = require('../../auth0')
 
 jest.mock('../../db/dbFlatmates')
-jest.mock('../../auth0')
 
 jest.spyOn(console, 'error')
 
 afterEach(() => {
   console.error.mockReset()
-})
-
-checkJwt.mockImplementation((req, res, next) => {
-  req.user = { sub: '1' }
-  next()
 })
 
 describe('GET /api/v1/flatmates', () => {
