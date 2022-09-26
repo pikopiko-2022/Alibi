@@ -5,7 +5,8 @@ import Avatar from './Avatar'
 import { getRandomNumber } from '../apis/messages'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
-// import videoBg from '../../server/public/assets/videoBG.mp4'
+import videoBg from '../../server/public/assets/videoBG.mp4'
+import styles from './Create.module.scss'
 
 function Register() {
   const user = useSelector((state) => state.user)
@@ -47,8 +48,8 @@ function Register() {
   }
 
   return (
-    <>
-      {/* <video src={videoBg} autoPlay loop muted /> */}
+    <div className={styles.container}>
+      <video src={videoBg} autoPlay loop muted />
       <Avatar seedData={seedData} />
 
       <h2>Complete profile set up</h2>
@@ -85,7 +86,7 @@ function Register() {
       <button onClick={() => setSeedData(getRandomNumber(1, 10000))}>
         Refresh Avatar
       </button>
-    </>
+    </div>
   )
 }
 

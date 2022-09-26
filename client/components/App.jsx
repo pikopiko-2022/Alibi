@@ -13,6 +13,7 @@ import Register from './Registration'
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import alibiLogo from '../../server/public/assets/Alibi-Logo.png'
 
 function App() {
   useCacheUser()
@@ -38,10 +39,7 @@ function App() {
   return (
     <>
       <div className="app">
-        <img
-          src="https://static.miraheze.org/closinglogosgroupwiki/a/ab/Alibi14.jpeg"
-          alt="logo"
-        />
+        <img src={alibiLogo} alt="logo" />
         <h1>Alibi</h1>
         <Nav />
         <IfAuthenticated>
