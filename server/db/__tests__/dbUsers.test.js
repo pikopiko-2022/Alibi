@@ -39,7 +39,7 @@ describe('test updateUserScore', () => {
 })
 
 describe('getUser', () => {
-  it('gets user based on auth0id', () => {
+  it('gets user by id', () => {
     return getUser(1, testCon).then((user) => {
       expect(user.id).toBe(1)
       expect(user.name).toBe('Gertrude')
