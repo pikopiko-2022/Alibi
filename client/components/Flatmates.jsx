@@ -11,8 +11,6 @@ function Flatmates() {
   const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.flatmates)
 
-  console.log(flatmates)
-
   const token = useSelector((state) => state.user?.token)
   useEffect(() => {
     dispatch(fetchFlatmates(token))
