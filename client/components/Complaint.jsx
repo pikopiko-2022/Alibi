@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { createComplaint } from '../apis/complaintsApi'
 import { fetchIssues } from '../actions/issues'
 import styles from './Complaint.module.scss'
+import LoadingSpinner from './LoadingSpinner'
 
 export default function Create() {
   const token = useSelector((state) => state?.user?.token)
@@ -12,12 +13,10 @@ export default function Create() {
   const [selectedFile, setSelectedFile] = useState(null)
   const [selectedIssue, setSelectedIssue] = useState(null)
   const [previewURL, setPreviewURL] = useState(null)
-  const [uploadedImageUrl, setUploadedImageUrl] = useState(null)
-  const isLoading = false
-  const error = false
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const user = useSelector((state) => state.user)
-
   const issues = useSelector((state) => state.issues)
 
   useEffect(() => {
@@ -31,6 +30,7 @@ export default function Create() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    setIsLoading(true)
     createComplaint(
       {
         image: selectedFile,
@@ -43,6 +43,7 @@ export default function Create() {
         navigate('/')
       })
       .catch((err) => {
+        setError(err.message)
         console.error(err.message)
       })
   }
@@ -56,8 +57,8 @@ export default function Create() {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <div className="issues">
-          <select className="select" onChange={handleSelect}>
-            <option value="" selected disabled hidden>
+          <select className="select" onChange={handleSelect} defaultValue="">
+            <option value="" disabled hidden>
               Pick an issue
             </option>
             {issues.map((issue) => (
@@ -69,7 +70,7 @@ export default function Create() {
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
-            <div>Loading...</div>
+            <LoadingSpinner />
           ) : previewURL ? (
             <img
               alt="Preview"
@@ -111,13 +112,6 @@ export default function Create() {
           >
             ADD COMPLAINT
           </button>
-        </div>
-        <div className={styles.imageContainer}>
-          <img
-            alt="Uploaded"
-            src={uploadedImageUrl}
-            className={styles.previewImage}
-          />
         </div>
       </form>
     </div>
