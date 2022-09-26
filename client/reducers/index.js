@@ -5,7 +5,7 @@ import user from './user'
 import questions from './questions'
 import lifeG from './lifeG'
 import answers from './answers'
-import flats from './flats'
+import flat from './flat'
 import issues from './issues'
 import messages from './messages'
 import complaints from './complaints'
@@ -16,7 +16,7 @@ export default combineReducers({
   questions,
   lifeG,
   answers,
-  flats,
+  flat,
   issues,
   messages,
   complaints,

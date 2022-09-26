@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createComplaint } from '../apis/complaintsApi'
-import { fetchIssues } from '../actions/issues'
-import { fetchUser } from '../actions/user'
-import styles from './Create.module.scss'
+import { createComplaint } from '../../apis/complaintsApi'
+import { fetchIssues } from '../../actions/issues'
+import styles from './Complaint.module.scss'
+import LoadingSpinner from '../widgets/LoadingSpinner'
 
-export default function Create() {
+export default function Complaint() {
   const token = useSelector((state) => state?.user?.token)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState(null)
   const [selectedIssue, setSelectedIssue] = useState(null)
   const [previewURL, setPreviewURL] = useState(null)
-  const [uploadedImageUrl, setUploadedImageUrl] = useState(null)
-  const isLoading = false
-  const error = false
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const user = useSelector((state) => state.user)
-
   const issues = useSelector((state) => state.issues)
 
   useEffect(() => {
     dispatch(fetchIssues())
-    dispatch(fetchUser())
   }, [])
 
   const handleFileInput = (event) => {
@@ -33,6 +30,7 @@ export default function Create() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    setIsLoading(true)
     createComplaint(
       {
         image: selectedFile,
@@ -41,16 +39,13 @@ export default function Create() {
       },
       token
     )
-      .then((url) => {
-        console.log(url)
-        setUploadedImageUrl(url)
+      .then(() => {
+        navigate('/')
       })
       .catch((err) => {
+        setError(err.message)
         console.error(err.message)
       })
-    setSelectedFile(null)
-    setPreviewURL(null)
-    navigate('/')
   }
 
   const handleSelect = (event) => {
@@ -62,8 +57,8 @@ export default function Create() {
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
         <div className="issues">
-          <select className="select" onChange={handleSelect}>
-            <option value="" selected disabled hidden>
+          <select className="select" onChange={handleSelect} defaultValue="">
+            <option value="" disabled hidden>
               Pick an issue
             </option>
             {issues.map((issue) => (
@@ -75,7 +70,7 @@ export default function Create() {
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
-            <div>Loading...</div>
+            <LoadingSpinner />
           ) : previewURL ? (
             <img
               alt="Preview"
@@ -110,16 +105,13 @@ export default function Create() {
           </label>
         </div>
         <div>
-          <button onClick={handleSubmit} className={styles.addFoodButton}>
+          <button
+            onClick={handleSubmit}
+            className={styles.addFoodButton}
+            disabled={!selectedIssue}
+          >
             ADD COMPLAINT
           </button>
-        </div>
-        <div className={styles.imageContainer}>
-          <img
-            alt="Uploaded"
-            src={uploadedImageUrl}
-            className={styles.previewImage}
-          />
         </div>
       </form>
     </div>

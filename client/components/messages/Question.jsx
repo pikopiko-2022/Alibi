@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import styles from './Question.module.scss'
-import { getAnswersByQuestionApi } from '../apis/answersApi'
-import { updateCulprit } from '../actions/answers'
-import { updateUserScore } from '../actions/user'
-import { updateMessageAnswer } from '../actions/messages'
+import styles from './Message.module.scss'
+import { getAnswersByQuestionApi } from '../../apis/answersApi'
+import { updateCulprit } from '../../actions/answers'
+import { updateUserScore } from '../../actions/user'
+import { updateMessageAnswer, addLifeGMessage } from '../../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
+import { getRandomNumber } from '../../apis/messagesApi'
+import MessageDate from './MessageDate'
 
 const Question = ({ message }) => {
-  const [expanded, setExpanded] = useState(false)
   const dispatch = useDispatch()
   const token = useSelector((state) => state.user?.token)
+  const userId = useSelector((state) => state.user?.id)
   const questions = useSelector((state) => state.questions)
+
+  const [expanded, setExpanded] = useState(false)
   const [question, setQuestion] = useState([])
-  const [answer, setAnswer] = useState([])
+  const [answers, setAnswers] = useState([])
+
+  const disabled = Boolean(message.answer_id)
 
   const handleAnswerSelect = (answer) => {
     let culpritScore = 0
@@ -23,18 +29,21 @@ const Question = ({ message }) => {
     } else if (answer.is_bad === 1) {
       console.log('is a bad answer')
       culpritScore = -1
-      // sendLifeG()
+      setTimeout(
+        () => dispatch(addLifeGMessage(userId, question.issue_id, token)),
+        getRandomNumber(500, 10000)
+      )
     } else {
       console.log('is a good answer')
       culpritScore = 1
     }
     console.log('clicked: ', answer)
-    console.log(culpritScore)
     if (message.complaint_id !== null) {
+      console.log('updating culprit and score')
       dispatch(updateCulprit(message.complaint_id, token))
       dispatch(updateUserScore(culpritScore, token))
     }
-    dispatch(updateMessageAnswer(question.id, answer.id, token))
+    dispatch(updateMessageAnswer(message.id, answer.id, token))
   }
 
   const handleAnswerKey = (e, answer) => {
@@ -54,15 +63,15 @@ const Question = ({ message }) => {
     )
     getAnswersByQuestionApi(message.question_id)
       .then((answers) => {
-        return setAnswer(answers)
+        setAnswers(answers)
       })
       .catch((error) => {
-        return console.error(error)
+        console.error(error)
       })
-  }, [questions])
+  }, [questions?.length])
 
   return (
-    <div className={styles.questionContainer}>
+    <div className={styles.messageContainer}>
       <div
         className={styles.questionTitleContainer}
         onClick={() => setExpanded((expanded) => !expanded)}
@@ -70,28 +79,27 @@ const Question = ({ message }) => {
         onKeyDown={handleExpandKey}
         tabIndex={0}
       >
-        <div className={styles.questionDate}>{question?.date_sent}</div>
+        <MessageDate message={message} />
         <div className={styles.questionTitle}>{question?.question}</div>
       </div>
       {expanded && (
-        <div
-          className={`${styles.questionAnswersContainer} ${
-            expanded ? styles.questionAnswersContainerExpanded : ''
-          }`}
-        >
-          {answer?.map((answer, i) => (
+        <div>
+          {answers?.map((answer, i) => (
             <div
               key={i}
-              className={styles.questionAnswer}
+              className={
+                answer?.id === message?.answer_id
+                  ? styles.questionAnswerSelected
+                  : disabled
+                  ? styles.questionAnswerDisabled
+                  : styles.questionAnswer
+              }
               onClick={() => handleAnswerSelect(answer)}
               role="button"
               onKeyDown={(e) => handleAnswerKey(e, answer)}
               tabIndex={i + 1}
             >
               {answer?.answer}
-              {answer?.id === question?.answer_id && (
-                <div style={{ backgroundColor: 'red' }}>SELECTED</div>
-              )}
             </div>
           ))}
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Avatar from './Avatar'
+import Avatar from './widgets/Avatar'
 import { getRandomNumber } from '../apis/messagesApi'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'

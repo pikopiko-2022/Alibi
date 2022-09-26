@@ -15,6 +15,3 @@ export function getQuestionsByIssueApi() {
     return res.body
   })
 }
-// not sure if to pass issueID into ApiClient?
-
-//get question by issue_id, relate to user id

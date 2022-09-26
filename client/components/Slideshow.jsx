@@ -11,7 +11,7 @@ import React, {
 
 const SlideshowContext = createContext()
 
-export function Slideshow({ children, className, style }) {
+export function Slideshow({ children }) {
   const [context, setContext] = useState({
     items: [],
     edge: false,
