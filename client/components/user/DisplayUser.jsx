@@ -10,10 +10,10 @@ const DisplayUser = () => {
 
   return (
     <div className={styles.displayUserContainer}>
-      {user?.img_url ? (
+      {user?.img_seed ? (
         <>
           <div className={styles.profileImageContainer}>
-            <Avatar seedData={user.img_url} size={300} />
+            <Avatar seedData={user.img_seed} size={300} />
           </div>
           <div className={styles.profileName}>{user?.name}</div>
           <div className={styles.profileDescription}>{user?.description}</div>
