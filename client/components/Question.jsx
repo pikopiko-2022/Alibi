@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Question.module.scss'
-import { getQuestionsByIssueApi } from '../apis/questionsApi'
 import { getAnswersByQuestionApi } from '../apis/answersApi'
+import { updateCulprit } from '../actions/answers'
 import { updateUserScore } from '../actions/user'
 import { updateMessageAnswer } from '../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,11 +15,28 @@ const Question = ({ message }) => {
   const [answer, setAnswer] = useState([])
 
   const handleAnswerSelect = (answer) => {
-    // TODO Add Answer logic here
+    let culpritScore = 0
+    if (message.complaint_id === null) {
+      console.log('This is a dummy question')
+    } else if (answer.is_alibi === 1) {
+      console.log('is an alibi answer')
+    } else if (answer.is_bad === 1) {
+      console.log('is a bad answer')
+      culpritScore = -1
+      // sendLifeG()
+    } else {
+      console.log('is a good answer')
+      culpritScore = 1
+    }
     console.log('clicked: ', answer)
-    // dispatch(updateUserScore(userScore, token))
-    // dispatch(updateMessageAnswer(question.id, answer.id, token))
+    console.log(culpritScore)
+    if (message.complaint_id !== null) {
+      dispatch(updateCulprit(message.complaint_id, token))
+      dispatch(updateUserScore(culpritScore, token))
+    }
+    dispatch(updateMessageAnswer(question.id, answer.id, token))
   }
+
   const handleAnswerKey = (e, answer) => {
     if (e.key === 'Enter' || e.key === 'Space') handleAnswerSelect(answer)
   }

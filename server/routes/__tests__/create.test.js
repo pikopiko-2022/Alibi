@@ -21,38 +21,3 @@ describe('GET /api/v1/create', () => {
       })
   })
 })
-
-// describe('POST /api/v1/create', () => {
-//   it('should post food to the database', () => {
-//     addFood.mockImplementation(() => Promise.resolve(true))
-//     return request(server)
-//       .post('/api/v1/create')
-//       .send({
-//         name: 'John',
-//         description: 'Something random',
-//         url: 'test.jpg',
-//       })
-//       .then((res) => {
-//         expect(res.body).toBeTruthy()
-//         expect(addFood).toHaveBeenCalledWith({
-//           description: 'Something random',
-//           image_url: 'test.jpg',
-//           name: 'John',
-//           uploader_id: '42',
-//         })
-//         return null
-//       })
-//   })
-//   it('should return status 500 and an error message when database fails.', () => {
-//     expect.assertions(2)
-//     addFood.mockImplementation(() =>
-//       Promise.reject(new Error('Something went wrong'))
-//     )
-//     return request(server)
-//       .post('/api/v1/create/')
-//       .then((res) => {
-//         expect(res.status).toBe(500)
-//         expect(res.text).toContain('Something went wrong')
-//       })
-//   })
-// })

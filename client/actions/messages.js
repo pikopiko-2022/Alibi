@@ -38,7 +38,10 @@ export function updateMessageAnswer(messageId, answerId, token) {
   return (dispatch) => {
     return addAnswerToMessage(messageId, answerId, token)
       .then(() => getMessages(token))
-      .then((messages) => dispatch(setMessages(messages)))
+      .then((messages) => {
+        console.log(messages.filter((message) => message.answer_id))
+        dispatch(setMessages(messages))
+      })
       .catch((err) => console.error(err.message))
   }
 }

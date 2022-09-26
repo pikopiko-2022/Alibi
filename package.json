@@ -41,11 +41,13 @@
   "jest": {
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/client/components/__tests__/styleMock.js"
+      "\\.(css|scss)$": "<rootDir>/client/components/mock/styleMock.js"
     }
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.11.0",
+    "@dicebear/adventurer": "^4.10.5",
+    "@dicebear/avatars": "^4.10.5",
     "aws-sdk": "^2.1220.0",
     "express": "^4.17.2",
     "express-jwt": "^6.1.0",

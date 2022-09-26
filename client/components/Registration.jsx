@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import Avatar from './Avatar'
+import { getRandomNumber } from '../apis/messagesApi'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
+// import videoBg from '../../server/public/assets/videoBG.mp4'
 
 function Register() {
   const user = useSelector((state) => state.user)
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [seedData, setSeedData] = useState(getRandomNumber(1, 10000))
 
   const [form, setForm] = useState({
-    username: '',
+    name: '',
     flatId: '',
-    //placeholder doppleme avatar
+    description: '',
   })
 
   const [errorMsg, setErrorMsg] = useState('')
-
-  useEffect(() => {
-    if (user?.username) navigate('/')
-  }, [user])
 
   const handleChange = (evt) => {
     setForm({
@@ -34,11 +33,13 @@ function Register() {
     evt.preventDefault()
     const userInfo = {
       auth0Id: user.auth0Id,
+      img_url: seedData,
       ...form,
     }
     newUser(userInfo, user.token)
       .then(() => dispatch(updateLoggedInUser(userInfo)))
       .catch((err) => setErrorMsg(err.message))
+    navigate('/')
   }
 
   const hideError = () => {
@@ -47,18 +48,20 @@ function Register() {
 
   return (
     <>
+      {/* <video src={videoBg} autoPlay loop muted /> */}
+      <Avatar seedData={seedData} />
+
       <h2>Complete profile set up</h2>
       {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="name">Username:</label>
         <input
           type="text"
-          id="username"
-          name="username"
-          value={form.username}
+          id="name"
+          name="name"
+          value={form.name}
           onChange={handleChange}
         />
-
         <label htmlFor="flat_Id">Which FlatID are you joining?</label>
         <input
           type="text"
@@ -67,8 +70,21 @@ function Register() {
           value={form.flatId}
           onChange={handleChange}
         />
-        <button disabled={!(form.username && form.flatId)}>Save Profile</button>
+        <label htmlFor="description">Enter a description of yourself</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+        />
+        <button disabled={!(form.name && form.flatId && form.description)}>
+          Save Profile
+        </button>
       </form>
+      <button onClick={() => setSeedData(getRandomNumber(1, 10000))}>
+        Refresh Avatar
+      </button>
     </>
   )
 }
