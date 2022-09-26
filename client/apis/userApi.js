@@ -28,3 +28,14 @@ export function addUserScore(score, token) {
     })
     .catch((err) => console.error(err.message))
 }
+
+export function userEnough(token) {
+  return request
+    .put(`${rootUrl}/user`)
+    .set('Authorization', `Bearer ${token}`)
+    .send({ had_enough })
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
+}
