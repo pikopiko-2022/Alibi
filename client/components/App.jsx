@@ -47,7 +47,7 @@ function App() {
         <IfAuthenticated>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/create" element={<Complaint />} />
+            <Route path="/complaint" element={<Complaint />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </IfAuthenticated>

@@ -7,7 +7,7 @@ export function createComplaint(
   token
 ) {
   return request
-    .get(rootUrl + '/create')
+    .get(rootUrl + '/imageUrl')
     .then((res) => {
       const url = res.body
       return request.put(url).send(image)
