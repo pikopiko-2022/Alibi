@@ -12,7 +12,7 @@ router.post('/', checkJwt, (req, res) => {
     })
     .catch((err) => {
       console.error(err.message)
-      res.status(500).send('no worky')
+      res.status(500).send('something went wrong')
     })
 })
 
@@ -25,7 +25,8 @@ router.get('/current', checkJwt, (req, res) => {
       return null
     })
     .catch((err) => {
-      res.status(500).send(err.message)
+      console.error(err.message)
+      res.status(500).send('something went wrong')
     })
 })
 
@@ -41,7 +42,8 @@ router.put('/:complaintsId', checkJwt, (req, res) => {
       return null
     })
     .catch((err) => {
-      res.status(500).send(err.message)
+      console.error(err.message)
+      res.status(500).send('something went wrong')
     })
 })
 
