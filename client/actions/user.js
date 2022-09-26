@@ -25,7 +25,6 @@ export function fetchUser(token) {
 }
 
 export function updateUserScore(score, token) {
-  console.log('calling update user score')
   return (dispatch) => {
     return addUserScore(score, token)
       .then(() => getUser(token))

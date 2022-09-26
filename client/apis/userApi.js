@@ -3,7 +3,6 @@ import request from 'superagent'
 const rootUrl = '/api/v1'
 
 export function getUser(token) {
-  console.log('calling get user')
   return request
     .get(`${rootUrl}/user`)
     .set('Authorization', `Bearer ${token}`)

@@ -12,7 +12,6 @@ function getCurrentComplaints(userId, db = connection) {
 }
 
 function updateCulpritDb(complaintId, userId, db = connection) {
-  console.log(complaintId, userId)
   return db('complaints')
     .where('id', Number(complaintId))
     .update({ culprit_id: userId })
