@@ -1,8 +1,18 @@
 .messagesContainer {
   flex: 0 1 40%;
   background-color: whitesmoke;
-  height: 100%;
+  // min-height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 0 15px;
+}
+
+.messagesScrollContainer {
+  // height: 100%;
+  // overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
 }

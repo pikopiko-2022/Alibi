@@ -6,6 +6,8 @@ exports.up = function (knex) {
   return knex.schema.createTable('messages', (table) => {
     table.increments('id').primary
     table.integer('complaint_id')
+    table.integer('sender_id')
+    table.varchar('message')
     table.integer('recipient_id')
     table.integer('question_id')
     table.integer('answer_id')

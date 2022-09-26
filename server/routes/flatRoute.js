@@ -1,11 +1,11 @@
 const express = require('express')
-const db = require('../db/dbFlats')
+const db = require('../db/dbFlat')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getFlats()
-    .then((flats) => {
-      res.json(flats)
+  db.getFlat()
+    .then((flat) => {
+      res.json(flat)
       return null
     })
     .catch((err) => {

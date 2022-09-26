@@ -1,4 +1,4 @@
-import { SET_FLATS } from '../actions/flats'
+import { SET_FLAT } from '../actions/flat'
 
 const initialState = []
 
@@ -6,7 +6,7 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case SET_FLATS:
+    case SET_FLAT:
       return payload
 
     default:
