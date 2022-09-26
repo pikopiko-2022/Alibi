@@ -40,15 +40,11 @@ export default function Create() {
       token
     )
       .then((url) => {
-        console.log(url)
-        setUploadedImageUrl(url)
+        navigate('/')
       })
       .catch((err) => {
         console.error(err.message)
       })
-    setSelectedFile(null)
-    setPreviewURL(null)
-    navigate('/')
   }
 
   const handleSelect = (event) => {
