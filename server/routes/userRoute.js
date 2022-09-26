@@ -32,6 +32,23 @@ router.put('/', checkJwt, (req, res) => {
     })
 })
 
+//do I need 'enough' route?
+router.put('/enough', (req, res) => {
+  const auth0_id = req.user?.sub
+  db.getUserIdByAuth0Id(auth0_id)
+    .then(({ userId }) => {
+      return db.updateUserEnough(userId)
+    })
+    .then((result) => {
+      req.io.emit('users updated')
+      res.json(result)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.post('/', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   const { name, flatId, description, img_url } = req.body
