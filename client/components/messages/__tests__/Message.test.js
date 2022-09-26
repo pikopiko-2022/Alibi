@@ -34,7 +34,7 @@ describe('<Message />', () => {
       </Provider>
     )
     const datetime = screen.getByRole('time')
-    expect(datetime.innerHTML).toBe('22 April 2022 at 12:51:00 pm')
+    expect(datetime.innerHTML).toContain('22 April 2022')
     const sentTo = screen.getByText('Sent to', { exact: false })
     expect(sentTo.innerHTML).toBe('Sent to Alice')
     const message = screen.getByText('Hey Alice')
@@ -55,7 +55,7 @@ describe('<Message />', () => {
       </Provider>
     )
     const datetime = screen.getByRole('time')
-    expect(datetime.innerHTML).toBe('22 April 2022 at 12:51:00 pm')
+    expect(datetime.innerHTML).toContain('22 April 2022')
     const sentBy = screen.getByText('Alice')
     expect(sentBy).toBeDefined()
     const sentTo = screen.getByText('Sent to', { exact: false })
@@ -77,7 +77,7 @@ describe('<Message />', () => {
       </Provider>
     )
     const datetime = screen.getByRole('time')
-    expect(datetime.innerHTML).toBe('22 April 2022 at 12:51:00 pm')
+    expect(datetime.innerHTML).toContain('22 April 2022')
     const sentTo = screen.getByText('Sent to', { exact: false })
     expect(sentTo.innerHTML).toBe('Sent to Everyone')
     const message = screen.getByText('Hey Everyone')
@@ -97,7 +97,7 @@ describe('<Message />', () => {
       </Provider>
     )
     const datetime = screen.getByRole('time')
-    expect(datetime.innerHTML).toBe('22 April 2022 at 12:51:00 pm')
+    expect(datetime.innerHTML).toContain('22 April 2022')
     const sentBy = screen.getByText('Hannah')
     expect(sentBy).toBeDefined()
     const sentTo = screen.getByText('Sent to', { exact: false })
