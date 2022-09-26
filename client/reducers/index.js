@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import users from './users'
+import flatmates from './flatmates'
 import user from './user'
 import questions from './questions'
 import lifeG from './lifeG'
@@ -10,7 +10,7 @@ import issues from './issues'
 import messages from './messages'
 
 export default combineReducers({
-  users,
+  flatmates,
   user,
   questions,
   lifeG,
