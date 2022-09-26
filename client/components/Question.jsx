@@ -61,8 +61,6 @@ const Question = ({ message }) => {
       })
   }, [questions])
 
-  console.log(question)
-
   return (
     <div className={styles.questionContainer}>
       <div

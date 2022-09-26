@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createComplaint } from '../apis/complaints'
+import { createComplaint } from '../apis/complaintsApi'
 import { fetchIssues } from '../actions/issues'
 import { fetchUser } from '../actions/user'
 import styles from './Create.module.scss'

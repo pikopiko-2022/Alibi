@@ -1,4 +1,4 @@
-import { getIssues } from '../apis/issues'
+import { getIssues } from '../apis/issuesApi'
 
 export const SET_ISSUES = 'SET_ISSUES'
 
@@ -16,11 +16,3 @@ export function fetchIssues() {
     })
   }
 }
-
-// export function fetchComplaint(complaint) {
-//   return (dispatch) => {
-//     return sendComplaint(complaint).then((complaint) => {
-//       dispatch(setComplaint(complaint))
-//     })
-//   }
-// }
