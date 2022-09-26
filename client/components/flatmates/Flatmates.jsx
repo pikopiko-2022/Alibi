@@ -5,7 +5,7 @@ import styles from './Flatmates.module.scss'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchFlatmates } from '../actions/flatmates'
+import { fetchFlatmates } from '../../actions/flatmates'
 
 function Flatmates() {
   const socket = io()

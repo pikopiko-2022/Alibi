@@ -2,8 +2,8 @@ import React from 'react'
 import styles from './DisplayUser.module.scss'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Avatar from './Avatar'
-import LoadingSpinner from './LoadingSpinner'
+import Avatar from '../widgets/Avatar'
+import LoadingSpinner from '../widgets/LoadingSpinner'
 
 const DisplayUser = () => {
   const user = useSelector((state) => state.user)

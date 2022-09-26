@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Message.module.scss'
-import { getAnswersByQuestionApi } from '../apis/answersApi'
-import { updateCulprit } from '../actions/answers'
-import { updateUserScore } from '../actions/user'
-import { updateMessageAnswer, addLifeGMessage } from '../actions/messages'
+import { getAnswersByQuestionApi } from '../../apis/answersApi'
+import { updateCulprit } from '../../actions/answers'
+import { updateUserScore } from '../../actions/user'
+import { updateMessageAnswer, addLifeGMessage } from '../../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRandomNumber } from '../apis/messagesApi'
+import { getRandomNumber } from '../../apis/messagesApi'
 import MessageDate from './MessageDate'
 
 const Question = ({ message }) => {

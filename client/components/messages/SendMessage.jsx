@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCustomMessage } from '../actions/messages'
+import { addCustomMessage } from '../../actions/messages'
 import styles from './SendMessage.module.scss'
 
 const SendMessage = () => {

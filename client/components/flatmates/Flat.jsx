@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchFlat } from '../actions/flat'
-import LoadingSpinner from './LoadingSpinner'
+import { fetchFlat } from '../../actions/flat'
+import LoadingSpinner from '../widgets/LoadingSpinner'
 import styles from './Flat.module.scss'
 
 const Flat = () => {
