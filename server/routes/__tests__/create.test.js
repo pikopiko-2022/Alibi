@@ -11,10 +11,10 @@ getSignedPutUrl.mockReturnValue(Promise.resolve('alibi-alibi'))
 
 afterEach(() => console.error.mockReset())
 
-describe('GET /api/v1/create', () => {
+describe('GET /api/v1/imageUrl', () => {
   it('returns a signedUrl from AWS', () => {
     return request(server)
-      .get('/api/v1/create')
+      .get('/api/v1/imageUrl')
       .then((res) => {
         expect(res.body).toContain('alibi-alibi')
         return null
