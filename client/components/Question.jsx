@@ -6,6 +6,7 @@ import { updateUserScore } from '../actions/user'
 import { updateMessageAnswer, addLifeGMessage } from '../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRandomNumber } from '../apis/messagesApi'
+import MessageDate from './MessageDate'
 
 const Question = ({ message }) => {
   const [expanded, setExpanded] = useState(false)
@@ -76,7 +77,7 @@ const Question = ({ message }) => {
         onKeyDown={handleExpandKey}
         tabIndex={0}
       >
-        <div className={styles.questionDate}>{question?.date_sent}</div>
+        <MessageDate message={message} />
         <div className={styles.questionTitle}>{question?.question}</div>
       </div>
       {expanded && (

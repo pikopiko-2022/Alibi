@@ -8,8 +8,6 @@ const {
   getUserIdByAuth0Id,
 } = require('../dbUsers.js')
 
-const { getFlatmates } = require('../dbFlatmates')
-
 beforeAll(() => testCon.migrate.latest())
 
 beforeEach(() => testCon.seed.run())

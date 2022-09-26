@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Message.module.scss'
 import { useSelector } from 'react-redux'
+import MessageDate from './MessageDate'
 
 function LifeGuidance({ message }) {
   const lifeGuidances = useSelector((state) => state.lifeG)
@@ -9,6 +10,7 @@ function LifeGuidance({ message }) {
   )
   return (
     <div className={styles.messageContainer}>
+      <MessageDate message={message} />
       <div className={styles.messageMessage}>{lifeGuidance.message}</div>
       <a href={lifeGuidance.url} className={styles.messageUrl}>
         Learn More!

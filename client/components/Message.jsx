@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styles from './Message.module.scss'
+import MessageDate from './MessageDate'
 
 const Message = ({ message }) => {
   const userId = useSelector((state) => state.user?.id)
@@ -18,6 +19,7 @@ const Message = ({ message }) => {
     <div
       className={isMine ? styles.myMessageContainer : styles.messageContainer}
     >
+      <MessageDate message={message} />
       {!isMine && <div className={styles.messageSender}>{`${sender}`}</div>}
       <div className={styles.messageDetails}>{`Sent to ${recipient}`}</div>
       <div>{message.message}</div>
