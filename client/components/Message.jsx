@@ -7,12 +7,18 @@ const Message = ({ message }) => {
   const flatmates = useSelector((state) => state.flatmates)
   const isMine = message.sender_id === userId
   const recipient =
-    flatmates?.find((flatmate) => message.recipient_id === flatmate.id)?.name ||
-    'Everyone'
+    message.recipient_id === userId
+      ? 'You'
+      : flatmates?.find((flatmate) => message.recipient_id === flatmate.id)
+          ?.name || 'Everyone'
+  const sender = flatmates?.find(
+    (flatmate) => message.sender_id === flatmate.id
+  )?.name
   return (
     <div
       className={isMine ? styles.myMessageContainer : styles.messageContainer}
     >
+      {!isMine && <div className={styles.messageSender}>{`${sender}`}</div>}
       <div className={styles.messageDetails}>{`Sent to ${recipient}`}</div>
       <div>{message.message}</div>
     </div>

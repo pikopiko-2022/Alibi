@@ -7,11 +7,10 @@ import LoadingSpinner from './LoadingSpinner'
 
 const DisplayUser = () => {
   const user = useSelector((state) => state.user)
-  console.log(user)
 
   return (
     <div className={styles.displayUserContainer}>
-      {user?.id ? (
+      {user?.auth0Id ? (
         <>
           <div className={styles.profileImageContainer}>
             <Avatar seedData={user.img_url} size={300} />

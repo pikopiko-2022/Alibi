@@ -35,9 +35,11 @@ const Messages = () => {
 
   return (
     <div className={styles.messagesContainer}>
-      <>
+      <div>
         <div className={styles.messagesTitle}>Messages</div>
         <button onClick={testSendMessage}>Test Send Message</button>
+      </div>
+      <div className={styles.messagesScrollContainer}>
         {messages?.map((message) =>
           message.question_id ? (
             <Question key={message.id} message={message} />
@@ -47,7 +49,7 @@ const Messages = () => {
             <Message key={message.id} message={message} />
           )
         )}
-      </>
+      </div>
       <SendMessage />
     </div>
   )

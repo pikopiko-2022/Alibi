@@ -8,7 +8,7 @@ const SendMessage = () => {
   const flatmates = useSelector((state) => state.flatmates)
   const user = useSelector((state) => state.user)
   const [message, setMessage] = useState('')
-  const [recipient, setRecipient] = useState(null)
+  const [recipient, setRecipient] = useState('')
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(
@@ -16,7 +16,7 @@ const SendMessage = () => {
         {
           message,
           sender_id: user.id,
-          recipient_id: recipient,
+          recipient_id: recipient === '' ? null : recipient,
         },
         user.token
       )
@@ -26,7 +26,7 @@ const SendMessage = () => {
   return (
     <form onSubmit={handleSubmit} className={styles.sendMessageContainer}>
       <select value={recipient} onChange={(e) => setRecipient(e.target.value)}>
-        <option value={null}>Everyone</option>
+        <option value={''}>Everyone</option>
         {flatmates?.map((flatmate) => (
           <option key={flatmate.id} value={flatmate.id}>
             {flatmate.name}
