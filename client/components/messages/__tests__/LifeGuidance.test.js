@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import LifeGuidance from '../messages/LifeGuidance'
+import LifeGuidance from '../LifeGuidance'
 
 describe('<LifeGuidance />', () => {
   const fakeStore = {

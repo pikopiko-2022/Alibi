@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { screen, render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import Message from '../messages/Message'
+import Message from '../Message'
 
 describe('<Message />', () => {
   const fakeStore = {
