@@ -37,7 +37,6 @@ describe('GET /api/v1/flatmates', () => {
     return request(server)
       .get('/api/v1/flatmates')
       .then((res) => {
-        console.log(res.body)
         expect(res.body).toHaveLength(2)
         expect(res.body[1].name).toBe('Sally')
       })
