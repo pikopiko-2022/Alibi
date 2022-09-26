@@ -5,7 +5,6 @@ const usersRoutes = require('./routes/usersRoute')
 const userRoutes = require('./routes/userRoute')
 const createRoutes = require('./routes/createRoute')
 const issuesRoutes = require('./routes/issuesRoute')
-// const registrationRoutes = require('./routes/registration')
 const lifeGRoutes = require('./routes/lifeGRoute')
 const questionsRoutes = require('./routes/questionsRoute')
 const answersRoutes = require('./routes/answersRoute')
@@ -26,15 +25,14 @@ app.use((req, res, next) => {
   next()
 })
 
-io.on('connection', () => {
-  console.log('a user connected')
-})
+// io.on('connection', () => {
+//   console.log('a user connected')
+// })
 
 app.use('/api/v1/users', usersRoutes)
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/create', createRoutes)
 app.use('/api/v1/issues', issuesRoutes)
-// app.use('/api/v1/user', registrationRoutes)
 app.use('/api/v1/lifeG', lifeGRoutes)
 app.use('/api/v1/questions', questionsRoutes)
 app.use('/api/v1/answers', answersRoutes)
