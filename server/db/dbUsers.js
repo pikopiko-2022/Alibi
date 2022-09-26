@@ -24,10 +24,15 @@ function updateUserScore(userId, score, db = connection) {
     .update({ rating: db.raw(`rating + ${score}`) })
 }
 
+function updateUserEnough(userId, db = connection) {
+  return db('users').where('id', userId).update({ had_enough: true })
+}
+
 module.exports = {
   addUser,
   userExists,
   getUser,
   getUserIdByAuth0Id,
   updateUserScore,
+  updateUserEnough,
 }

@@ -46,7 +46,7 @@ describe('<Question />', () => {
       </Provider>
     )
     const datetime = screen.getByRole('time')
-    expect(datetime.innerHTML).toBe('22 April 2022 at 12:51:00 pm')
+    expect(datetime.innerHTML).toContain('22 April 2022')
     // const questionTitle = screen.getByText('How old are you?')
     // expect(questionTitle).toBeDefined()
   })

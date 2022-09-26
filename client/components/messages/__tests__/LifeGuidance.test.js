@@ -32,7 +32,7 @@ describe('<LifeGuidance />', () => {
       </Provider>
     )
     const datetime = screen.getByRole('time')
-    expect(datetime.innerHTML).toBe('22 April 2022 at 12:51:00 pm')
+    expect(datetime.innerHTML).toContain('22 April 2022')
     const link = screen.getByRole('link')
     expect(link.innerHTML).toBe('Learn More!')
     expect(link.href).toBe('http://www.cnn.com/')

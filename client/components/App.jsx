@@ -4,11 +4,12 @@ import { useNavigate, Routes, Route } from 'react-router-dom'
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { useCacheUser } from '../auth0-utils'
-
 import Nav from './Nav'
 import Complaint from './complaints/Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
+import Waiting from './Waiting'
+import TheEnd from './TheEnd'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
@@ -49,6 +50,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/complaint" element={<Complaint />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/waiting" element={<Waiting />} />
+            <Route path="/theend" element={<TheEnd />} />
           </Routes>
         </IfAuthenticated>
       </div>
