@@ -29,12 +29,11 @@ const Question = ({ message }) => {
       culpritScore = 1
     }
     console.log('clicked: ', answer)
-    console.log(culpritScore)
     if (message.complaint_id !== null) {
       dispatch(updateCulprit(message.complaint_id, token))
       dispatch(updateUserScore(culpritScore, token))
     }
-    dispatch(updateMessageAnswer(question.id, answer.id, token))
+    dispatch(updateMessageAnswer(message.id, answer.id, token))
   }
 
   const handleAnswerKey = (e, answer) => {
