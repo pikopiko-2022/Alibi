@@ -1,6 +1,7 @@
 import {
   addAnswerToMessage,
   getMessages,
+  sendCustomMessage,
   sendMessage,
 } from '../apis/messagesApi'
 
@@ -25,9 +26,18 @@ export function fetchMessages(token) {
   }
 }
 
-export function addMessage(token) {
+export function addMessage(userId, token) {
   return (dispatch) => {
-    return sendMessage(token)
+    return sendMessage(userId, token)
+      .then(() => getMessages(token))
+      .then((messages) => dispatch(setMessages(messages)))
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function addCustomMessage(message, token) {
+  return (dispatch) => {
+    return sendCustomMessage(message, token)
       .then(() => getMessages(token))
       .then((messages) => dispatch(setMessages(messages)))
       .catch((err) => console.error(err.message))

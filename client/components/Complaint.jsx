@@ -39,7 +39,7 @@ export default function Create() {
       },
       token
     )
-      .then((url) => {
+      .then(() => {
         navigate('/')
       })
       .catch((err) => {

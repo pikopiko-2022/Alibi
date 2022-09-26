@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from './Question.module.scss'
+import styles from './Message.module.scss'
 import { getAnswersByQuestionApi } from '../apis/answersApi'
 import { updateCulprit } from '../actions/answers'
 import { updateUserScore } from '../actions/user'
@@ -62,7 +62,7 @@ const Question = ({ message }) => {
   }, [questions])
 
   return (
-    <div className={styles.questionContainer}>
+    <div className={styles.messageContainer}>
       <div
         className={styles.questionTitleContainer}
         onClick={() => setExpanded((expanded) => !expanded)}

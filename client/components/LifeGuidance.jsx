@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './LifeGuidance.module.scss'
+import styles from './Message.module.scss'
 import { useSelector } from 'react-redux'
 
 function LifeGuidance({ message }) {
@@ -8,9 +8,9 @@ function LifeGuidance({ message }) {
     (lifeGuidance) => lifeGuidance.id === message.life_guidance_id
   )
   return (
-    <div className={styles.lifeGuidanceContainer}>
-      <div className={styles.lifeGuidanceMessage}>{lifeGuidance.message}</div>
-      <a href={lifeGuidance.url} className={styles.lifeGuidanceUrl}>
+    <div className={styles.messageContainer}>
+      <div className={styles.messageMessage}>{lifeGuidance.message}</div>
+      <a href={lifeGuidance.url} className={styles.messageUrl}>
         Learn More!
       </a>
     </div>

@@ -2,7 +2,7 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
-export function sendMessage(token) {
+export function sendMessage(userId, token) {
   return request
     .get(`${rootUrl}/complaints/current`)
     .set('Authorization', `Bearer ${token}`)
@@ -11,23 +11,26 @@ export function sendMessage(token) {
       if (currentComplaints.length > 0) {
         const complaint =
           currentComplaints[getRandomNumber(0, currentComplaints.length - 1)]
-        return sendComplaintQuestion(complaint, token)
-      } else return sendDecoyQuestion(token)
+        return sendComplaintQuestion(userId, complaint, token)
+      } else return sendDecoyQuestion(userId, token)
     })
 }
 
-function sendDecoyQuestion(token) {
+function sendDecoyQuestion(userId, token) {
   return request
     .get(`${rootUrl}/questions`)
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
       const questions = res.body
       const question = questions[getRandomNumber(0, questions.length - 1)]
-      return sendQuestionAsMessage({ question_id: question.id }, token)
+      return sendQuestionAsMessage(
+        { question_id: question.id, recipient_id: userId },
+        token
+      )
     })
 }
 
-function sendComplaintQuestion(complaint, token) {
+function sendComplaintQuestion(userId, complaint, token) {
   return request
     .get(`${rootUrl}/questions/${complaint.issue_id || 1}`)
     .set('authorization', `Bearer ${token}`)
@@ -38,10 +41,25 @@ function sendComplaintQuestion(complaint, token) {
         {
           question_id: question.id,
           complaint_id: complaint.id,
+          recipient_id: userId,
         },
         token
       )
     })
+}
+
+export function sendCustomMessage(message, token) {
+  console.log(message)
+  return request
+    .post(`${rootUrl}/messages`)
+    .set('authorization', `Bearer ${token}`)
+    .send(message)
+    .then((res) => {
+      const messages = res.body
+      console.log(messages)
+      return messages
+    })
+    .catch((err) => console.error(err.message))
 }
 
 function getRandomQuestion(questionArray) {
