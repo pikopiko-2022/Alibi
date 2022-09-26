@@ -10,6 +10,7 @@ import Complaint from './Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
 import Waiting from './Waiting'
+import TheEnd from './TheEnd'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
@@ -51,6 +52,7 @@ function App() {
             <Route path="/create" element={<Complaint />} />
             <Route path="/register" element={<Register />} />
             <Route path="/waiting" element={<Waiting />} />
+            <Route path="/theend" element={<TheEnd />} />
           </Routes>
         </IfAuthenticated>
       </div>

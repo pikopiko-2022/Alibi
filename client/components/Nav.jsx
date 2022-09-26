@@ -24,7 +24,7 @@ function Nav() {
   }
 
   const handleAbort = () => {
-    // setNoNav(true)
+    setNoNav(true)
     dispatch(updateUserEnough(token))
   }
 
@@ -41,9 +41,9 @@ function Nav() {
           <div>
             <IfAuthenticated>
               <div className={styles.actionsContainer}>
-                {/* <Link to="/waiting"> */}
-                <button onClick={handleAbort}>{`I've Had Enough`}</button>
-                {/* </Link> */}
+                <Link to="/waiting">
+                  <button onClick={handleAbort}>{`I've Had Enough`}</button>
+                </Link>
                 <Link to="/" onClick={handleLogOff}>
                   Log off
                 </Link>
