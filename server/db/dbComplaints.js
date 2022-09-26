@@ -5,10 +5,8 @@ function addComplaint(complaint, db = connection) {
 }
 
 function getCurrentComplaints(userId, db = connection) {
-  return db('complaints')
-    .select()
-    .where({ culprit_id: null })
-    .whereNot({ complaint_raised_by: userId })
+  return db('complaints').select().where({ culprit_id: null })
+  // .whereNot({ complaint_raised_by: userId })
 }
 
 function updateCulpritDb(complaintId, userId, db = connection) {
