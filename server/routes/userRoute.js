@@ -23,6 +23,7 @@ router.put('/', checkJwt, (req, res) => {
       return db.updateUserScore(userId, score)
     })
     .then((result) => {
+      console.log('update user score')
       req.io.emit('users updated')
       res.json(result)
       return null
@@ -49,6 +50,7 @@ router.post('/', checkJwt, (req, res) => {
     })
     .then(() => db.addUser(userDetails))
     .then(() => {
+      console.log('add new user')
       req.io.emit('users updated')
       res.sendStatus(201)
       return null
