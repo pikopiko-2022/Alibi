@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchMessages, addMessage } from '../actions/messages'
-import { fetchQuestions } from '../actions/questions'
-import { fetchLifeG } from '../actions/lifeG'
+import { fetchMessages, addMessage } from '../../actions/messages'
+import { fetchQuestions } from '../../actions/questions'
+import { fetchLifeG } from '../../actions/lifeG'
 import Question from './Question'
 import LifeGuidance from './LifeGuidance'
 import Message from './Message'
@@ -39,7 +39,7 @@ const Messages = () => {
         <div className={styles.messagesTitle}>Messages</div>
         <button onClick={testSendMessage}>Test Send Message</button>
       </div>
-      <div className={styles.messagesScrollContainer}>
+      <div className={styles.messagesScrollContainer} role="log">
         {messages?.map((message) =>
           message.question_id ? (
             <Question key={message.id} message={message} />

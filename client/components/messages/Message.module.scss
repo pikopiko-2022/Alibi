@@ -1,5 +1,43 @@
-.questionContainer {
-  cursor: pointer;
+.messageContainer {
+  margin: 30px;
+  padding: 15px;
+  align-self: flex-start;
+  background-color: #e5e5ea;
+  color: #000;
+  margin: 0.5rem 0rem;
+  width: fit-content;
+  bottom: -0.1rem;
+  position: absolute;
+  border-radius: 1.15rem;
+  max-width: 75%;
+  padding: 0.5rem 0.875rem;
+  position: relative;
+}
+
+.messageContainer::before {
+  bottom: -0.1rem;
+  content: '';
+  height: 1rem;
+  position: absolute;
+  border-bottom-right-radius: 0.8rem 0.7rem;
+  border-left: 1rem solid #e5e5ea;
+  left: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+.messageContainer::after {
+  bottom: -0.1rem;
+  content: '';
+  height: 1rem;
+  position: absolute;
+  background-color: whitesmoke;
+  border-bottom-right-radius: 0.5rem;
+  left: 20px;
+  transform: translate(-30px, -2px);
+  width: 10px;
+}
+
+.myMessageContainer {
   margin: 30px;
   padding: 15px;
   align-self: flex-end;
@@ -15,7 +53,7 @@
   position: relative;
 }
 
-.questionContainer::before {
+.myMessageContainer::before {
   bottom: -0.1rem;
   content: '';
   height: 1rem;
@@ -26,7 +64,7 @@
   transform: translate(0, -0.1rem);
 }
 
-.questionContainer::after {
+.myMessageContainer::after {
   bottom: -0.1rem;
   content: '';
   height: 1rem;
@@ -39,6 +77,7 @@
 }
 
 .questionTitleContainer {
+  cursor: pointer;
 }
 
 .questionDate {
@@ -50,9 +89,6 @@
   padding: 12px;
 }
 
-.questionAnswersContainer {
-}
-
 .questionAnswer {
   font-style: italic;
   cursor: pointer;
@@ -61,6 +97,18 @@
 
 .questionAnswer:hover {
   background-color: #54a8fb;
+}
+
+.messageDate {
+  font-size: 10px;
+}
+
+.messageSender {
+  font-weight: bold;
+}
+
+.messageDetails {
+  font-size: 10px;
 }
 
 .questionAnswerSelected {

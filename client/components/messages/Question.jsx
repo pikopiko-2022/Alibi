@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Message.module.scss'
-import { getAnswersByQuestionApi } from '../apis/answersApi'
-import { updateCulprit } from '../actions/answers'
-import { updateUserScore } from '../actions/user'
-import { updateMessageAnswer, addLifeGMessage } from '../actions/messages'
+import { getAnswersByQuestionApi } from '../../apis/answersApi'
+import { updateCulprit } from '../../actions/answers'
+import { updateUserScore } from '../../actions/user'
+import { updateMessageAnswer, addLifeGMessage } from '../../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRandomNumber } from '../apis/messagesApi'
+import { getRandomNumber } from '../../apis/messagesApi'
 import MessageDate from './MessageDate'
 
 const Question = ({ message }) => {
-  const [expanded, setExpanded] = useState(false)
   const dispatch = useDispatch()
   const token = useSelector((state) => state.user?.token)
   const userId = useSelector((state) => state.user?.id)
   const questions = useSelector((state) => state.questions)
+
+  const [expanded, setExpanded] = useState(false)
   const [question, setQuestion] = useState([])
   const [answers, setAnswers] = useState([])
+
   const disabled = Boolean(message.answer_id)
 
   const handleAnswerSelect = (answer) => {
@@ -61,12 +63,12 @@ const Question = ({ message }) => {
     )
     getAnswersByQuestionApi(message.question_id)
       .then((answers) => {
-        return setAnswers(answers)
+        setAnswers(answers)
       })
       .catch((error) => {
-        return console.error(error)
+        console.error(error)
       })
-  }, [questions])
+  }, [questions?.length])
 
   return (
     <div className={styles.messageContainer}>
@@ -81,11 +83,7 @@ const Question = ({ message }) => {
         <div className={styles.questionTitle}>{question?.question}</div>
       </div>
       {expanded && (
-        <div
-          className={`${styles.questionAnswersContainer} ${
-            expanded ? styles.questionAnswersContainerExpanded : ''
-          }`}
-        >
+        <div>
           {answers?.map((answer, i) => (
             <div
               key={i}

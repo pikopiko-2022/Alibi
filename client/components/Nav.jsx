@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import styles from './Nav.module.scss'
 
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import { IfAuthenticated, IfNotAuthenticated } from './widgets/Authenticated'
 
 function Nav() {
   const { logout, loginWithRedirect } = useAuth0()

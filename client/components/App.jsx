@@ -6,13 +6,13 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useCacheUser } from '../auth0-utils'
 
 import Nav from './Nav'
-import Complaint from './Complaint'
+import Complaint from './complaints/Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
-import { IfAuthenticated } from './Authenticated'
+import { IfAuthenticated } from './widgets/Authenticated'
 
 function App() {
   useCacheUser()
