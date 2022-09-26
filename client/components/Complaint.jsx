@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createComplaint } from '../apis/complaintsApi'
 import { fetchIssues } from '../actions/issues'
-import { fetchUser } from '../actions/user'
-import styles from './Create.module.scss'
+import styles from './Complaint.module.scss'
 
 export default function Create() {
   const token = useSelector((state) => state?.user?.token)
@@ -23,7 +22,6 @@ export default function Create() {
 
   useEffect(() => {
     dispatch(fetchIssues())
-    dispatch(fetchUser())
   }, [])
 
   const handleFileInput = (event) => {
@@ -110,7 +108,11 @@ export default function Create() {
           </label>
         </div>
         <div>
-          <button onClick={handleSubmit} className={styles.addFoodButton}>
+          <button
+            onClick={handleSubmit}
+            className={styles.addFoodButton}
+            disabled={!selectedIssue}
+          >
             ADD COMPLAINT
           </button>
         </div>

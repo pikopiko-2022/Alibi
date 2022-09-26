@@ -30,6 +30,7 @@ const Question = ({ message }) => {
     }
     console.log('clicked: ', answer)
     if (message.complaint_id !== null) {
+      console.log('updating culprit and score')
       dispatch(updateCulprit(message.complaint_id, token))
       dispatch(updateUserScore(culpritScore, token))
     }
@@ -88,9 +89,6 @@ const Question = ({ message }) => {
               tabIndex={i + 1}
             >
               {answer?.answer}
-              {answer?.id === question?.answer_id && (
-                <div style={{ backgroundColor: 'red' }}>SELECTED</div>
-              )}
             </div>
           ))}
         </div>

@@ -29,7 +29,7 @@ function sendDecoyQuestion(token) {
 
 function sendComplaintQuestion(complaint, token) {
   return request
-    .get(`${rootUrl}/questions/${complaint.issue_id}`)
+    .get(`${rootUrl}/questions/${complaint.issue_id || 1}`)
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
       const questions = res.body
