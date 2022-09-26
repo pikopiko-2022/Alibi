@@ -1,17 +1,18 @@
 const request = require('supertest')
 const server = require('../../server')
-const { getUsers } = require('../../db/dbUsers.js')
+const { getFlatmates } = require('../../db/dbFlatmates')
 
-jest.mock('../../db/dbUsers.js')
+jest.mock('../../db/dbFlatmates')
 
 jest.spyOn(console, 'error')
+
 afterEach(() => {
   console.error.mockReset()
 })
 
-describe('GET /api/v1/users', () => {
-  it('returns all users', () => {
-    getUsers.mockReturnValue(
+describe('GET /api/v1/flatmates', () => {
+  it('returns all flatmates', () => {
+    getFlatmates.mockReturnValue(
       Promise.resolve([
         {
           id: 1,
@@ -34,10 +35,11 @@ describe('GET /api/v1/users', () => {
       ])
     )
     return request(server)
-      .get('api/v1/users')
+      .get('/api/v1/flatmates')
       .then((res) => {
-        expect(res.body.users).toHaveLength(2)
-        expect(res.body.users[1].name).toBe('Sally')
+        console.log(res.body)
+        expect(res.body).toHaveLength(2)
+        expect(res.body[1].name).toBe('Sally')
       })
   })
 })

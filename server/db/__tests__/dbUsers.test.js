@@ -3,7 +3,6 @@ const knex = require('knex')
 const testCon = knex(config.test)
 
 const {
-  getUsers,
   updateUserScore,
   getUser,
   getUserIdByAuth0Id,
@@ -36,14 +35,6 @@ describe('test updateUserScore', () => {
       .then((user) => {
         expect(user.rating).toBe(4)
       })
-  })
-})
-
-describe('test getUsers', () => {
-  it('returns all records in users table', () => {
-    return getUsers(1, testCon).then((data) => {
-      expect(data).toHaveLength(2)
-    })
   })
 })
 

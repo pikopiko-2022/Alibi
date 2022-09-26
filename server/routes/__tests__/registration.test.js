@@ -2,7 +2,6 @@ const request = require('supertest')
 const server = require('../../server')
 const { getUser, addUser, userExists } = require('../../db/dbUsers')
 const checkJwt = require('../../auth0')
-// const { newUser } = require('../../../client/apis/authentication')
 
 jest.mock('../../db/dbUsers')
 jest.mock('../../auth0')

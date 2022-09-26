@@ -25,10 +25,6 @@ app.use((req, res, next) => {
   next()
 })
 
-// io.on('connection', () => {
-//   console.log('a user connected')
-// })
-
 app.use('/api/v1/flatmates', flatmateRoutes)
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/imageUrl', imageUrlRoutes)
