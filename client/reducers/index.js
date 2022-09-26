@@ -8,6 +8,7 @@ import answers from './answers'
 import flat from './flat'
 import issues from './issues'
 import messages from './messages'
+import complaints from './complaints'
 
 export default combineReducers({
   flatmates,
@@ -18,4 +19,5 @@ export default combineReducers({
   flat,
   issues,
   messages,
+  complaints,
 })

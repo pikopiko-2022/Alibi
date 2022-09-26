@@ -2,7 +2,7 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
-export function getFlatematesApi(token) {
+export function getflatmatesApi(token) {
   return request
     .get(`${rootUrl}/flatmates`)
     .set('Authorization', `Bearer ${token}`)

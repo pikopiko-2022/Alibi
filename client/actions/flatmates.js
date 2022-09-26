@@ -1,4 +1,4 @@
-import { getFlatematesApi } from '../apis/flatmatesApi'
+import { getflatmatesApi } from '../apis/flatmatesApi'
 
 export const SET_FLATMATES = 'SET_FLATMATES'
 
@@ -11,7 +11,7 @@ export function setFlatmates(flatmates) {
 
 export function fetchFlatmates(token) {
   return (dispatch) => {
-    return getFlatematesApi(token)
+    return getflatmatesApi(token)
       .then((flatmates) => {
         dispatch(setFlatmates(flatmates))
       })
