@@ -8,7 +8,7 @@ const issuesRoutes = require('./routes/issuesRoute')
 const lifeGRoutes = require('./routes/lifeGRoute')
 const questionsRoutes = require('./routes/questionsRoute')
 const answersRoutes = require('./routes/answersRoute')
-const flatsRoutes = require('./routes/flatsRoute')
+const flatRoutes = require('./routes/flatRoute')
 const complaintsRoutes = require('./routes/complaintsRoute')
 const messagesRoutes = require('./routes/messagesRoute')
 
@@ -25,10 +25,6 @@ app.use((req, res, next) => {
   next()
 })
 
-// io.on('connection', () => {
-//   console.log('a user connected')
-// })
-
 app.use('/api/v1/flatmates', flatmateRoutes)
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/imageUrl', imageUrlRoutes)
@@ -36,7 +32,7 @@ app.use('/api/v1/issues', issuesRoutes)
 app.use('/api/v1/lifeG', lifeGRoutes)
 app.use('/api/v1/questions', questionsRoutes)
 app.use('/api/v1/answers', answersRoutes)
-app.use('/api/v1/flats', flatsRoutes)
+app.use('/api/v1/flat', flatRoutes)
 app.use('/api/v1/complaints', complaintsRoutes)
 app.use('/api/v1/messages', messagesRoutes)
 

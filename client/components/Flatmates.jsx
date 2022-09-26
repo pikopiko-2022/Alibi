@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Flatmate from './Flatmate'
+import Flat from './Flat'
 import styles from './Flatmates.module.scss'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
@@ -21,6 +22,7 @@ function Flatmates() {
 
   return (
     <div className={styles.flatmatesContainer}>
+      <Flat />
       {flatmates
         ?.sort((a, b) => b.rating - a.rating)
         ?.map((flatmate) => (
