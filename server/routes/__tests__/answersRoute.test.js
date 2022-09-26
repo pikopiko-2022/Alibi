@@ -9,8 +9,8 @@ const {
 
 jest.mock('../../db/dbAnswers')
 
-describe('GET /api/v1/answers', (req, res) => {
-  it('retrieves all answers from database', (req, res) => {
+describe('GET /api/v1/answers', () => {
+  it('retrieves all answers from database', () => {
     const fakeAnswer = [
       {
         id: 3,
@@ -23,12 +23,12 @@ describe('GET /api/v1/answers', (req, res) => {
       { id: 5, question_id: 2, answer: 'Squeaky', is_bad: 1, is_alibi: 0 },
     ]
 
-    getAllAnswers.mockRetrunValue(Promise.resolve(fakeAnswer[0]))
+    getAllAnswers.mockReturnValue(Promise.resolve(fakeAnswer[0]))
 
     return request(server)
       .get('/api/v1/answers')
       .then((res) => {
-        expect(res.body).toContain('This morning at the gym')
+        expect(res.body.answer).toContain('This morning at the gym')
       })
   })
 })
