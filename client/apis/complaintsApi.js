@@ -7,10 +7,10 @@ export function createComplaint(
   token
 ) {
   return request
-    .get(rootUrl + '/create')
+    .get(rootUrl + '/create') //create route could probably be better named
     .then((res) => {
       const url = res.body
-      console.log(url)
+      console.log(url) //remove debugging code
       return request.put(url).send(image)
     })
     .then((res) => {
@@ -21,7 +21,7 @@ export function createComplaint(
         .send({ issue_id, complaint_raised_by, image: url })
     })
     .then((res) => {
-      console.log(res.text)
+      console.log(res.text) //remove debugging code
       return res.text
     })
     .catch((err) => {

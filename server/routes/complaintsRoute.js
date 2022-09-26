@@ -17,7 +17,7 @@ router.post('/', checkJwt, (req, res) => {
 })
 
 router.get('/current', checkJwt, (req, res) => {
-  const auth0_id = req.user?.sub || 1
+  const auth0_id = req.user?.sub || 1 // was this from before auth0 was setup? if so should be removed.
   getUserIdByAuth0Id(auth0_id)
     .then(({ userId }) => db.getCurrentComplaints(userId))
     .then((currentComplaints) => {
@@ -32,10 +32,10 @@ router.get('/current', checkJwt, (req, res) => {
 router.put('/:complaintsId', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   const complaintsId = req.params.complaintsId
-  console.log(complaintsId)
+  console.log(complaintsId) // remove console log
   getUserIdByAuth0Id(auth0_id)
     .then(({ userId }) => {
-      console.log(userId, complaintsId)
+      console.log(userId, complaintsId) //remove debugging console logs
       return db.updateCulpritDb(complaintsId, userId)
     })
     .then((result) => {

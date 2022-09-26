@@ -4,6 +4,8 @@ const testDb = knex(config)
 
 const db = require('../../db/dbIssues')
 
+// not sure create is the best name for this file, seems to be testing dbIssues
+
 beforeAll(() => {
   return testDb.migrate.latest()
 })

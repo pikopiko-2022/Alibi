@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// remove commented out code
 // router.get('/:issueId', (req, res) => {
 //   const issueId = req.params.issueId
 //   db.getQuestionsForIssue(issueId)

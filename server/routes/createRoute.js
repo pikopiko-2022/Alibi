@@ -4,6 +4,7 @@ const router = express.Router()
 
 const { getSignedPutUrl } = require('./lib')
 
+//this route could probably be better named /api/v1/create isn't very descriptive
 router.get('/', (req, res) => {
   return getSignedPutUrl()
     .then((url) => {

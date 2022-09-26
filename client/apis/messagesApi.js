@@ -2,6 +2,9 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1'
 
+//lots of different functions here - I'd be asking myself what is the same and what is different between each of them
+// i.e. are there any opportunities for simplification and reuse
+
 export function sendMessage(token) {
   return request
     .get(`${rootUrl}/complaints/current`)

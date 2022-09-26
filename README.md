@@ -1,3 +1,9 @@
+# JV Review
+- 4 linter warnings need to be fixed
+- nice to see some tests, some are failing though and there is a fair bit of work needed to lift the coverage
+-  I'm noticing a few orphaned console logs - always remove them when you've finished debugging
+- fun domain, nice to see the playfulness
+
 # Alibi
 This App is for Flatmates who wish to resolve their issues without face to face conflict. This App will mediate issues and create standings anonymously so that there i very little conflict between flatmates. 
 
