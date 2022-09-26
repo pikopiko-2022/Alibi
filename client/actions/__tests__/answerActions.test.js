@@ -36,15 +36,14 @@ describe('fetchAnswers', () => {
       })
     })
   })
-  it('Should console.error() if request fails', () => {
-    expect.assertions(1)
+  it('Should console.error if request fails', () => {
     jest.spyOn(console, 'error')
     console.error.mockImplementation(() => {})
     getAnswersApi.mockImplementation(() =>
       Promise.reject(new Error('Api request Failed'))
     )
     return fetchAnswers()(fakeDispatch).then(() => {
-      expect(console.error).toHaveBeenCalledWith('Api request Failled')
+      expect(console.error).toHaveBeenCalledWith('Api request Failed')
     })
   })
 })
