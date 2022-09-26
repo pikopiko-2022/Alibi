@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
       return null
     })
     .catch((err) => {
-      res.status(500).send(err.message)
+      console.error(err.message)
+      res.status(500).send('there was a problem with the server')
     })
 })
 
@@ -21,7 +22,8 @@ router.get('/:question_id', (req, res) => {
       return null
     })
     .catch((err) => {
-      res.status(500).send(err.message)
+      console.error(err.message)
+      res.status(500).send('there was a problem with the server')
     })
 })
 

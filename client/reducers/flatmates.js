@@ -1,4 +1,4 @@
-import { SET_FLATMATES } from '../actions/flatemates'
+import { SET_FLATMATES } from '../actions/flatmates'
 
 const initialState = []
 
