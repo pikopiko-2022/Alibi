@@ -7,7 +7,6 @@ function getUsers(flat_id = 1, db = connection) {
 
 function addUser(newUser, db = connection) {
   return db('users').insert(newUser)
-  // .then(() => getUsers())
 }
 
 function userExists(username, db = connection) {

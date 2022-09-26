@@ -17,8 +17,9 @@ afterAll(() => testCon.destroy())
 
 describe('test updateUserScore', () => {
   it('doesnt alter users rating if score is zero', () => {
-    return updateUserScore(1, 0, testCon).then(() =>
-      getUser(1, testCon).then((user) => {
+    return updateUserScore(1, 0, testCon)
+      .then(() => getUser(1, testCon))
+      .then((user) => {
         expect(user.rating).toBe(5)
       })
     )
