@@ -1,6 +1,6 @@
 const request = require('supertest')
 const server = require('../../server')
-const { getUsers, addUser, userExists } = require('../../db/dbUsers')
+const { getUser, addUser, userExists } = require('../../db/dbUsers')
 const checkJwt = require('../../auth0')
 // const { newUser } = require('../../../client/apis/authentication')
 
@@ -18,7 +18,7 @@ checkJwt.mockImplementation((req, res, next) => {
   next()
 })
 
-describe('GET /api/v1/user', () => {
+describe('GET /api/v1/users', () => {
   it('Get Users from database', () => {
     const fakeUser = [
       {
@@ -42,16 +42,15 @@ describe('GET /api/v1/user', () => {
       },
     ]
 
-    getUsers.mockReturnValue(Promise.resolve(fakeUser))
+    getUser.mockReturnValue(Promise.resolve(fakeUser[0]))
 
-    expect.assertions(3)
+    expect.assertions(2)
 
     return request(server)
       .get('/api/v1/user')
       .then((res) => {
-        console.log(res.body)
         expect(res.body?.name).toBe('Holloway'),
-          expect(res.body).toHaveLength(2),
+          // expect(res.body).toHaveLength(2),
           expect(res.body.description).toContain('lazy')
       })
   })

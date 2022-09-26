@@ -7,6 +7,7 @@ export function getUsersApi(token) {
     .get(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)
     .then((res) => {
+      console.log(res.body)
       return res.body
     })
 }

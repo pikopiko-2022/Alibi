@@ -33,8 +33,7 @@ describe('GET /api/v1/users', () => {
         },
       ])
     )
-    return request
-      .agent(server)
+    return request(server)
       .get('api/v1/users')
       .then((res) => {
         expect(res.body.users).toHaveLength(2)
