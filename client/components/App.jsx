@@ -9,6 +9,7 @@ import Nav from './Nav'
 import Complaint from './Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
+import Waiting from './Waiting'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
@@ -49,6 +50,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/create" element={<Complaint />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/waiting" element={<Waiting />} />
           </Routes>
         </IfAuthenticated>
       </div>
