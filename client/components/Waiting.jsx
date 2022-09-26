@@ -32,6 +32,8 @@ const Waiting = () => {
     if (nuclear()) navigate('/theend')
   }, [flatmates])
 
+  setTimeout(() => navigate('/theend'), 2000)
+
   return (
     <>
       <div>Your Flatmates Still Like You.......</div>
