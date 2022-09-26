@@ -10,8 +10,9 @@ const socket = io()
 function Flatmates() {
   const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.users)
+  const token = useSelector((state) => state.user?.token)
   useEffect(() => {
-    dispatch(fetchUsers())
+    dispatch(fetchUsers(token))
   }, [])
 
   socket.on('users updated', () => dispatch(fetchUsers()))

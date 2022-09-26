@@ -9,9 +9,9 @@ export function setUsers(users) {
   }
 }
 
-export function fetchUsers() {
+export function fetchUsers(token) {
   return (dispatch) => {
-    return getUsersApi()
+    return getUsersApi(token)
       .then((users) => {
         dispatch(setUsers(users))
       })

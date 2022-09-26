@@ -29,9 +29,8 @@ export function createComplaint(
     })
 }
 
-export function addCulpritToComplaint(complaintId, culpritId, token) {
+export function addCulpritToComplaint(complaintId, token) {
   return request
     .put(`${rootUrl}/complaints/${complaintId}`)
     .set('authorization', `Bearer ${token}`)
-    .send({ culpritId })
 }
