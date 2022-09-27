@@ -15,6 +15,7 @@ export function newUser(user, token) {
     .post(`${rootUrl}/user`)
     .set('Authorization', `Bearer ${token}`)
     .send(user)
+    .then((res) => res.body)
     .catch((err) => console.error(err.message))
 }
 

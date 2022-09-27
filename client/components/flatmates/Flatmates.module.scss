@@ -1,4 +1,6 @@
 .flatmatesContainer {
-  flex: 0 1 30%;
-  background-color: rgb(82, 109, 120);
+  flex: 0 1 35%;
+  background-color: #d31e34;
+  max-height: calc(100vh - 100px);
+  overflow-y: scroll;
 }
