@@ -44,4 +44,10 @@ describe('addComplaint', () => {
         )
       })
   })
+  it('get unressolved complaints', () => {
+    expect.assertions(0)
+    return getCurrentComplaints(1, testCon).then((complaints) =>
+      console.log(complaints)
+    )
+  })
 })
