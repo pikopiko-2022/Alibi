@@ -16,31 +16,31 @@ const Waiting = () => {
     socket.on('users updated', () => dispatch(fetchFlatmates()))
   }, [])
 
-  // const nuclear = () => {
-  //   let count = 0
-  //   flatmates.forEach((element) => {
-  //     if (element.had_enough == false) {
-  //       count++
-  //     }
-  //   })
+  const nuclear = () => {
+    let count = 0
+    flatmates.forEach((element) => {
+      if (element.had_enough == false) {
+        count++
+      }
+    })
 
-  //   if (count == 0) {
-  //     return true
-  //   } else return false
-  // }
+    if (count == 0) {
+      return true
+    } else return false
+  }
 
-  // useEffect(() => {
-  //   if (nuclear()) navigate('/theend')
-  // }, [flatmates])
+  useEffect(() => {
+    if (nuclear()) navigate('/theend')
+  }, [flatmates])
 
-  // setTimeout(() => navigate('/theend'), 2000)
+  setTimeout(() => navigate('/theend'), 2000)
 
   return (
-    <Minigame />
-    // <>
-    //   <div>Your Flatmates Still Like You.......</div>
-    //   <div>Please Wait</div>
-    // </>
+    <>
+      <div>Your Flatmates Still Like You.......</div>
+      <div>Please Wait</div>
+      <Minigame />
+    </>
   )
 }
 

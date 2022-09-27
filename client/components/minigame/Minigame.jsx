@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import io from 'socket.io-client'
 import { getRandomNumber } from '../../apis/messagesApi'
 import styles from './Minigame.module.scss'
+import Money from './Money'
 import Player from './Player'
-import Timer from './Timer'
 
 const Minigame = () => {
   const height = 600
@@ -99,8 +99,7 @@ const Minigame = () => {
       tabIndex={0}
     >
       <div>
-        <Money money={money} />
-        <Timer time={time} />
+        <Money money={player?.debt} />
         <div className={styles.minigameStage}>
           <Player player={player} />
           {Object.values(players)?.map((otherPlayer) => (

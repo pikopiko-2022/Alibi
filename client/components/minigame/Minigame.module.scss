@@ -28,3 +28,16 @@
 .timeText {
   font-size: 18px;
 }
+
+.moneyContainer {
+  padding: 10px;
+  display: flex;
+  justify-content: end;
+  align-content: center;
+}
+
+.moneyText {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
