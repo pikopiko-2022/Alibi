@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { fetchFlatmates } from '../../actions/flatmates'
+
+// eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
+
 import { useSelector, useDispatch } from 'react-redux'
 
 const WorstFlatmate = () => {
@@ -8,7 +11,9 @@ const WorstFlatmate = () => {
   const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.flatmates)
   const token = useSelector((state) => state.user?.token)
-  const badUser = ([badUser, updateBadUser] = useState({}))
+
+  // const badUser = ([badUser, updateBadUser] = useState({}))
+  const [badUser, setBadUser] = useState({})
 
   useEffect(() => {
     dispatch(fetchFlatmates(token))
@@ -20,7 +25,9 @@ const WorstFlatmate = () => {
   const findWorst = () => {
     let mateA = 0
     let mateB = 0
-    let badUser = {}
+
+    // let badUser = {}
+
     flatmates.forEach((element) => {
       mateB = element.rating
       if (mateB > mateA) {
@@ -29,7 +36,8 @@ const WorstFlatmate = () => {
     })
     flatmates.forEach((element) => {
       if ((element.rating = mateA)) {
-        badUser = element
+        // badUser = element
+        setBadUser(element)
       }
     })
   }
