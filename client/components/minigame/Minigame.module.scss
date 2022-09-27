@@ -1,0 +1,56 @@
+.minigameContainer {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.minigameStage {
+  height: 650px;
+  width: 650px;
+  padding: 25px;
+  position: relative;
+  border: 1px solid blueviolet;
+  background-color: navy;
+}
+
+.minigamePlayer {
+  position: absolute;
+}
+
+.timeContainer {
+  padding: 10px;
+  display: flex;
+  justify-content: end;
+  align-content: center;
+}
+
+.timeText {
+  font-size: 18px;
+}
+
+.moneyContainer {
+  padding: 10px;
+  display: flex;
+  justify-content: end;
+  align-content: center;
+}
+
+.moneyText {
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+}
+
+.minigameCoin {
+  background-color: yellow;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  border: 1px solid whitesmoke;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

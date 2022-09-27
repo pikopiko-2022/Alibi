@@ -9,16 +9,14 @@ import Complaint from './complaints/Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
 import Waiting from './Waiting'
-import TheEnd from './TheEnd'
+import TheEnd from './theend/TheEnd'
+import ErrorPage from './ErrorPage'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
-<<<<<<< HEAD
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+
 import alibiLogo from '../../server/public/assets/Alibi-Logo.png'
-=======
 import { IfAuthenticated } from './widgets/Authenticated'
->>>>>>> 21ff7b910e609c6825878ce446b3be0952f6f45a
 
 function App() {
   useCacheUser()
@@ -54,6 +52,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/waiting" element={<Waiting />} />
             <Route path="/theend" element={<TheEnd />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </IfAuthenticated>
       </div>
