@@ -74,7 +74,7 @@ describe('PUT /api/v1/user/enough', () => {
     return request(server)
       .put('/api/v1/user/enough')
       .send({ userId: 1 })
-      .then((res) => {
+      .then(() => {
         //fix res
         expect(emit).toHaveBeenCalledWith('users updated')
       })

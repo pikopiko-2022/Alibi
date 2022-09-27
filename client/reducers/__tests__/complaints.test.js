@@ -1,4 +1,4 @@
-import { SET_COMPLAINT } from '../../actions/complaints'
+import { SET_COMPLAINT, SET_COMPLAINTS } from '../../actions/complaints'
 
 import complaints from '../complaints'
 
@@ -15,10 +15,22 @@ const mockComplaints = [
 ]
 
 describe('complaints reducer', () => {
-  it('returns complaints payload for the type SET_COMPLAINTS', () => {
+  it('returns complaint payload for the type SET_COMPLAINTS', () => {
     expect.assertions(2)
     const action = {
       type: SET_COMPLAINT,
+      payload: mockComplaints,
+    }
+    const initialState = []
+    const expectedState = mockComplaints
+    const outputState = complaints(initialState, action)
+    expect(outputState).toEqual(expectedState)
+    expect(outputState).not.toEqual(initialState)
+  })
+  it('returns complaints payload for the type SET_COMPLAINTS', () => {
+    expect.assertions(2)
+    const action = {
+      type: SET_COMPLAINTS,
       payload: mockComplaints,
     }
     const initialState = []

@@ -1,3 +1,116 @@
 h1 {
-  color: #faefbe;
+  color: #791088;
+  font-size: 52px;
 }
+
+h2 {
+  color: #791088;
+  font-size: 24px;
+}
+
+::selection {
+  background-color: hsl(293, 79%, 60%);
+}
+
+input {
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 12px;
+  margin-top: 8px;
+  border: 2px solid #791088;
+}
+
+input:focus {
+  border: 2px solid #3dccb7;
+}
+
+label {
+  font-size: 12px;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 120px;
+  color: #791088;
+  padding: 15px;
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.registrationPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registrationContainer {
+  max-height: 70vh;
+  flex: 1 0 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  border: 5px solid #791088;
+  border-radius: 25px;
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.actionButton {
+  all: unset;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #791088;
+  color: #e8f3f1;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.actionButton:hover {
+  background-color: hsl(293, 79%, 40%);
+}
+
+.spacer {
+  width: 20px;
+}
+
+.signInPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepageLayout {
+  display: flex;
+  width: 100%;
+  max-height: calc(100vh - 160px);
+  overflow: hidden;
+}
+

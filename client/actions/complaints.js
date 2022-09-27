@@ -24,7 +24,7 @@ export function fetchComplaints() {
         dispatch(setComplaints(complaints))
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err.message)
       })
   }
 }
@@ -34,10 +34,9 @@ export function fetchComplaintCount() {
     return getComplaintCount()
       .then((complaints) => {
         dispatch(setComplaints(complaints))
-        console.log(complaints)
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err.message)
       })
   }
 }
