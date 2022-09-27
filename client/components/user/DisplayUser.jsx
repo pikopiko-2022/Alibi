@@ -13,11 +13,10 @@ const DisplayUser = () => {
       {user?.img_seed ? (
         <>
           <div className={styles.profileImageContainer}>
-            <Avatar seedData={user.img_seed} size={300} />
+            <Avatar seedData={user.img_seed} size={200} />
           </div>
           <div className={styles.profileName}>{user?.name}</div>
           <div className={styles.profileDescription}>{user?.description}</div>
-          <div className={styles.profileRatingContainer}>{user?.rating}</div>
         </>
       ) : (
         <LoadingSpinner />

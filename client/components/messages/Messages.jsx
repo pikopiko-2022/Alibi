@@ -19,19 +19,21 @@ const Messages = () => {
   const userId = useSelector((state) => state.user?.id)
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchMessages(token))
-      dispatch(fetchQuestions(token))
-      dispatch(fetchLifeG(token))
-    }
     socket.on('update messages', () => {
       dispatch(fetchMessages(token))
     })
-  }, [token])
+  }, [])
 
   const testSendMessage = () => {
     dispatch(addMessage(userId, token))
   }
+
+  useEffect(() => {
+    const messageScrollContainer = document.getElementById('messages')
+    if (messageScrollContainer) {
+      messageScrollContainer.scrollTop = messageScrollContainer?.scrollHeight
+    }
+  }, [messages?.length])
 
   return (
     <div className={styles.messagesContainer}>
@@ -39,7 +41,7 @@ const Messages = () => {
         <div className={styles.messagesTitle}>Messages</div>
         <button onClick={testSendMessage}>Test Send Message</button>
       </div>
-      <div className={styles.messagesScrollContainer} role="log">
+      <div className={styles.messagesScrollContainer} role="log" id="messages">
         {messages?.map((message) =>
           message.question_id ? (
             <Question key={message.id} message={message} />
