@@ -16,7 +16,7 @@ export function fetchFlatmates(token) {
         dispatch(setFlatmates(flatmates))
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err.message)
       })
   }
 }
