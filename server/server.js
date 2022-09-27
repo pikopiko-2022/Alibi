@@ -22,6 +22,15 @@ io.on('connection', (socket) => {
   socket.on('update player', ({ player }) =>
     socket.broadcast.emit('update player', { player })
   )
+  socket.on('update coins', ({ coins }) =>
+    socket.broadcast.emit('update coins', { coins })
+  )
+  socket.on('coin collected', ({ coinId }) =>
+    socket.broadcast.emit('coin collected', { coinId })
+  )
+  socket.on('coin added', ({ coin }) =>
+    socket.broadcast.emit('coin added', { coin })
+  )
   socket.on('new player arrived', () =>
     socket.broadcast.emit('new player arrived')
   )

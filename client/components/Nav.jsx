@@ -34,23 +34,37 @@ function Nav() {
       ) : (
         <div className={styles.navContainer}>
           <div>
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <h1>Alibi</h1>
+            </Link>
           </div>
-
           <div>
             <IfAuthenticated>
               <div className={styles.actionsContainer}>
-                <Link to="/waiting">
-                  <button onClick={handleAbort}>{`I've Had Enough`}</button>
+                <Link to="/complaint">
+                  <button className={styles.actionButton}>Add Complaint</button>
                 </Link>
-                <Link to="/" onClick={handleLogOff}>
-                  Log off
+                <Link to="/waiting">
+                  <button
+                    className={styles.actionButton}
+                    onClick={handleAbort}
+                  >{`I've Had Enough`}</button>
+                </Link>
+                <Link to="/">
+                  <button
+                    className={styles.actionButton}
+                    onClick={handleLogOff}
+                  >
+                    Log off
+                  </button>
                 </Link>
               </div>
             </IfAuthenticated>
             <IfNotAuthenticated>
-              <Link to="/" onClick={handleSignIn}>
-                Sign In
+              <Link to="/">
+                <button className={styles.actionButton} onClick={handleSignIn}>
+                  Sign In
+                </button>
               </Link>
             </IfNotAuthenticated>
           </div>

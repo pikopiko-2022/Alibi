@@ -12,8 +12,8 @@ export default function ErrorPage() {
         <p>
           Our Apologies but this link is currently in development.
           <br />
-          If you have any question or complaints please{' '}
-          <a href="#">contact us here</a>
+          If you have any question or complaints please contact us here
+          {/*TODO contactUs page link  */}
         </p>
       </div>
     </>
