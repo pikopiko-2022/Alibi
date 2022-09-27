@@ -15,7 +15,7 @@ const mockComplaints = [
     image: `https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2017%2F09%2F01%2Fsink-of-dishes-2000.jpg`,
     complaint_raised_by: 3,
     date_raised: new Date(Date.now()),
-    culprit_id: null,
+    culprit_id: 1,
     resolved: 0,
   },
 ]
@@ -37,8 +37,8 @@ describe('addComplaint', () => {
     return addComplaint(mockComplaints[0], testCon)
       .then(() => testCon('complaints').select())
       .then((complaints) => {
-        expect(complaints).toHaveLength(3)
-        expect(complaints[2]).toHaveProperty(
+        expect(complaints).toHaveLength(4)
+        expect(complaints[3]).toHaveProperty(
           'image',
           'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2017%2F09%2F01%2Fsink-of-dishes-2000.jpg'
         )
@@ -67,10 +67,9 @@ describe('updateCulpritDb', () => {
 
 describe('getComplaintsForUser', () => {
   it('get all complaints where culprit is same', () => {
-    return getComplaintsForUser(1, testCon)
-      .then(() => testCon('complaints').select())
-      .then((complaints) => {
-        expect(complaints[0]).toHaveProperty('culprit_id', 1)
-      })
+    return getComplaintsForUser(2, testCon).then((complaints) => {
+      expect(complaints[0]).toHaveProperty('culprit_id', 2)
+      expect(complaints).toHaveLength(1)
+    })
   })
 })
