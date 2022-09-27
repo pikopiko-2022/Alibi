@@ -35,7 +35,7 @@ const Waiting = () => {
     } else return null
   }, [flatmates])
 
-  setTimeout(() => navigate('/theend'), 2000)
+  // setTimeout(() => navigate('/theend'), 2000)
 
   return (
     <>

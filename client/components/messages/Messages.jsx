@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchMessages, addMessage } from '../../actions/messages'
-import { fetchQuestions } from '../../actions/questions'
-import { fetchLifeG } from '../../actions/lifeG'
 import Question from './Question'
 import LifeGuidance from './LifeGuidance'
 import Message from './Message'
@@ -12,19 +10,20 @@ import SendMessage from './SendMessage'
 import io from 'socket.io-client'
 
 const Messages = () => {
-  const socket = io()
   const dispatch = useDispatch()
   const messages = useSelector((state) => state.messages)
   const token = useSelector((state) => state.user?.token)
   const userId = useSelector((state) => state.user?.id)
 
   useEffect(() => {
+    const socket = io()
     socket.on('update messages', () => {
       dispatch(fetchMessages(token))
     })
-  }, [])
+    return () => socket.disconnect()
+  }, [token])
 
-  const testSendMessage = () => {
+  const sendQuestionToUser = () => {
     dispatch(addMessage(userId, token))
   }
 
@@ -39,7 +38,7 @@ const Messages = () => {
     <div className={styles.messagesContainer}>
       <div>
         <div className={styles.messagesTitle}>Messages</div>
-        <button onClick={testSendMessage}>Test Send Message</button>
+        <button onClick={sendQuestionToUser}>Ask Me Anything</button>
       </div>
       <div className={styles.messagesScrollContainer} role="log" id="messages">
         {messages?.map((message) =>

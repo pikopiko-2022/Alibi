@@ -19,8 +19,8 @@ const { Server } = require('socket.io')
 const io = new Server(server)
 
 io.on('connection', (socket) => {
-  socket.on('update player', ({ player }) =>
-    socket.broadcast.emit('update player', { player })
+  socket.on('update stage', ({ player, coins }) =>
+    socket.broadcast.emit('update stage', { player, coins })
   )
   socket.on('new player arrived', () =>
     socket.broadcast.emit('new player arrived')

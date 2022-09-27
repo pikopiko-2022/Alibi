@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
 import { getRandomNumber } from '../../apis/messagesApi'
+import Coin from './Coin'
 import styles from './Minigame.module.scss'
 import Money from './Money'
 import Player from './Player'
@@ -12,6 +13,8 @@ const Minigame = () => {
   const width = 600
   const user = useSelector((state) => state.user)
   const [players, setPlayers] = useState({})
+  const [coins, setCoins] = useState([])
+  const [coinTicker, setCoinTicker] = useState(0)
   const [player, setPlayer] = useState({
     top: height / 2,
     left: width / 2,
@@ -20,25 +23,60 @@ const Minigame = () => {
   })
   const [time, setTime] = useState(0)
   const [moving, setMoving] = useState(null)
-  const speed = 5
+  const speed = 9
+
+  const createNewCoin = () => {
+    setCoins((coins) => [
+      ...coins,
+      {
+        id: `${user?.id}-${coinTicker}`,
+        top: getRandomNumber(0, height),
+        left: getRandomNumber(0, width),
+      },
+    ])
+    setCoinTicker((coinTicker) => coinTicker + 1)
+  }
 
   let socket = useRef(null)
 
   useEffect(() => {
     socket.current = io()
-    socket.current.emit('new player', { player })
-    socket.current.on('update player', ({ player }) => {
+    socket.current.emit('new player arrived', { player, coins })
+    socket.current.on('update stage', ({ player, coins }) => {
+      console.log(player)
       setPlayers({ ...players, [`${player.id}`]: player })
+      setCoins(coins)
     })
     socket.current.on('new player arrived', () =>
-      socket.current.emit('update player', { player })
+      socket.current.emit('update stage', { player, coins })
     )
     return () => socket.current.disconnect()
   }, [])
 
   useEffect(() => {
-    socket.current.emit('update player', { player })
-  }, [player.top, player.left])
+    socket.current.emit('update stage', { player, coins })
+  }, [player.top, player.left, coins.length])
+
+  const handleCollectCoin = (coinId) => {
+    setPlayer((player) => ({ ...player, debt: player.debt - 1 }))
+    setCoins((coins) => coins.filter((coin) => coinId !== coin.id))
+  }
+
+  const checkCollisions = () => {
+    let coinId = null
+    const radius = 20
+    coins.forEach((coin) => {
+      if (
+        coin.top > player.top - radius &&
+        coin.top < player.top + radius &&
+        coin.left > player.left - radius &&
+        coin.left < player.left + radius
+      ) {
+        coinId = coin.id
+      }
+    })
+    if (coinId) handleCollectCoin(coinId)
+  }
 
   const handleKeyDown = (e) => {
     if (['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'].includes(e.key)) {
@@ -76,6 +114,7 @@ const Minigame = () => {
         left: player.left < 0 ? width : player.left - speed,
       }))
     }
+    checkCollisions()
   }
 
   useEffect(() => {
@@ -87,6 +126,15 @@ const Minigame = () => {
       clearTimeout(timer)
     }
   }, [time])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      createNewCoin()
+    }, getRandomNumber(2000, 5000))
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [coinTicker])
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -103,6 +151,9 @@ const Minigame = () => {
           <Player player={player} />
           {Object.values(players)?.map((otherPlayer) => (
             <Player key={otherPlayer?.id} player={otherPlayer} />
+          ))}
+          {coins?.map((coin) => (
+            <Coin key={coin.id} coin={coin} />
           ))}
         </div>
       </div>

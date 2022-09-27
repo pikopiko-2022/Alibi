@@ -68,14 +68,12 @@ function sendComplaintQuestion(userId, complaint, token) {
 }
 
 export function sendCustomMessage(message, token) {
-  console.log(message)
   return request
     .post(`${rootUrl}/messages`)
     .set('authorization', `Bearer ${token}`)
     .send(message)
     .then((res) => {
       const messages = res.body
-      console.log(messages)
       return messages
     })
     .catch((err) => console.error(err.message))

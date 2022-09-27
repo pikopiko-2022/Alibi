@@ -12,7 +12,6 @@ function getCurrentComplaints(userId, db = connection) {
 }
 
 function getComplaintsForUser(userId, db = connection) {
-  console.log('complaints', userId)
   return db('complaints').select().where({ culprit_id: userId })
 }
 
