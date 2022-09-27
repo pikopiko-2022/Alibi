@@ -30,10 +30,12 @@ const Waiting = () => {
   }
 
   useEffect(() => {
-    if (nuclear()) navigate('/theend')
+    if (nuclear()) {
+      navigate('/theend')
+    } else return null
   }, [flatmates])
 
-  setTimeout(() => navigate('/theend'), 2000)
+  // setTimeout(() => navigate('/theend'), 2000)
 
   return (
     <>

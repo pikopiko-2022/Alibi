@@ -33,7 +33,6 @@ const Minigame = () => {
     socket.current.on('new player arrived', () =>
       socket.current.emit('update player', { player })
     )
-    console.log(player)
     return () => socket.current.disconnect()
   }, [])
 
