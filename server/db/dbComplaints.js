@@ -5,13 +5,14 @@ function addComplaint(complaint, db = connection) {
 }
 
 function getCurrentComplaints(userId, db = connection) {
-  return db('complaints')
-    .select()
-    .where({ culprit_id: null, complaint_raised_by: userId })
+  return db('complaints').select().where({ culprit_id: null })
+  // .whereNot({ complaint_raised_by: userId })
 }
 
-function updateCulpritDb(id, updatedComplaint, db = connection) {
-  return db('complaints').where('id', id).update(updatedComplaint)
+function updateCulpritDb(complaintId, userId, db = connection) {
+  return db('complaints')
+    .where('id', Number(complaintId))
+    .update({ culprit_id: userId })
 }
 
 module.exports = { addComplaint, updateCulpritDb, getCurrentComplaints }

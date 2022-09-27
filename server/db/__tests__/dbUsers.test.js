@@ -3,7 +3,6 @@ const knex = require('knex')
 const testCon = knex(config.test)
 
 const {
-  getUsers,
   updateUserScore,
   getUser,
   getUserIdByAuth0Id,
@@ -17,40 +16,31 @@ afterAll(() => testCon.destroy())
 
 describe('test updateUserScore', () => {
   it('doesnt alter users rating if score is zero', () => {
-    return updateUserScore(1, 0, testCon).then(() =>
-      getUser(1, testCon).then((user) => {
+    return updateUserScore(1, 0, testCon)
+      .then(() => getUser(1, testCon))
+      .then((user) => {
         expect(user.rating).toBe(5)
       })
-    )
   })
   it('adds to users rating if score is positive', () => {
-    return updateUserScore(1, 1, testCon).then(() =>
-      getUser(1, testCon).then((user) => {
+    return updateUserScore(1, 1, testCon)
+      .then(() => getUser(1, testCon))
+      .then((user) => {
         expect(user.rating).toBe(6)
       })
-    )
   })
   it('subtracts from users rating if score is negative', () => {
-    return updateUserScore(1, -1, testCon).then(() =>
-      getUser(1, testCon).then((user) => {
+    return updateUserScore(1, -1, testCon)
+      .then(() => getUser(1, testCon))
+      .then((user) => {
         expect(user.rating).toBe(4)
       })
-    )
-  })
-})
-
-describe('test getUsers', () => {
-  it('returns all records in users table', () => {
-    return getUsers(1, testCon).then((data) => {
-      expect(data).toHaveLength(2)
-    })
   })
 })
 
 describe('getUser', () => {
-  it('gets user based on auth0id', () => {
+  it('gets user by id', () => {
     return getUser(1, testCon).then((user) => {
-      expect(user.flatName).toBe(`The cool kids' pad`)
       expect(user.id).toBe(1)
       expect(user.name).toBe('Gertrude')
     })

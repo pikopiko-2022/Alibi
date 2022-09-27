@@ -1,0 +1,27 @@
+.displayUserContainer {
+  flex: 0 1 30%;
+  background-color: rgb(137, 126, 137);
+  padding: 10px;
+}
+
+.profileImageContainer {
+  width: 300px;
+}
+
+.profileImage {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.profileName {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.profileDescription {
+  font-style: italic;
+  margin-bottom: 15px;
+}

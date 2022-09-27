@@ -1,14 +1,7 @@
 const connection = require('./connection')
 
-// TODO change to getFlatmates? and look only for users that match your flat_id
-function getUsers(flat_id = 1, db = connection) {
-  return db('users').where('flat_id', flat_id).select()
-}
-
 function addUser(newUser, db = connection) {
-  return db('users')
-    .insert(newUser)
-    .then(() => getUsers())
+  return db('users').insert(newUser)
 }
 
 function userExists(username, db = connection) {
@@ -18,11 +11,7 @@ function userExists(username, db = connection) {
 }
 
 function getUser(auth0_id, db = connection) {
-  return db('users')
-    .join('flats', 'users.flat_id', '=', 'flats.id')
-    .select('users.*', 'flats.name as flatName', 'flats.address as flatAddress')
-    .where('users.auth0_id', '=', auth0_id)
-    .first()
+  return db('users').select().where({ auth0_id }).first()
 }
 
 function getUserIdByAuth0Id(auth0_id, db = connection) {
@@ -35,11 +24,15 @@ function updateUserScore(userId, score, db = connection) {
     .update({ rating: db.raw(`rating + ${score}`) })
 }
 
+function updateUserEnough(userId, db = connection) {
+  return db('users').where('id', userId).update({ had_enough: true })
+}
+
 module.exports = {
-  getUsers,
   addUser,
   userExists,
   getUser,
   getUserIdByAuth0Id,
   updateUserScore,
+  updateUserEnough,
 }

@@ -13,18 +13,6 @@ router.get('/', (req, res) => {
     })
 })
 
-// router.get('/:issueId', (req, res) => {
-//   const issueId = req.params.issueId
-//   db.getQuestionsForIssue(issueId)
-//     .then((questions) => {
-//       res.json(questions)
-//       return null
-//     })
-//     .catch((err) => {
-//       res.status(500).send(err.message)
-//     })
-// })
-
 router.get('/:id', (req, res) => {
   const id = req.params.id
   db.getQuestionsForIssue(id)

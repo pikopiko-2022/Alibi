@@ -41,7 +41,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/client/components/__tests__/styleMock.js"
+      "\\.(css|scss)$": "<rootDir>/client/components/__mock__/styleMock.js"
     }
   },
   "dependencies": {
