@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 import React, { useEffect } from 'react'
-=======
->>>>>>> 8247e11c60d53448886553100e1c2737a9fbc981
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Routes, Route } from 'react-router-dom'
-import React, { useEffect } from 'react'
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { useCacheUser } from '../auth0-utils'
