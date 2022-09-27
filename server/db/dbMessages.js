@@ -10,7 +10,6 @@ function getMessages(userId, db = connection) {
 }
 
 function getMessagesByName(userName, userId, db = connection) {
-  console.log(userName)
   return db('messages')
     .select()
     .whereLike('message', `%${userName}%`)

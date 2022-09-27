@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createComplaint } from '../../apis/complaintsApi'
-import { fetchIssues } from '../../actions/issues'
 import styles from './Complaint.module.scss'
 import LoadingSpinner from '../widgets/LoadingSpinner'
 
 export default function Complaint() {
   const token = useSelector((state) => state?.user?.token)
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [selectedFile, setSelectedFile] = useState(null)
   const [selectedIssue, setSelectedIssue] = useState(null)
@@ -18,10 +16,6 @@ export default function Complaint() {
 
   const user = useSelector((state) => state.user)
   const issues = useSelector((state) => state.issues)
-
-  useEffect(() => {
-    dispatch(fetchIssues())
-  }, [])
 
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0])
@@ -49,7 +43,6 @@ export default function Complaint() {
   }
 
   const handleSelect = (event) => {
-    console.log(event.target.value)
     setSelectedIssue(event.target.value)
   }
 

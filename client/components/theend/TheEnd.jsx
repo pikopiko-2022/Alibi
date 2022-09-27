@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
+import ComplaintsUserCulprit from './ComplaintsUserCulprit'
 import { Slideshow, SlideshowItem } from './Slideshow'
 import styles from './TheEnd.module.scss'
 import WhosBeenTalking from './WhosBeenTalking'
@@ -7,9 +8,8 @@ import WhosBeenTalking from './WhosBeenTalking'
 const TheEnd = () => {
   const slides = [
     <WhosBeenTalking />,
-    <div style={{ width: '600px', height: '600px', backgroundColor: 'blue' }}>
-      This
-    </div>,
+    <ComplaintsUserCulprit />,
+    <div style={{ backgroundColor: 'blue' }}>This</div>,
   ]
   return (
     <div className={styles.slideshowContainer}>
