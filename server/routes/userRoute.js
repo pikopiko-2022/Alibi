@@ -65,9 +65,9 @@ router.post('/', checkJwt, (req, res) => {
       if (usernameTaken) throw new Error('Username Taken')
     })
     .then(() => db.addUser(userDetails))
-    .then(() => {
+    .then((id) => {
       req.io.emit('users updated')
-      res.sendStatus(201)
+      res.json(id?.[0])
       return null
     })
     .catch((err) => {
