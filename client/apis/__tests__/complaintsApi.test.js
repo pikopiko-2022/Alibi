@@ -1,17 +1,12 @@
 import nock from 'nock'
 import { addCulpritToComplaint, createComplaint } from '../complaintsApi'
 const mockUrl = 'http://mockUrl?string=something'
-const mockComplaint = [
-  {
-    id: 1,
-    issue_id: 1,
-    image: null,
-    complaint_raised_by: 1,
-    date_raised: new Date(Date.now()),
-    culprit_id: null,
-    resolved: 0,
-  },
-]
+const mockComplaint = {
+  issue_id: 1,
+  image: null,
+  complaint_raised_by: 1,
+}
+
 const errorMessage = 'something went wrong'
 
 const complaintId = 1
@@ -20,6 +15,7 @@ jest.spyOn(console, 'error')
 afterEach(() => {
   console.error.mockReset()
 })
+
 describe('GET /api/v1/imageUrl', () => {
   it('gets url from AWS and sends form data to database', () => {
     const scope = nock('http://localhost')
@@ -33,11 +29,8 @@ describe('GET /api/v1/imageUrl', () => {
     const scope3 = nock('http://localhost')
       .post('/api/v1/complaints')
       .reply(200, mockComplaint)
-    return createComplaint({
-      issue_id: '1',
-      complaint_raised_by: '1',
-      image: 'mockUrl',
-    }).then((result) => {
+    return createComplaint(mockComplaint).then((result) => {
+      console.log(result)
       expect(result).toEqual(mockComplaint)
       expect(scope.isDone()).toBe(true)
       expect(scope2.isDone()).toBe(true)
@@ -61,11 +54,13 @@ describe('GET /api/v1/imageUrl', () => {
   })
 })
 
-describe('PUT /api/v1/complaints/id', () => {
+describe('PUT /api/v1/complaints/:id', () => {
   it('adds culprit to complaint based on complaintId', () => {
-    const scope = nock('http://localhost').put(
-      `/api/v1/complaints/${complaintId}`
-    )
+    const scope = nock('http://localhost')
+      .put(`/api/v1/complaints/${complaintId}`)
+      .reply(200, JSON.stringify(complaintId), {
+        'Content-Type': 'application/json',
+      })
     return addCulpritToComplaint(complaintId).then(() => {
       console.log(complaintId)
       expect(complaintId).toBe(1)
