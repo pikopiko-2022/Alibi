@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { fetchFlatmates } from '../../actions/flatmates'
+import { fetchComplaints } from '../../actions/complaints'
 import { useSelector, useDispatch } from 'react-redux'
 import Avatar from '../widgets/Avatar'
 
 const MostComplaints = () => {
   const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.flatmates)
+  const complaints = useSelector((state) => state.complaints)
   const token = useSelector((state) => state.user?.token)
   const [randomMate, updateRandomMate] = useState({})
 
   useEffect(() => {
-    dispatch(fetchFlatmates(token))
-    updateRandomMate(flatmates[Math.floor(Math.random() * flatmates.length)])
+    dispatch(fetchComplaints())
+    // get all complaints
+    // select complaint by complaint_raised_by and add to idcount
+    // compare idcounts and select the highest
+    // get complaint_raised_by from idcounts
+    // get users based on complaint raised by
   }, [])
 
   return (

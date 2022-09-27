@@ -40,6 +40,17 @@ router.get('/all', (req, res) => {
     })
 })
 
+router.get('/count', (req, res) => {
+  db.getHighestComplainant()
+    .then((complaints) => {
+      res.json(complaints)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.put('/:complaintsId', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   const complaintsId = req.params.complaintsId
