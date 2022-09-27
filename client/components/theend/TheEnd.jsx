@@ -11,7 +11,6 @@ const TheEnd = () => {
     <YourRanking />,
     <WhosBeenTalking />,
     <ComplaintsUserCulprit />,
-    <div style={{ backgroundColor: 'blue' }}>This</div>,
   ]
   return (
     <div className={styles.slideshowContainer}>

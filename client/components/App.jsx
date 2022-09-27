@@ -40,11 +40,10 @@ function App() {
   return (
     <>
       <div className="app">
-        <img
+        {/* <img
           src="https://static.miraheze.org/closinglogosgroupwiki/a/ab/Alibi14.jpeg"
           alt="logo"
-        />
-        <h1>Alibi</h1>
+        /> */}
         <Nav />
         <IfAuthenticated>
           <Routes>

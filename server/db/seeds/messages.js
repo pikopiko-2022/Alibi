@@ -12,7 +12,6 @@ exports.seed = async function (knex) {
       recipient_id: 2,
       question_id: 6,
       answer_id: 17,
-      date_sent: new Date(Date.now()),
     },
     {
       id: 2,
@@ -21,7 +20,6 @@ exports.seed = async function (knex) {
       question_id: 0,
       answer_id: 0,
       life_guidance_id: 1,
-      date_sent: new Date(Date.now()),
     },
     {
       id: 3,
