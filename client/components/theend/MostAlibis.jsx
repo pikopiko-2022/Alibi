@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 //import io from 'socket.io-client'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAlibiFlatmate } from '../../apis/flatmatesApi'
+import Avatar from '../widgets/Avatar'
 
 const mostAlibis = () => {
   //const socket = io()
@@ -28,6 +29,9 @@ const mostAlibis = () => {
       <h1>The flatmate with the most alibis</h1>
       <div>
         <h2>{alibiUser.name}</h2>
+      </div>
+      <div>
+        <Avatar seedData={alibiUser.img_seed} size={300} />
       </div>
       <div>
         <p>Flatmate rating: {alibiUser.rating}</p>
