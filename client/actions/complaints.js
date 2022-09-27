@@ -34,6 +34,7 @@ export function fetchComplaintCount() {
     return getComplaintCount()
       .then((complaints) => {
         dispatch(setComplaints(complaints))
+        console.log(complaints)
       })
       .catch((err) => {
         console.error(err)

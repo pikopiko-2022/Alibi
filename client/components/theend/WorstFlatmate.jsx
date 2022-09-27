@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { fetchFlatmates } from '../../actions/flatmates'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Avatar from '../widgets/Avatar'
 
 const WorstFlatmate = () => {
-  const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.flatmates)
-  const token = useSelector((state) => state.user?.token)
-  const [badUser, updateBadUser] = useState({})
 
-  useEffect(() => {
-    dispatch(fetchFlatmates(token))
-    let mateA = null
-    let mateB = 0
-    flatmates.forEach((element) => {
-      mateB = element.rating
-      if (mateB < mateA) {
-        mateA = mateB
-      }
-    })
-    flatmates.forEach((element) => {
-      if ((element.rating = mateA)) {
-        updateBadUser(element)
-        //nothing if they have the same rating
-      }
-    })
-  }, [])
+  const badUser = flatmates.sort((a, b) => a.rating - b.rating)[0] || {}
+  console.log(badUser)
 
   return (
     <>
@@ -36,6 +18,9 @@ const WorstFlatmate = () => {
         <p>Rating: {badUser.rating}</p>
       </div>
       <div>
+        <Avatar seedData={badUser.img_seed} size={300} />
+      </div>
+      <div>
         <ul>
           <li>Other Users</li>
           {flatmates.map((item) => {
@@ -43,6 +28,9 @@ const WorstFlatmate = () => {
               item.id != badUser.id && (
                 <li>
                   name: {item.name} rating: {item.rating}
+                  <div>
+                    <Avatar seedData={item.img_seed} size={150} />
+                  </div>
                 </li>
               )
             )
