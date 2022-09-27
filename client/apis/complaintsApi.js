@@ -32,3 +32,13 @@ export function addCulpritToComplaint(complaintId, token) {
     .put(`${rootUrl}/complaints/${complaintId}`)
     .set('authorization', `Bearer ${token}`)
 }
+
+export function getComplaintsForUserCulprit(token) {
+  return request
+    .get(`${rootUrl}/complaints/user`)
+    .set('authorization', `Bearer ${token}`)
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
+}
