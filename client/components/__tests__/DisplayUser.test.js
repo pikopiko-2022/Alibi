@@ -30,7 +30,7 @@ describe('<DisplayUser />', () => {
     )
     const profileImage = screen.getByRole('img')
     expect(profileImage.src).toBe(
-      `https://avatars.dicebear.com/api/adventurer/90.svg?size=300`
+      `https://avatars.dicebear.com/api/adventurer/90.svg?size=200`
     )
     const name = screen.getByText('Name', { exact: false })
     expect(name.innerHTML).toBe('Test Name')
