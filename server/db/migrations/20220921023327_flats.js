@@ -8,7 +8,7 @@ exports.up = function (knex) {
     table.string('name')
     table.string('address')
     table.timestamp('date_established').defaultTo(knex.fn.now())
-    table.timestamp('date_disolved')
+    table.timestamp('date_dissolved')
   })
 }
 
