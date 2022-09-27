@@ -5,9 +5,11 @@ import styles from './TheEnd.module.scss'
 import ComplaintsUserCulprit from './ComplaintsUserCulprit'
 import WhosBeenTalking from './WhosBeenTalking'
 import YourRanking from './YourRanking'
+import WorstFlatmate from './WorstFlatmate'
 
 const TheEnd = () => {
   const slides = [
+    <WorstFlatmate />,
     <YourRanking />,
     <WhosBeenTalking />,
     <ComplaintsUserCulprit />,
