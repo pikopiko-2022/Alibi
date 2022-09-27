@@ -59,7 +59,7 @@ function Register() {
       </button>
       <h2>Complete profile set up</h2>
       {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.registrationForm}>
         <label htmlFor="name">Username:</label>
         <input
           type="text"

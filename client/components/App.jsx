@@ -16,7 +16,6 @@ import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
 import { IfAuthenticated, IfNotAuthenticated } from './widgets/Authenticated'
 import SignIn from './SignIn'
-import LoadingSpinner from './widgets/LoadingSpinner'
 
 function App() {
   useCacheUser()
@@ -32,12 +31,9 @@ function App() {
       getAccessTokenSilently()
         .then((token) => getUser(token))
         .then((userInDb) => {
-          if (userInDb) {
-            dispatch(updateLoggedInUser(userInDb))
-            navigate('/home')
-          } else {
-            navigate('/register')
-          }
+          userInDb
+            ? dispatch(updateLoggedInUser(userInDb))
+            : navigate('/register')
         })
         .catch((err) => console.error(err))
     }
