@@ -19,7 +19,6 @@ router.get('/alibi/', (req, res) => {
   getAlibiAnswers()
     .then((answers) => getAlibiMessages(answers))
     .then((messages) => {
-      console.log(messages)
       res.json(
         Object.entries(
           messages

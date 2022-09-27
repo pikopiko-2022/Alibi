@@ -16,6 +16,7 @@ const mostAlibis = () => {
       .then((userId) => {
         const alibiUser = flatmates.find((flatmates) => (flatmates.id = userId))
         updateAlibiUser(alibiUser)
+        console.log(alibiUser)
       })
       .catch((err) => {
         console.error(err.message)
