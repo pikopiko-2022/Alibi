@@ -34,6 +34,11 @@ const mockMessages = [
   },
 ]
 
+const mockUserId = 1
+const mockIssueId = 2
+const mockMessageId = 3
+const mockAnswerId = 4
+
 addAnswerToMessage.mockReturnValue(Promise.resolve(mockMessages))
 getMessages.mockReturnValue(Promise.resolve(mockMessages))
 sendCustomMessage.mockReturnValue(Promise.resolve(mockMessages))
@@ -47,10 +52,84 @@ beforeEach(() => {
   jest.clearAllMocks()
 })
 
-describe('setMessages', () => {
+describe('setMessages and other Thunks', () => {
   it('sets the messages to be the messages', () => {
     expect(setMessages(mockMessages).type).toBe(SET_MESSAGES)
     expect(setMessages(mockMessages).payload).toBe(mockMessages)
+  })
+  it('dispatches after api call', () => {
+    return addMessage(mockUserId)(fakeDispatch).then(() => {
+      const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
+      expect(fakeDispatchAction.type).toBe(SET_MESSAGES)
+      expect(fakeDispatchAction.payload).toEqual(mockMessages)
+    })
+  })
+  it('Should console.error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    sendMessage.mockImplementation(() => Promise.reject(new Error('error')))
+    return addMessage()(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+  it('addCustomMessage dispatches after api call', () => {
+    return addCustomMessage(mockMessages[0])(fakeDispatch).then(() => {
+      const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
+      expect(fakeDispatchAction.type).toBe(SET_MESSAGES)
+      expect(fakeDispatchAction.payload).toEqual(mockMessages)
+    })
+  })
+  it('Should error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    sendCustomMessage.mockImplementation(() =>
+      Promise.reject(new Error('error'))
+    )
+    return addCustomMessage()(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+  it('addLifeGMessage dispatches setMessages after api call', () => {
+    return addLifeGMessage(
+      mockUserId,
+      mockIssueId
+    )(fakeDispatch).then(() => {
+      const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
+      expect(fakeDispatchAction.type).toBe(SET_MESSAGES)
+      expect(fakeDispatchAction.payload).toEqual(mockMessages)
+    })
+  })
+  it('console.error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    sendLifeGuidance.mockImplementation(() =>
+      Promise.reject(new Error('error'))
+    )
+    return addLifeGMessage(
+      mockUserId,
+      mockIssueId
+    )(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+  it('updateMessageAnswer dispatches setMessages after api call', () => {
+    return updateMessageAnswer(
+      mockMessageId,
+      mockAnswerId
+    )(fakeDispatch).then(() => {
+      const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
+      expect(fakeDispatchAction.type).toBe(SET_MESSAGES)
+      expect(fakeDispatchAction.payload).toEqual(mockMessages)
+    })
+  })
+  it('console.error request fails', () => {
+    console.error.mockImplementation(() => {})
+    addAnswerToMessage.mockImplementation(() =>
+      Promise.reject(new Error('error'))
+    )
+    return updateMessageAnswer(
+      mockMessageId,
+      mockAnswerId
+    )(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
   })
 })
 
@@ -66,56 +145,6 @@ describe('fetchMessages', () => {
     console.error.mockImplementation(() => {})
     getMessages.mockImplementation(() => Promise.reject(new Error('error')))
     return fetchMessages()(fakeDispatch).then(() => {
-      expect(console.error).toHaveBeenCalledWith('error')
-    })
-  })
-})
-
-describe('addMessage', () => {
-  //todo - test dispatch
-  it('Should console.error if request fails', () => {
-    console.error.mockImplementation(() => {})
-    sendMessage.mockImplementation(() => Promise.reject(new Error('error')))
-    return addMessage()(fakeDispatch).then(() => {
-      expect(console.error).toHaveBeenCalledWith('error')
-    })
-  })
-})
-
-describe('addCustomMessage', () => {
-  //todo - test dispatch
-  it('Should console.error if request fails', () => {
-    console.error.mockImplementation(() => {})
-    sendCustomMessage.mockImplementation(() =>
-      Promise.reject(new Error('error'))
-    )
-    return addCustomMessage()(fakeDispatch).then(() => {
-      expect(console.error).toHaveBeenCalledWith('error')
-    })
-  })
-})
-
-describe('addLifeGMessage', () => {
-  //todo - test dispatch
-  it('Should console.error if request fails', () => {
-    console.error.mockImplementation(() => {})
-    sendLifeGuidance.mockImplementation(() =>
-      Promise.reject(new Error('error'))
-    )
-    return addLifeGMessage()(fakeDispatch).then(() => {
-      expect(console.error).toHaveBeenCalledWith('error')
-    })
-  })
-})
-
-describe('updateMessageAnswer', () => {
-  //todo - test dispatch
-  it('Should console.error if request fails', () => {
-    console.error.mockImplementation(() => {})
-    addAnswerToMessage.mockImplementation(() =>
-      Promise.reject(new Error('error'))
-    )
-    return updateMessageAnswer()(fakeDispatch).then(() => {
       expect(console.error).toHaveBeenCalledWith('error')
     })
   })

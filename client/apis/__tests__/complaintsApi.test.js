@@ -32,7 +32,6 @@ describe('GET /api/v1/imageUrl', () => {
       .reply(200, mockComplaint)
 
     return createComplaint(mockComplaint).then((result) => {
-      console.log(result)
       // expect(result).toEqual(mockComplaint)
       expect(result).toContain('complaint_raised_by')
       expect(scope.isDone()).toBe(true)
@@ -65,7 +64,6 @@ describe('PUT /api/v1/complaints/:id', () => {
         'Content-Type': 'application/json',
       })
     return addCulpritToComplaint(complaintId).then(() => {
-      console.log(complaintId)
       expect(complaintId).toBe(1)
       expect(scope.isDone()).toBe(true)
     })

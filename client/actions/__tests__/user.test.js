@@ -58,7 +58,6 @@ describe('updateLoggedInUser', () => {
   })
   it('updateUserEnough should updateLoggedInUser after api call', () => {
     return updateUserEnough()(fakeDispatch).then(() => {
-      console.log(fakeDispatch.mock.calls)
       const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
       expect(fakeDispatchAction.type).toBe(UPDATE_LOGGED_IN_USER)
       expect(fakeDispatchAction.payload).toEqual(mockUserToSave)
@@ -90,26 +89,8 @@ describe('fetchUser', () => {
   it('Should console.error if request fails', () => {
     console.error.mockImplementation(() => {})
     getUser.mockImplementation(() => Promise.reject(new Error('error')))
-    return updateUserEnough()(fakeDispatch).then(() => {
+    return fetchUser()(fakeDispatch).then(() => {
       expect(console.error).toHaveBeenCalledWith('error')
     })
   })
-})
-
-describe('updateUserEnough', () => {
-  // it('updateUserEnough should updateLoggedInUser after api call', () => {
-  //   return updateUserEnough()(fakeDispatch).then(() => {
-  //     console.log(fakeDispatch.mock.calls)
-  //     const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
-  //     expect(fakeDispatchAction.type).toBe(UPDATE_LOGGED_IN_USER)
-  //     expect(fakeDispatchAction.payload).toEqual(mockUserToSave)
-  //   })
-  // })
-  // it('Should console.error if fails', () => {
-  //   console.error.mockImplementation(() => {})
-  //   addUserEnough.mockImplementation(() => Promise.reject(new Error('error')))
-  //   return updateUserEnough()(fakeDispatch).then(() => {
-  //     expect(console.error).toHaveBeenCalledWith('error')
-  //   })
-  // })
 })
