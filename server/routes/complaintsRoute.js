@@ -29,6 +29,17 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
+router.get('/all', (req, res) => {
+  db.getAllComplaints()
+    .then((complaints) => {
+      res.json(complaints)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.put('/:complaintsId', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   const complaintsId = req.params.complaintsId

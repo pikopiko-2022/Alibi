@@ -10,7 +10,7 @@ function getCurrentComplaints(userId, db = connection) {
 }
 
 function getAllComplaints(db = connection) {
-  return db('answers').select()
+  return db('complaints').select()
 }
 
 function updateCulpritDb(complaintId, userId, db = connection) {
