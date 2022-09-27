@@ -1,6 +1,20 @@
-import { setMessages, fetchMessages, SET_MESSAGES } from '../messages'
+import {
+  setMessages,
+  fetchMessages,
+  SET_MESSAGES,
+  addMessage,
+  addCustomMessage,
+  addLifeGMessage,
+  updateMessageAnswer,
+} from '../messages'
 
-import { getMessages } from '../../apis/messagesApi'
+import {
+  addAnswerToMessage,
+  getMessages,
+  sendCustomMessage,
+  sendLifeGuidance,
+  sendMessage,
+} from '../../apis/messagesApi'
 
 jest.mock('../../apis/messagesApi')
 
@@ -20,7 +34,12 @@ const mockMessages = [
   },
 ]
 
+addAnswerToMessage.mockReturnValue(Promise.resolve(mockMessages))
 getMessages.mockReturnValue(Promise.resolve(mockMessages))
+sendCustomMessage.mockReturnValue(Promise.resolve(mockMessages))
+sendLifeGuidance.mockReturnValue(Promise.resolve(mockMessages))
+getMessages.mockReturnValue(Promise.resolve(mockMessages))
+sendMessage.mockReturnValue(Promise.resolve(mockMessages))
 
 const fakeDispatch = jest.fn()
 
@@ -36,7 +55,7 @@ describe('setMessages', () => {
 })
 
 describe('fetchMessages', () => {
-  it('dispatches fetchMessages after api call', () => {
+  it('dispatches setMessages after api call', () => {
     return fetchMessages(mockMessages)(fakeDispatch).then(() => {
       const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
       expect(fakeDispatchAction.type).toBe(SET_MESSAGES)
@@ -47,6 +66,56 @@ describe('fetchMessages', () => {
     console.error.mockImplementation(() => {})
     getMessages.mockImplementation(() => Promise.reject(new Error('error')))
     return fetchMessages()(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+})
+
+describe('addMessage', () => {
+  //todo - test dispatch
+  it('Should console.error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    sendMessage.mockImplementation(() => Promise.reject(new Error('error')))
+    return addMessage()(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+})
+
+describe('addCustomMessage', () => {
+  //todo - test dispatch
+  it('Should console.error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    sendCustomMessage.mockImplementation(() =>
+      Promise.reject(new Error('error'))
+    )
+    return addCustomMessage()(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+})
+
+describe('addLifeGMessage', () => {
+  //todo - test dispatch
+  it('Should console.error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    sendLifeGuidance.mockImplementation(() =>
+      Promise.reject(new Error('error'))
+    )
+    return addLifeGMessage()(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+})
+
+describe('updateMessageAnswer', () => {
+  //todo - test dispatch
+  it('Should console.error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    addAnswerToMessage.mockImplementation(() =>
+      Promise.reject(new Error('error'))
+    )
+    return updateMessageAnswer()(fakeDispatch).then(() => {
       expect(console.error).toHaveBeenCalledWith('error')
     })
   })
