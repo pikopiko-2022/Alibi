@@ -71,8 +71,21 @@ describe('newUser', () => {
     })
   })
 })
+const score = 6
 
 describe('addUserScore', () => {
+  it('adds users score', () => {
+    const scope = nock('http://localhost')
+      .put('/api/v1/user')
+      .reply(200, JSON.stringify(score), {
+        'Content-Type': 'application/json',
+      })
+    return addUserScore(score).then((result) => {
+      expect(result).toStrictEqual(score)
+      expect(scope.isDone()).toBe(true)
+    })
+  })
+
   it('returns error message when it fails', () => {
     const scope = nock('http://localhost')
       .put('/api/v1/user')
@@ -83,8 +96,21 @@ describe('addUserScore', () => {
     })
   })
 })
+const mockHadEnough = false
 
 describe('addUserEnough', () => {
+  it('adds had_enough user database', () => {
+    const scope = nock('http://localhost')
+      .put('/api/v1/user/enough')
+      .reply(200, JSON.stringify(mockHadEnough), {
+        'Content-Type': 'application/json',
+      })
+    return addUserEnough(mockHadEnough).then((result) => {
+      expect(result).toStrictEqual(mockHadEnough)
+      expect(scope.isDone()).toBe(true)
+    })
+  })
+
   it('returns error message when it fails', () => {
     const scope = nock('http://localhost')
       .put('/api/v1/user/enough')
