@@ -23,11 +23,12 @@ const mockUserToSave = {
   had_enough: false,
 }
 
+const mockScore = 1
+
 jest.mock('../../apis/userApi')
 
 jest.spyOn(console, 'error')
 
-const mockScore = 1
 getUser.mockReturnValue(Promise.resolve(mockUserToSave))
 addUserScore.mockReturnValue(Promise.resolve(mockScore))
 addUserEnough.mockReturnValue(Promise.resolve())
@@ -52,8 +53,8 @@ describe('clearLoggedInUser', () => {
 })
 
 describe('fetchUser', () => {
-  it('dispatches setFlat after api call', () => {
-    return fetchUser(mockUserToSave)(fakeDispatch).then(() => {
+  it('dispatches updateLoggedInUser after api call', () => {
+    return fetchUser()(fakeDispatch).then(() => {
       const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
       expect(fakeDispatchAction.type).toBe(UPDATE_LOGGED_IN_USER)
       expect(fakeDispatchAction.payload).toEqual(mockUserToSave)
@@ -90,20 +91,20 @@ describe('updateUserScore', () => {
   })
 })
 
-// describe('updateUserEnough', () => {
-//   it('dispatches updateLoggedInUser after api call', () => {
-//     return updateUserEnough()(fakeDispatch).then(() => {
-//       console.log(fakeDispatch.mock.calls)
-//       const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
-//       expect(fakeDispatchAction.type).toBe(UPDATE_LOGGED_IN_USER)
-//       expect(fakeDispatchAction.payload).toEqual(mockUserToSave)
-//     })
-//   })
-//   it('Should console.error if request fails', () => {
-//     console.error.mockImplementation(() => {})
-//     addUserEnough.mockImplementation(() => Promise.reject(new Error('error')))
-//     return fetchUser()(fakeDispatch).then(() => {
-//       expect(console.error).toHaveBeenCalledWith('error')
-//     })
-//   })
-// })
+describe('updateUserEnough', () => {
+  //   it('dispatches updateLoggedInUser after api call', () => {
+  //     return updateUserEnough()(fakeDispatch).then(() => {
+  //       console.log(fakeDispatch.mock.calls)
+  //       const fakeDispatchAction = fakeDispatch.mock.calls[0][0]
+  //       expect(fakeDispatchAction.type).toBe(UPDATE_LOGGED_IN_USER)
+  //       expect(fakeDispatchAction.payload).toEqual(mockUserToSave)
+  //     })
+  //   })
+  it('Should console.error if request fails', () => {
+    console.error.mockImplementation(() => {})
+    addUserEnough.mockImplementation(() => Promise.reject(new Error('error')))
+    return fetchUser()(fakeDispatch).then(() => {
+      expect(console.error).toHaveBeenCalledWith('error')
+    })
+  })
+})
