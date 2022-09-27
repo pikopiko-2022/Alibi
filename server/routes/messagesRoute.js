@@ -1,6 +1,6 @@
 const express = require('express')
 const db = require('../db/dbMessages')
-const { getUserIdByAuth0Id } = require('../db/dbUsers')
+const { getUserIdByAuth0Id, getUser } = require('../db/dbUsers')
 const router = express.Router()
 const checkJwt = require('../auth0')
 
@@ -8,6 +8,19 @@ router.get('/', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   getUserIdByAuth0Id(auth0_id)
     .then(({ userId }) => db.getMessages(userId))
+    .then((messages) => {
+      res.json(messages)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
+router.get('/name', checkJwt, (req, res) => {
+  const auth0_id = req.user?.sub
+  getUser(auth0_id)
+    .then((user) => db.getMessagesByName(user?.name, user?.id))
     .then((messages) => {
       res.json(messages)
       return null

@@ -146,3 +146,13 @@ function sendLifeGAsMessage(message, token) {
     })
     .catch((err) => console.error(err.message))
 }
+
+export function getWhosBeenTalking(token) {
+  return request
+    .get(`${rootUrl}/messages/name`)
+    .set('authorization', `Bearer ${token}`)
+    .then((res) => {
+      return res.body
+    })
+    .catch((err) => console.error(err.message))
+}

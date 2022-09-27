@@ -5,8 +5,15 @@ function addComplaint(complaint, db = connection) {
 }
 
 function getCurrentComplaints(userId, db = connection) {
-  return db('complaints').select().where({ culprit_id: null })
-  // .whereNot({ complaint_raised_by: userId })
+  return db('complaints')
+    .select()
+    .where({ culprit_id: null })
+    .whereNot({ complaint_raised_by: userId })
+}
+
+function getComplaintsForUser(userId, db = connection) {
+  console.log('complaints', userId)
+  return db('complaints').select().where({ culprit_id: userId })
 }
 
 function updateCulpritDb(complaintId, userId, db = connection) {
@@ -15,4 +22,9 @@ function updateCulpritDb(complaintId, userId, db = connection) {
     .update({ culprit_id: userId })
 }
 
-module.exports = { addComplaint, updateCulpritDb, getCurrentComplaints }
+module.exports = {
+  addComplaint,
+  updateCulpritDb,
+  getCurrentComplaints,
+  getComplaintsForUser,
+}

@@ -5,8 +5,9 @@ const {
   getMessages,
   addMessage,
   updateMessage,
+  getMessagesByName,
 } = require('../../db/dbMessages')
-const { getUserIdByAuth0Id } = require('../../db/dbUsers')
+const { getUserIdByAuth0Id, getUser } = require('../../db/dbUsers')
 
 jest.mock('../../db/dbMessages')
 jest.mock('../../db/dbUsers')
@@ -29,10 +30,19 @@ checkJwt.mockImplementation((req, res, next) => {
 
 getUserIdByAuth0Id.mockReturnValue(Promise.resolve(1))
 
+getUser.mockReturnValue(Promise.resolve({ name: 'Billy', id: 1 }))
+
 getMessages.mockReturnValue(
   Promise.resolve([
     { id: 1, recipient_id: 1 },
     { id: 2, message: 'Howdy' },
+  ])
+)
+
+getMessagesByName.mockReturnValue(
+  Promise.resolve([
+    { id: 1, message: 'Hey Billy' },
+    { id: 2, message: 'I hate billy' },
   ])
 )
 
@@ -46,6 +56,17 @@ describe('GET /api/v1/messages', () => {
       .then((res) => {
         expect(res.body).toHaveLength(2)
         expect(res.body[1].message).toBe('Howdy')
+      })
+  })
+})
+
+describe('GET /api/v1/messages/name/:userName', () => {
+  it('returns all messages that mention the name', () => {
+    return request(server)
+      .get('/api/v1/messages/name')
+      .then((res) => {
+        expect(res.body).toHaveLength(2)
+        expect(res.body[0].message).toBe('Hey Billy')
       })
   })
 })
