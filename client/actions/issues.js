@@ -11,8 +11,12 @@ export function setIssues(issues) {
 
 export function fetchIssues() {
   return (dispatch) => {
-    return getIssues().then((issues) => {
-      dispatch(setIssues(issues))
-    })
+    return getIssues()
+      .then((issues) => {
+        dispatch(setIssues(issues))
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
   }
 }
