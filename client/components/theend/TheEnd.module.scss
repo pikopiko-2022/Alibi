@@ -1,7 +1,7 @@
 .slideContainer {
   height: 100%;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
 }
 
 .slideTitle {
@@ -15,6 +15,9 @@
   font-size: 14px;
   background-color: white;
   color: black;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 25px;
 }
 
 .slideshowContainer {

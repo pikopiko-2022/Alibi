@@ -12,8 +12,10 @@ const Complaint = ({ complaint }) => {
   const issue = issues.find((issue) => issue.id === complaint?.issue_id)
   return (
     <div>
-      <div>{`${complainant?.name} had an issue with this!`}</div>
-      <div>{`${issue?.name}`}</div>
+      <div className={styles.complaintText}>
+        <div>{`${complainant?.name} had an issue with this!`}</div>
+        <div className={styles.complaintIssue}>{`${issue?.name}`}</div>
+      </div>
       <div className={styles.complaintImageContainer}>
         <img
           className={styles.complaintImage}
