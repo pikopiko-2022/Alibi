@@ -34,7 +34,9 @@ function Nav() {
       ) : (
         <div className={styles.navContainer}>
           <div>
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <h1>Alibi</h1>
+            </Link>
           </div>
 
           <div>
