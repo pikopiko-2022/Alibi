@@ -30,7 +30,6 @@ describe('getAnswers', () => {
     return getAnswers(1, testCon).then((data) => {
       expect(data).toHaveLength(4)
       expect(data[0].answer).toContain('10 minutes')
-      console.log(data[1])
       expect(data[1].question_id).not.toBe(2)
     })
   })
