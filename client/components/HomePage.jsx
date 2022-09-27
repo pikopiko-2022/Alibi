@@ -13,11 +13,12 @@ const HomePage = () => {
   const dispatch = useDispatch()
   const token = useSelector((state) => state.user?.token)
   useEffect(() => {
-    console.log('getting data', token)
-    dispatch(fetchIssues())
-    dispatch(fetchMessages(token))
-    dispatch(fetchQuestions(token))
-    dispatch(fetchLifeG(token))
+    if (token) {
+      dispatch(fetchIssues())
+      dispatch(fetchMessages(token))
+      dispatch(fetchQuestions(token))
+      dispatch(fetchLifeG(token))
+    }
   }, [token])
   return (
     <div className={styles.layout}>

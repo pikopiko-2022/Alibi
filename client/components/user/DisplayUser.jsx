@@ -6,7 +6,6 @@ import LoadingSpinner from '../widgets/LoadingSpinner'
 
 const DisplayUser = () => {
   const user = useSelector((state) => state.user)
-  console.log(user)
 
   return (
     <div className={styles.displayUserContainer}>
