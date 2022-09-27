@@ -1,5 +1,6 @@
 import React from 'react'
 import { Slideshow, SlideshowItem } from './Slideshow'
+import MostAlibis from '../components/theend/MostAlibis'
 
 const TheEnd = () => {
   return (
@@ -31,7 +32,7 @@ const TheEnd = () => {
               backgroundColor: 'green',
             }}
           >
-            Is the End
+            <MostAlibis />
           </div>
         </SlideshowItem>
       </Slideshow>

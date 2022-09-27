@@ -13,7 +13,16 @@ function getAnswersForQuestions(questions, db = connection) {
   return db('answers').select().whereIn('question_id', ids)
 }
 
-module.exports = { getAnswers, getAllAnswers, getAnswersForQuestions }
+function getAlibiAnswers(db = connection) {
+  return db('answers').select().where('is_alibi', 1)
+}
+
+module.exports = {
+  getAnswers,
+  getAllAnswers,
+  getAnswersForQuestions,
+  getAlibiAnswers,
+}
 
 //get questions - all questions
 //get answers - all answers

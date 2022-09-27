@@ -10,3 +10,12 @@ export function getflatmatesApi(token) {
       return res.body
     })
 }
+
+export function getAlibiFlatmate(token) {
+  return request
+    .get(`${rootUrl}/alibi`)
+    .set('Authorization', `Bearer ${token}`)
+    .then((res) => {
+      return res.body
+    })
+}
