@@ -86,7 +86,6 @@ describe('GET /api/v1/messages', () => {
 
 const messageId = 1
 const answerId = 1
-
 //addAnswerToMessage
 describe('PUT /api/v1/messages/:id', () => {
   it('adds answer to message based on id', () => {
