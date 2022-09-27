@@ -33,7 +33,7 @@ const WorstFlatmate = () => {
         <h2>{badUser.name}</h2>
       </div>
       <div>
-        <p>Offender rating: {badUser.rating}</p>
+        <p>Rating: {badUser.rating}</p>
       </div>
       <div>
         <ul>

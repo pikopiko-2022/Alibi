@@ -1,6 +1,7 @@
 import React from 'react'
 import { Slideshow, SlideshowItem } from './Slideshow'
 import WorstFlatmate from './theend/WorstFlatmate'
+import FlatFun from './theend/FlatFun'
 
 const TheEnd = () => {
   return (
@@ -21,7 +22,7 @@ const TheEnd = () => {
           <div
             style={{ width: '600px', height: '600px', backgroundColor: 'blue' }}
           >
-            This
+            <FlatFun />
           </div>
         </SlideshowItem>
         <SlideshowItem name={3}>
