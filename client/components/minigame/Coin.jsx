@@ -6,7 +6,9 @@ const Coin = ({ coin }) => {
     <div
       className={styles.minigameCoin}
       style={{ top: `${coin?.top}px`, left: `${coin?.left}px` }}
-    />
+    >
+      $
+    </div>
   )
 }
 

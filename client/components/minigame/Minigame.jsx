@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 // eslint-disable-next-line import/no-named-as-default
@@ -25,6 +25,9 @@ const Minigame = () => {
   const [time, setTime] = useState(0)
   const [moving, setMoving] = useState(null)
   const speed = 9
+
+  const dropCoinSound = useMemo(() => new Audio('/assets/coin-drop.wav'), [])
+  const getCoinSound = useMemo(() => new Audio('/assets/treasure-coin.wav'), [])
 
   let socket = useRef(null)
 
@@ -58,6 +61,7 @@ const Minigame = () => {
   }, [player.top, player.left])
 
   const handleCollectCoin = (coinId) => {
+    getCoinSound.play()
     setPlayer((player) => ({ ...player, debt: player.debt + 1 }))
     setCoins((coins) => coins.filter((coin) => coinId !== coin.id))
     socket.current.emit('coin collected', { coinId })
@@ -80,6 +84,7 @@ const Minigame = () => {
   }
 
   const handleAddCoin = (coin) => {
+    dropCoinSound.play()
     setCoins((coins) => [...coins, coin])
   }
 
