@@ -36,4 +36,8 @@ app.use('/api/v1/flat', flatRoutes)
 app.use('/api/v1/complaints', complaintsRoutes)
 app.use('/api/v1/messages', messagesRoutes)
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('server/public/index.html'))
+})
+
 module.exports = server
