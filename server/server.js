@@ -18,6 +18,15 @@ const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
 
+io.on('connection', (socket) => {
+  socket.on('update player', ({ player }) =>
+    socket.broadcast.emit('update player', { player })
+  )
+  socket.on('new player arrived', () =>
+    socket.broadcast.emit('new player arrived')
+  )
+})
+
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use((req, res, next) => {
@@ -35,5 +44,9 @@ app.use('/api/v1/answers', answersRoutes)
 app.use('/api/v1/flat', flatRoutes)
 app.use('/api/v1/complaints', complaintsRoutes)
 app.use('/api/v1/messages', messagesRoutes)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('server/public/index.html'))
+})
 
 module.exports = server
