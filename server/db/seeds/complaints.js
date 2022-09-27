@@ -25,5 +25,14 @@ exports.seed = async function (knex) {
       culprit_id: null,
       resolved: 0,
     },
+    {
+      id: 3,
+      issue_id: 3,
+      image: `https://media.istockphoto.com/photos/leaking-pipe-picture-id466029458?k=20&m=466029458&s=612x612&w=0&h=08ri3BXMAnjn2efmiRzBGSYVj9Az5AzAdf-RYDYKL14=`,
+      complaint_raised_by: 1,
+      date_raised: new Date(Date.now()),
+      culprit_id: 2,
+      resolved: 0,
+    },
   ])
 }
