@@ -41,6 +41,18 @@ describe('GET /api/v1/user', () => {
         expect(res.body.name).toBe('Fred')
       })
   })
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    getUser.mockImplementation(() =>
+      Promise.reject(new Error('Something went wrong'))
+    )
+    return request(server)
+      .get('/api/v1/user')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Something went wrong')
+      })
+  })
 })
 
 describe('PUT /api/v1/user', () => {
@@ -76,6 +88,18 @@ describe('POST /api/v1/user', () => {
         expect(res.body).toBe(3)
         expect(emit).toHaveBeenCalledTimes(1)
         expect(emit).toHaveBeenCalledWith('users updated')
+      })
+  })
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    userExists.mockImplementation(() =>
+      Promise.reject(new Error('Something went wrong'))
+    )
+    return request(server)
+      .get('/api/v1/user')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Something went wrong')
       })
   })
 })
