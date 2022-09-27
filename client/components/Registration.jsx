@@ -6,7 +6,7 @@ import { getRandomNumber } from '../apis/messagesApi'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
 import videoBg from '../../server/public/assets/videoBG.mp4'
-import styles from './Create.module.scss'
+import styles from './Registration.module.scss'
 
 function Register() {
   const user = useSelector((state) => state.user)
