@@ -44,10 +44,23 @@ describe('addComplaint', () => {
         )
       })
   })
+})
+
+describe('getCurrentComplaints', () => {
   it('get unressolved complaints', () => {
-    expect.assertions(0)
-    return getCurrentComplaints(1, testCon).then((complaints) =>
-      console.log(complaints)
-    )
+    return getCurrentComplaints(1, testCon).then((complaints) => {
+      expect(complaints[0]).toHaveProperty('culprit_id', null)
+      expect(complaints[0]).not.toHaveProperty('complaint_raised_by', 1)
+    })
+  })
+})
+
+describe('updateCulpritDb', () => {
+  it('updates culprit_id', () => {
+    return updateCulpritDb(1, 2, testCon)
+      .then(() => testCon('complaints').select())
+      .then((complaints) => {
+        expect(complaints[0]).toHaveProperty('culprit_id', 2)
+      })
   })
 })
