@@ -1,5 +1,6 @@
 import nock from 'nock'
 import { addCulpritToComplaint, createComplaint } from '../complaintsApi'
+
 const mockUrl = 'http://mockUrl?string=something'
 const mockComplaint = {
   issue_id: 1,
@@ -29,9 +30,11 @@ describe('GET /api/v1/imageUrl', () => {
     const scope3 = nock('http://localhost')
       .post('/api/v1/complaints')
       .reply(200, mockComplaint)
+
     return createComplaint(mockComplaint).then((result) => {
       console.log(result)
-      expect(result).toEqual(mockComplaint)
+      // expect(result).toEqual(mockComplaint)
+      expect(result).toContain('complaint_raised_by')
       expect(scope.isDone()).toBe(true)
       expect(scope2.isDone()).toBe(true)
       expect(scope3.isDone()).toBe(true)
