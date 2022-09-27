@@ -16,6 +16,7 @@ import { getUser } from '../apis/userApi'
 import { IfAuthenticated } from './widgets/Authenticated'
 import WorstFlatmate from './theend/WorstFlatmate'
 import FlatFun from './theend/FlatFun'
+import MostComplaints from './theend/MostComplaints'
 
 function App() {
   useCacheUser()
@@ -56,6 +57,7 @@ function App() {
             <Route path="/theend" element={<TheEnd />} />
             <Route path="/worstflatmate" element={<WorstFlatmate />} />
             <Route path="/flatfun" element={<FlatFun />} />
+            <Route path="/mostcomplaints" element={<MostComplaints />} />
           </Routes>
         </IfAuthenticated>
       </div>

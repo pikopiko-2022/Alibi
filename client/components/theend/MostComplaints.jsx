@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { fetchComplaints } from '../../actions/complaints'
+import { fetchComplaintCount } from '../../actions/complaints'
 import { useSelector, useDispatch } from 'react-redux'
 import Avatar from '../widgets/Avatar'
 
 const MostComplaints = () => {
   const dispatch = useDispatch()
-  const flatmates = useSelector((state) => state.flatmates)
   const complaints = useSelector((state) => state.complaints)
   const token = useSelector((state) => state.user?.token)
-  const [randomMate, updateRandomMate] = useState({})
+  const [whinger, updateWhinger] = useState([])
 
   useEffect(() => {
-    dispatch(fetchComplaints())
-    // get all complaints
-    // select complaint by complaint_raised_by and add to idcount
-    // compare idcounts and select the highest
-    // get complaint_raised_by from idcounts
-    // get users based on complaint raised by
+    dispatch(fetchComplaintCount(token))
+    updateWhinger(complaints[0])
   }, [])
-
+  console.log(complaints)
   return (
     <div>
-      <blockquote>
-        <h1>Flatting is Fun!</h1>
-        <cite>-{randomMate.name}</cite>
-      </blockquote>
+      <h1>Whiniest Flatmate</h1>
+      <div>-{whinger.name}</div>
       <div>
-        <Avatar seedData={randomMate.img_seed} size={300} />
+        <Avatar seedData={whinger.img_seed} size={300} />
       </div>
+      <h1>Number Of Complaints</h1>
+      <div>{whinger.count}</div>
     </div>
   )
 }

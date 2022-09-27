@@ -38,3 +38,9 @@ export function getAllComplaints() {
     return res.body
   })
 }
+
+export function getComplaintCount() {
+  return request.get(`${rootUrl}/complaints/count`).then((res) => {
+    return res.body
+  })
+}

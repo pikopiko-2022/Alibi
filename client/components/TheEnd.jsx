@@ -2,6 +2,7 @@ import React from 'react'
 import { Slideshow, SlideshowItem } from './Slideshow'
 import WorstFlatmate from './theend/WorstFlatmate'
 import FlatFun from './theend/FlatFun'
+import MostComplaints from './theend/MostComplaints'
 
 const TheEnd = () => {
   return (
@@ -33,7 +34,7 @@ const TheEnd = () => {
               backgroundColor: 'green',
             }}
           >
-            Is the End
+            <MostComplaints />
           </div>
         </SlideshowItem>
       </Slideshow>
