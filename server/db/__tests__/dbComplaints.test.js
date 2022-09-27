@@ -64,3 +64,13 @@ describe('updateCulpritDb', () => {
       })
   })
 })
+
+describe('getComplaintsForUser', () => {
+  it('get all complaints where culprit is same', () => {
+    return getComplaintsForUser(1, testCon)
+      .then(() => testCon('complaints').select())
+      .then((complaints) => {
+        expect(complaints[0]).toHaveProperty('culprit_id', 1)
+      })
+  })
+})
