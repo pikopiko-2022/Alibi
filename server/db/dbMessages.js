@@ -12,6 +12,10 @@ function getMessages(userId, db = connection) {
   )
 }
 
+function getMessagesByName(userName, db = connection) {
+  return db('messages').select().whereILike('message', `%${userName}%`)
+}
+
 function addMessage(message, db = connection) {
   return db('messages').insert(message)
 }
@@ -20,4 +24,4 @@ function updateMessage(messageId, update, db = connection) {
   return db('messages').where('id', messageId).update(update)
 }
 
-module.exports = { getMessages, addMessage, updateMessage }
+module.exports = { getMessages, addMessage, updateMessage, getMessagesByName }

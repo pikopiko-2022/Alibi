@@ -17,6 +17,18 @@ router.get('/', checkJwt, (req, res) => {
     })
 })
 
+router.get('/name/:userName', checkJwt, (req, res) => {
+  const userName = req.params.userName
+  db.getMessagesByName(userName)
+    .then((messages) => {
+      res.json(messages)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.post('/', checkJwt, (req, res) => {
   const message = req.body
   db.addMessage(message)
