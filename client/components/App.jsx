@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { useCacheUser } from '../auth0-utils'
@@ -12,6 +12,11 @@ import Waiting from './Waiting'
 import TheEnd from './theend/TheEnd'
 import ErrorPage from './ErrorPage'
 
+import { fetchMessages } from '../actions/messages'
+import { fetchQuestions } from '../actions/questions'
+import { fetchLifeG } from '../actions/lifeG'
+import { fetchIssues } from '../actions/issues'
+
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
 import { IfAuthenticated } from './widgets/Authenticated'
@@ -21,6 +26,16 @@ function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const token = useSelector((state) => state.user?.token)
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchIssues())
+      dispatch(fetchMessages(token))
+      dispatch(fetchQuestions(token))
+      dispatch(fetchLifeG(token))
+    }
+  }, [token])
 
   useEffect(() => {
     if (!isAuthenticated) {
