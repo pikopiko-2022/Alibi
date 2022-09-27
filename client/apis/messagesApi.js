@@ -147,9 +147,9 @@ function sendLifeGAsMessage(message, token) {
     .catch((err) => console.error(err.message))
 }
 
-export function getWhosBeenTalking(userName, token) {
+export function getWhosBeenTalking(token) {
   return request
-    .get(`${rootUrl}/messages/name/${userName}`)
+    .get(`${rootUrl}/messages/name`)
     .set('authorization', `Bearer ${token}`)
     .then((res) => {
       return res.body
