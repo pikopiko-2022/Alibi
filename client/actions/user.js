@@ -1,4 +1,4 @@
-import { getUser, addUserScore } from '../apis/userApi'
+import { getUser, addUserScore, addUserEnough } from '../apis/userApi'
 
 export const UPDATE_LOGGED_IN_USER = 'UPDATE_LOGGED_IN_USER'
 export const CLEAR_LOGGED_IN_USER = 'CLEAR_LOGGED_IN_USER'
@@ -27,6 +27,15 @@ export function fetchUser(token) {
 export function updateUserScore(score, token) {
   return (dispatch) => {
     return addUserScore(score, token)
+      .then(() => getUser(token))
+      .then((user) => dispatch(updateLoggedInUser(user)))
+      .catch((err) => console.error(err.message))
+  }
+}
+
+export function updateUserEnough(token) {
+  return (dispatch) => {
+    return addUserEnough(token)
       .then(() => getUser(token))
       .then((user) => dispatch(updateLoggedInUser(user)))
       .catch((err) => console.error(err.message))

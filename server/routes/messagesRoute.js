@@ -18,11 +18,10 @@ router.get('/', checkJwt, (req, res) => {
 })
 
 router.post('/', checkJwt, (req, res) => {
-  const auth0_id = req.user?.sub
   const message = req.body
-  getUserIdByAuth0Id(auth0_id)
-    .then(({ userId }) => db.addMessage({ ...message, recipient_id: userId }))
+  db.addMessage(message)
     .then((newMessage) => {
+      message.sender_id && req.io.emit('update messages')
       res.json(newMessage)
       return null
     })

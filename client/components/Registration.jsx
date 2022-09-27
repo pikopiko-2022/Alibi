@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Avatar from './Avatar'
+import Avatar from './widgets/Avatar'
 import { getRandomNumber } from '../apis/messagesApi'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
@@ -33,7 +33,7 @@ function Register() {
     evt.preventDefault()
     const userInfo = {
       auth0Id: user.auth0Id,
-      img_url: seedData,
+      img_seed: seedData,
       ...form,
     }
     newUser(userInfo, user.token)

@@ -9,8 +9,9 @@ exports.up = function (knex) {
     table.integer('flat_id')
     table.string('name')
     table.string('description')
-    table.string('img_url')
+    table.string('img_seed')
     table.integer('rating').defaultTo(0)
+    table.boolean('had_enough').defaultTo(false)
   })
 }
 

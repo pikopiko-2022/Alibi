@@ -10,13 +10,7 @@ const mockUser = {
   description: 'Test',
 }
 
-const emptyUser = {
-  auth0Id: '',
-  username: '',
-  flat_Id: '',
-  img_url: '',
-  description: '',
-}
+const emptyUser = {}
 
 describe('user reducer', () => {
   it('returns user payload for the type UPDATE_LOGGED_IN_USER', () => {

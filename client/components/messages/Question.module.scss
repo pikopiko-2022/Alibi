@@ -62,3 +62,14 @@
 .questionAnswer:hover {
   background-color: #54a8fb;
 }
+
+.questionAnswerSelected {
+  font-style: italic;
+  padding: 12px;
+  background-color: palevioletred;
+}
+
+.questionAnswerDisabled {
+  font-style: italic;
+  padding: 12px;
+}
