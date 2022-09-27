@@ -55,9 +55,9 @@ describe('newUser', () => {
 
     return newUser(mockUser).then((result) => {
       expect(scope.isDone()).toBe(true)
-      expect(result.body.name).toBe('James')
-      expect(result.body.had_enough).toBe(false)
-      expect(result.body.description).toBe('irate')
+      expect(result.name).toBe('James')
+      expect(result.had_enough).toBe(false)
+      expect(result.description).toBe('irate')
     })
   })
 
