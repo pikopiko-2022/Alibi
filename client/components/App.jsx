@@ -10,6 +10,7 @@ import HomePage from './HomePage'
 import Register from './Registration'
 import Waiting from './Waiting'
 import TheEnd from './TheEnd'
+// import ErrorPage from './ErrorPage'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
