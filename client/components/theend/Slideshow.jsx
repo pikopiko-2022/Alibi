@@ -5,6 +5,7 @@ import React, {
   useEffect,
   createContext,
 } from 'react'
+import styles from './TheEnd.module.scss'
 
 // Sourced from
 // https://dev.to/anxiny/create-a-slideshow-with-react-1pb1
@@ -34,16 +35,7 @@ export function Slideshow({ children }) {
 
   return (
     <SlideshowContext.Provider value={[context, setContext]}>
-      <div
-        style={{
-          height: '600px',
-          width: '600px',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {children}
-      </div>
+      <div className={styles.slideshow}>{children}</div>
     </SlideshowContext.Provider>
   )
 }
@@ -94,10 +86,8 @@ export function SlideshowItem({ name, children }) {
 
   return (
     <div
+      className={styles.slideshowItem}
       style={{
-        transition: '0.5s',
-        position: 'absolute',
-        top: 0,
         left: left,
         zIndex: zIndex,
       }}

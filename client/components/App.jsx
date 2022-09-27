@@ -9,7 +9,7 @@ import Complaint from './complaints/Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
 import Waiting from './Waiting'
-import TheEnd from './TheEnd'
+import TheEnd from './theend/TheEnd'
 import ErrorPage from './ErrorPage'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
