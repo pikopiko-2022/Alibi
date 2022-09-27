@@ -32,3 +32,9 @@ export function addCulpritToComplaint(complaintId, token) {
     .put(`${rootUrl}/complaints/${complaintId}`)
     .set('authorization', `Bearer ${token}`)
 }
+
+export function getAllComplaints() {
+  return request.get(`${rootUrl}/complaints/all`).then((res) => {
+    return res.body
+  })
+}
