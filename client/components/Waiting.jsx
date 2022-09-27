@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { fetchFlatmates } from '../actions/flatmates'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
+import Minigame from './minigame/Minigame'
 
 const Waiting = () => {
   const flatmates = useSelector((state) => state.flatmates)
@@ -29,15 +30,18 @@ const Waiting = () => {
   }
 
   useEffect(() => {
-    if (nuclear()) navigate('/theend')
+    if (nuclear()) {
+      navigate('/theend')
+    } else return null
   }, [flatmates])
 
-  setTimeout(() => navigate('/theend'), 2000)
+  // setTimeout(() => navigate('/theend'), 2000)
 
   return (
     <>
       <div>Your Flatmates Still Like You.......</div>
       <div>Please Wait</div>
+      <Minigame />
     </>
   )
 }

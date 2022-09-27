@@ -5,8 +5,14 @@ function addComplaint(complaint, db = connection) {
 }
 
 function getCurrentComplaints(userId, db = connection) {
-  return db('complaints').select().where({ culprit_id: null })
-  // .whereNot({ complaint_raised_by: userId })
+  return db('complaints')
+    .select()
+    .where({ culprit_id: null })
+    .whereNot({ complaint_raised_by: userId })
+}
+
+function getComplaintsForUser(userId, db = connection) {
+  return db('complaints').select().where({ culprit_id: userId })
 }
 
 function getAllComplaints(db = connection) {
@@ -35,4 +41,5 @@ module.exports = {
   getCurrentComplaints,
   getAllComplaints,
   getHighestComplainant,
+  getComplaintsForUser,
 }

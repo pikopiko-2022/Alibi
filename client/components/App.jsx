@@ -9,7 +9,8 @@ import Complaint from './complaints/Complaint'
 import HomePage from './HomePage'
 import Register from './Registration'
 import Waiting from './Waiting'
-import TheEnd from './TheEnd'
+import TheEnd from './theend/TheEnd'
+import ErrorPage from './ErrorPage'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
@@ -42,11 +43,10 @@ function App() {
   return (
     <>
       <div className="app">
-        <img
+        {/* <img
           src="https://static.miraheze.org/closinglogosgroupwiki/a/ab/Alibi14.jpeg"
           alt="logo"
-        />
-        <h1>Alibi</h1>
+        /> */}
         <Nav />
         <IfAuthenticated>
           <Routes>
@@ -58,6 +58,7 @@ function App() {
             <Route path="/worstflatmate" element={<WorstFlatmate />} />
             <Route path="/flatfun" element={<FlatFun />} />
             <Route path="/mostcomplaints" element={<MostComplaints />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </IfAuthenticated>
       </div>

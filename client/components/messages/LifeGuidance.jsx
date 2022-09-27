@@ -11,9 +11,9 @@ function LifeGuidance({ message }) {
   return (
     <div className={styles.messageContainer}>
       <MessageDate message={message} />
-      <div className={styles.messageMessage}>{lifeGuidance.message}</div>
+      <div className={styles.messageMessage}>{lifeGuidance?.message}</div>
       <a
-        href={lifeGuidance.url}
+        href={lifeGuidance?.url}
         target="_blank"
         rel="noreferrer"
         className={styles.messageUrl}

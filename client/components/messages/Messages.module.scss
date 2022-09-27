@@ -1,18 +1,24 @@
 .messagesContainer {
-  flex: 0 1 40%;
+  flex: 0 1 45%;
   background-color: whitesmoke;
   // min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 20px 15px;
+  max-height: calc(100vh - 100px);
 }
 
 .messagesScrollContainer {
-  // height: 100%;
-  // overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  flex-grow: 1;
+  // justify-content: flex-end;
+  // flex-grow: 1;
+  height: calc(100vh - 150px);
+  overflow-y: scroll;
+  padding: 0px 10px;
+}
+
+.messagesScrollContainer > :first-child {
+  margin-top: auto !important;
 }

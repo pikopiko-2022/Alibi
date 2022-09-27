@@ -29,6 +29,7 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
+<<<<<<< HEAD
 router.get('/all', (req, res) => {
   db.getAllComplaints()
     .then((complaints) => {
@@ -42,6 +43,12 @@ router.get('/all', (req, res) => {
 
 router.get('/count', (req, res) => {
   db.getHighestComplainant()
+=======
+router.get('/culprit', checkJwt, (req, res) => {
+  const auth0_id = req.user?.sub
+  getUserIdByAuth0Id(auth0_id)
+    .then(({ userId }) => db.getComplaintsForUser(userId))
+>>>>>>> fd80e54fdec8b0e8e746859fdc0b7a629e822590
     .then((complaints) => {
       res.json(complaints)
       return null

@@ -37,7 +37,9 @@ function Register() {
       ...form,
     }
     newUser(userInfo, user.token)
-      .then(() => dispatch(updateLoggedInUser(userInfo)))
+      .then((id) => {
+        dispatch(updateLoggedInUser({ ...userInfo, id }))
+      })
       .catch((err) => setErrorMsg(err.message))
     navigate('/')
   }

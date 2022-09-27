@@ -1,6 +1,11 @@
 const config = require('../knexfile')
 const knex = require('knex')
-const { getMessages, addMessage, updateMessage } = require('../dbMessages')
+const {
+  getMessages,
+  addMessage,
+  updateMessage,
+  getMessagesByName,
+} = require('../dbMessages')
 const testCon = knex(config.test)
 
 beforeAll(() => testCon.migrate.latest())
@@ -22,6 +27,15 @@ describe('getMessages', () => {
             message.recipient_id === null
         )
       ).toHaveLength(4)
+    })
+  })
+})
+
+describe('getMessageByName', () => {
+  it('gets a list of messages that mention the user name, excluding messages the user has already seen', () => {
+    return getMessagesByName('Billy', 1, testCon).then((messages) => {
+      expect(messages).toHaveLength(1)
+      expect(messages[0]?.message).toContain('Billy')
     })
   })
 })
