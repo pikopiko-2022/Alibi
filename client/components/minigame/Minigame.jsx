@@ -83,7 +83,7 @@ const Minigame = () => {
     const timer = setTimeout(() => {
       handleMove()
       setTime((time) => time + 1)
-    }, 100)
+    }, 50)
     return () => {
       clearTimeout(timer)
     }
@@ -99,6 +99,7 @@ const Minigame = () => {
       tabIndex={0}
     >
       <div>
+        <Money money={money} />
         <Timer time={time} />
         <div className={styles.minigameStage}>
           <Player player={player} />
