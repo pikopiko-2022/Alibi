@@ -9,10 +9,19 @@ function getCurrentComplaints(userId, db = connection) {
   // .whereNot({ complaint_raised_by: userId })
 }
 
+function getAllComplaints(db = connection) {
+  return db('answers').select()
+}
+
 function updateCulpritDb(complaintId, userId, db = connection) {
   return db('complaints')
     .where('id', Number(complaintId))
     .update({ culprit_id: userId })
 }
 
-module.exports = { addComplaint, updateCulpritDb, getCurrentComplaints }
+module.exports = {
+  addComplaint,
+  updateCulpritDb,
+  getCurrentComplaints,
+  getAllComplaints,
+}
