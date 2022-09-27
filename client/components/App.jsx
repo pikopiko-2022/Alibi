@@ -14,6 +14,7 @@ import TheEnd from './TheEnd'
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
 import { IfAuthenticated } from './widgets/Authenticated'
+import WorstFlatmate from './theend/WorstFlatmate'
 
 function App() {
   useCacheUser()
@@ -52,6 +53,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/waiting" element={<Waiting />} />
             <Route path="/theend" element={<TheEnd />} />
+            <Route path="/worstflatmate" element={<WorstFlatmate />} />
           </Routes>
         </IfAuthenticated>
       </div>

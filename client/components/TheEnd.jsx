@@ -1,5 +1,6 @@
 import React from 'react'
 import { Slideshow, SlideshowItem } from './Slideshow'
+import WorstFlatmate from './theend/WorstFlatmate'
 
 const TheEnd = () => {
   return (
@@ -13,7 +14,7 @@ const TheEnd = () => {
               backgroundColor: 'yellow',
             }}
           >
-            Hello
+            <WorstFlatmate />
           </div>
         </SlideshowItem>
         <SlideshowItem name={2}>

@@ -1,38 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { fetchFlatmates } from '../../actions/flatmates'
-import io from 'socket.io-client'
 import { useSelector, useDispatch } from 'react-redux'
 
 const WorstFlatmate = () => {
-  const socket = io()
   const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.flatmates)
   const token = useSelector((state) => state.user?.token)
-  const badUser = ([badUser, updateBadUser] = useState({}))
+  const [badUser, updateBadUser] = useState({})
 
   useEffect(() => {
     dispatch(fetchFlatmates(token))
-    socket.on('users updated', () => {
-      dispatch(fetchFlatmates(token))
-    })
-  }, [])
-
-  const findWorst = () => {
-    let mateA = 0
+    let mateA = null
     let mateB = 0
-    let badUser = {}
     flatmates.forEach((element) => {
       mateB = element.rating
-      if (mateB > mateA) {
+      if (mateB < mateA) {
         mateA = mateB
       }
     })
     flatmates.forEach((element) => {
       if ((element.rating = mateA)) {
-        badUser = element
+        updateBadUser(element)
+        //nothing if they have the same rating
       }
     })
-  }
+  }, [])
 
   return (
     <>
@@ -47,11 +39,13 @@ const WorstFlatmate = () => {
         <ul>
           <li>Other Users</li>
           {flatmates.map((item) => {
-            if (item.id != badUser.id) {
-              ;<li>
-                {item.name}: {item.rating}
-              </li>
-            }
+            return (
+              item.id != badUser.id && (
+                <li>
+                  name: {item.name} rating: {item.rating}
+                </li>
+              )
+            )
           })}
         </ul>
       </div>
@@ -60,5 +54,3 @@ const WorstFlatmate = () => {
 }
 
 export default WorstFlatmate
-
-//[{id:, rating:}, {id:, rating:}]
