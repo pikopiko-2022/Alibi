@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { fetchFlatmates } from '../actions/flatmates'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
+import Minigame from './minigame/Minigame'
 
 const Waiting = () => {
   const flatmates = useSelector((state) => state.flatmates)
@@ -38,6 +39,7 @@ const Waiting = () => {
     <>
       <div>Your Flatmates Still Like You.......</div>
       <div>Please Wait</div>
+      <Minigame />
     </>
   )
 }
