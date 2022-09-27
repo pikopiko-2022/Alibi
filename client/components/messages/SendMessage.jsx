@@ -7,6 +7,7 @@ const SendMessage = () => {
   const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.flatmates)
   const user = useSelector((state) => state.user)
+  const token = useSelector((state) => state.user?.token)
   const [message, setMessage] = useState('')
   const [recipient, setRecipient] = useState('')
   const handleSubmit = (event) => {
@@ -18,7 +19,7 @@ const SendMessage = () => {
           sender_id: user.id,
           recipient_id: recipient === '' ? null : recipient,
         },
-        user.token
+        token
       )
     )
     setMessage('')

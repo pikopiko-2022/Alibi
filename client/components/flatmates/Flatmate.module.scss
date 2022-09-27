@@ -4,7 +4,7 @@
 }
 
 .flatmateContainer:hover {
-  background-color: rgb(93, 141, 159);
+  background-color: #da5161;
 }
 
 .flatmateDetailsContainer {
@@ -19,7 +19,7 @@
 
 .flatmateName {
   font-weight: bold;
-  font-size: 18;
+  font-size: 18px;
 }
 
 .flatmateDescription {
@@ -29,4 +29,9 @@
 .flatmateRating {
   color: maroon;
   font-size: 18;
+}
+
+.flatmateEnough {
+  color: red;
+  font-size: 18px;
 }

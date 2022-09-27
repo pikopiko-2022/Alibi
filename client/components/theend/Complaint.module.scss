@@ -1,0 +1,22 @@
+.complaintImageContainer {
+}
+
+.complaintText {
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 25px;
+}
+
+.complaintIssue {
+  font-style: italic;
+}
+
+.complaintImage {
+  object-fit: cover;
+  width: 350px;
+  height: 350px;
+  border-radius: 25px;
+}
