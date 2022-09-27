@@ -5,6 +5,7 @@ import Avatar from './widgets/Avatar'
 import { getRandomNumber } from '../apis/messagesApi'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
+import styles from './Registration.module.scss'
 // import videoBg from '../../server/public/assets/videoBG.mp4'
 
 function Register() {
@@ -49,10 +50,13 @@ function Register() {
   }
 
   return (
-    <>
+    <div className={styles.registrationPage}>
+      <h1>ALIBI</h1>
       {/* <video src={videoBg} autoPlay loop muted /> */}
       <Avatar seedData={seedData} />
-
+      <button onClick={() => setSeedData(getRandomNumber(1, 10000))}>
+        Refresh Avatar
+      </button>
       <h2>Complete profile set up</h2>
       {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
       <form onSubmit={handleSubmit}>
@@ -84,10 +88,7 @@ function Register() {
           Save Profile
         </button>
       </form>
-      <button onClick={() => setSeedData(getRandomNumber(1, 10000))}>
-        Refresh Avatar
-      </button>
-    </>
+    </div>
   )
 }
 

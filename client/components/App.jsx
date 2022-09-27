@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Routes, Route } from 'react-router-dom'
 
 import { useAuth0 } from '@auth0/auth0-react'
@@ -16,12 +16,14 @@ import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
 import { IfAuthenticated, IfNotAuthenticated } from './widgets/Authenticated'
 import SignIn from './SignIn'
+import LoadingSpinner from './widgets/LoadingSpinner'
 
 function App() {
   useCacheUser()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const user = useSelector((state) => state.user)
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -30,9 +32,12 @@ function App() {
       getAccessTokenSilently()
         .then((token) => getUser(token))
         .then((userInDb) => {
-          userInDb
-            ? dispatch(updateLoggedInUser(userInDb))
-            : navigate('/register')
+          if (userInDb) {
+            dispatch(updateLoggedInUser(userInDb))
+            navigate('/home')
+          } else {
+            navigate('/register')
+          }
         })
         .catch((err) => console.error(err))
     }
@@ -41,12 +46,8 @@ function App() {
   return (
     <>
       <div className="app">
-        {/* <img
-          src="https://static.miraheze.org/closinglogosgroupwiki/a/ab/Alibi14.jpeg"
-          alt="logo"
-        /> */}
         <IfAuthenticated>
-          <Nav />
+          {user?.id && <Nav />}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/complaint" element={<Complaint />} />
