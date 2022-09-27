@@ -8,7 +8,7 @@ const Player = ({ player }) => {
       className={styles.minigamePlayer}
       style={{ top: `${player?.top}px`, left: `${player?.left}px` }}
     >
-      <Avatar seedData={player?.img_url} size={50} />
+      <Avatar seedData={player?.img_seed} size={50} />
     </div>
   )
 }

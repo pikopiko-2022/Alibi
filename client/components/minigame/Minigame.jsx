@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
+import { v4 as uuid } from 'uuid'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
 import { getRandomNumber } from '../../apis/messagesApi'
@@ -25,52 +26,73 @@ const Minigame = () => {
   const [moving, setMoving] = useState(null)
   const speed = 9
 
-  const createNewCoin = () => {
-    setCoins((coins) => [
-      ...coins,
-      {
-        id: `${user?.id}-${coinTicker}`,
-        top: getRandomNumber(0, height),
-        left: getRandomNumber(0, width),
-      },
-    ])
-    setCoinTicker((coinTicker) => coinTicker + 1)
-  }
-
   let socket = useRef(null)
 
   useEffect(() => {
     socket.current = io()
-    socket.current.emit('new player arrived', { player, coins })
-    socket.current.on('update stage', ({ player, coins }) => {
-      console.log(player)
+    socket.current.emit('new player arrived', { player })
+    socket.current.on('update player', ({ player }) => {
       setPlayers({ ...players, [`${player.id}`]: player })
+    })
+    socket.current.on('update coins', ({ coins }) => {
       setCoins(coins)
     })
-    socket.current.on('new player arrived', () =>
-      socket.current.emit('update stage', { player, coins })
-    )
+    socket.current.on('coin collected', ({ coinId }) => {
+      handleOtherPlayerCollectsCoin(coinId)
+    })
+    socket.current.on('coin added', ({ coin }) => {
+      handleAddCoin(coin)
+    })
     return () => socket.current.disconnect()
   }, [])
 
   useEffect(() => {
-    socket.current.emit('update stage', { player, coins })
+    socket.current.on('new player arrived', () => {
+      socket.current.emit('update player', { player })
+      socket.current.emit('update coins', { coins })
+    })
   }, [player.top, player.left, coins.length])
 
+  useEffect(() => {
+    socket.current.emit('update player', { player })
+  }, [player.top, player.left])
+
   const handleCollectCoin = (coinId) => {
+    setPlayer((player) => ({ ...player, debt: player.debt + 1 }))
+    setCoins((coins) => coins.filter((coin) => coinId !== coin.id))
+    socket.current.emit('coin collected', { coinId })
+  }
+
+  const handleOtherPlayerCollectsCoin = (coinId) => {
     setPlayer((player) => ({ ...player, debt: player.debt - 1 }))
     setCoins((coins) => coins.filter((coin) => coinId !== coin.id))
   }
 
+  const createNewCoin = () => {
+    const coin = {
+      id: uuid(),
+      top: getRandomNumber(0, height),
+      left: getRandomNumber(0, width),
+    }
+    handleAddCoin(coin)
+    socket.current.emit('coin added', { coin })
+    setCoinTicker((coinTicker) => coinTicker + 1)
+  }
+
+  const handleAddCoin = (coin) => {
+    setCoins((coins) => [...coins, coin])
+  }
+
   const checkCollisions = () => {
     let coinId = null
-    const radius = 20
+    const radius = 25
+    const playerOffset = 25
     coins.forEach((coin) => {
       if (
-        coin.top > player.top - radius &&
-        coin.top < player.top + radius &&
-        coin.left > player.left - radius &&
-        coin.left < player.left + radius
+        coin.top > player.top + playerOffset - radius &&
+        coin.top < player.top + playerOffset + radius &&
+        coin.left > player.left + playerOffset - radius &&
+        coin.left < player.left + playerOffset + radius
       ) {
         coinId = coin.id
       }
@@ -148,13 +170,13 @@ const Minigame = () => {
       <div>
         <Money money={player?.debt} />
         <div className={styles.minigameStage}>
-          <Player player={player} />
-          {Object.values(players)?.map((otherPlayer) => (
-            <Player key={otherPlayer?.id} player={otherPlayer} />
-          ))}
           {coins?.map((coin) => (
             <Coin key={coin.id} coin={coin} />
           ))}
+          {Object.values(players)?.map((otherPlayer) => (
+            <Player key={otherPlayer?.id} player={otherPlayer} />
+          ))}
+          <Player player={player} />
         </div>
       </div>
     </div>
