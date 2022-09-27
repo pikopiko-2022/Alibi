@@ -1,12 +1,13 @@
 import React from 'react'
-import Nav from './Nav'
 
 export default function ErrorPage() {
   return (
     <>
-      <Nav />
       <div>
         <h1>Page Not Found</h1>
+        <h1>
+          <strong> 404 </strong>
+        </h1>
         <br />
         <p>
           Our Apologies but this link is currently in development.
