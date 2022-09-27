@@ -2,18 +2,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
-  background-color: #053542;
-  color: #faefbe;
+  height: 150px;
+  background-color: #e8f3f1;
+  color: #791088;
 }
 
 .actionButton {
+  all: unset;
+  cursor: pointer;
   padding: 15px;
   border-radius: 15px;
   margin: 10px;
-  background-color: #faefbe;
+  background-color: #791088;
+  color: #e8f3f1;
+  text-decoration: none;
 }
 
 .actionButton:hover {
-  background-color: #f4f3ef;
+  background-color: hsl(293, 79%, 40%);
+}
+
+.signInPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

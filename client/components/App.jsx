@@ -14,7 +14,8 @@ import ErrorPage from './ErrorPage'
 
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
 import { getUser } from '../apis/userApi'
-import { IfAuthenticated } from './widgets/Authenticated'
+import { IfAuthenticated, IfNotAuthenticated } from './widgets/Authenticated'
+import SignIn from './SignIn'
 
 function App() {
   useCacheUser()
@@ -44,8 +45,8 @@ function App() {
           src="https://static.miraheze.org/closinglogosgroupwiki/a/ab/Alibi14.jpeg"
           alt="logo"
         /> */}
-        <Nav />
         <IfAuthenticated>
+          <Nav />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/complaint" element={<Complaint />} />
@@ -55,6 +56,9 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </IfAuthenticated>
+        <IfNotAuthenticated>
+          <SignIn />
+        </IfNotAuthenticated>
       </div>
     </>
   )
