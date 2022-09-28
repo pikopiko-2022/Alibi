@@ -19,7 +19,7 @@ exports.seed = async function (knex) {
     { id: 6, issue_id: 2, question: `What did you have for dinner?` },
     { id: 7, issue_id: 2, question: `Is that garlic I smell on your breath?` },
     // { id: 8, issue_id: 2, question: `Are you on a new diet?` },
-    { id: 9, issue_id: 2, question: `What's your favourite pot?` },
+    { id: 9, issue_id: 2, question: `Where's your favourite pot?` },
     {
       id: 10,
       issue_id: 3,

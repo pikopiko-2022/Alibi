@@ -113,7 +113,7 @@ exports.seed = async function (knex) {
     {
       id: 21,
       question_id: 9,
-      answer: 'The one in the sink',
+      answer: 'In the sink',
       is_bad: 1,
       is_alibi: 0,
     },
