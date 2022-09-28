@@ -20,27 +20,12 @@ const WorstFlatmate = () => {
           <h2 style={{ color: 'white', margin: '30px' }}>{badUser.name}</h2>
         </div>
         <div>
-          <p>Rating: {badUser.rating}</p>
+          <p style={{ color: 'white', margin: '30px' }}>
+            Rating: {badUser.rating}
+          </p>
         </div>
         <div>
           <Avatar seedData={badUser.img_seed} size={300} />
-        </div>
-        <div>
-          <ul>
-            <li>Other Users</li>
-            {flatmates.map((item) => {
-              return (
-                item.id != badUser.id && (
-                  <li>
-                    name: {item.name} rating: {item.rating}
-                    <div>
-                      <Avatar seedData={item.img_seed} size={150} />
-                    </div>
-                  </li>
-                )
-              )
-            })}
-          </ul>
         </div>
       </div>
     </>

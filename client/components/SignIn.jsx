@@ -15,7 +15,12 @@ const SignIn = () => {
       <div className={styles.signInContainer}>
         <h1>alī·b·ī</h1>
         <div className={styles.spacer} />
-        <Link to="/" className={styles.actionButton} onClick={handleSignIn}>
+        <Link
+          to="/"
+          style={{ marginBottom: 0 }}
+          className={styles.actionButton}
+          onClick={handleSignIn}
+        >
           Sign In
         </Link>
       </div>

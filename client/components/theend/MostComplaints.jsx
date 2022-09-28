@@ -20,14 +20,13 @@ const MostComplaints = () => {
       style={{ backgroundColor: '#E23468' }}
     >
       <h1 style={{ color: 'white', margin: '30px' }}>Whiniest Flatmate</h1>
-      <div>-{whinger.name}</div>
+      <div style={{ color: 'white', margin: '30px' }}>-{whinger.name}</div>
       <div>
         <Avatar seedData={whinger.img_seed} size={300} />
       </div>
       <div>
         <h2 style={{ color: 'white', margin: '30px' }}>
-          Number Of Complaints
-          {whinger.count}
+          Number Of Complaints: {whinger.count}
         </h2>
       </div>
     </div>
