@@ -41,4 +41,16 @@ describe('GET /api/v1/flatmates', () => {
         expect(res.body[1].name).toBe('Sally')
       })
   })
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    getFlatmates.mockImplementation(() =>
+      Promise.reject(new Error('Something went wrong'))
+    )
+    return request(server)
+      .get('/api/v1/flatmates')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Something went wrong')
+      })
+  })
 })

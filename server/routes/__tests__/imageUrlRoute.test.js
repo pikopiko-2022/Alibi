@@ -20,4 +20,16 @@ describe('GET /api/v1/imageUrl', () => {
         return null
       })
   })
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    getSignedPutUrl.mockImplementation(() =>
+      Promise.reject(new Error('Something went wrong'))
+    )
+    return request(server)
+      .get('/api/v1/imageUrl')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Something went wrong')
+      })
+  })
 })
