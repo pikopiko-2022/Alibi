@@ -6,12 +6,20 @@ import ComplaintsUserCulprit from './ComplaintsUserCulprit'
 import WhosBeenTalking from './WhosBeenTalking'
 import YourRanking from './YourRanking'
 import WorstFlatmate from './WorstFlatmate'
+import FlatFun from './FlatFun'
+import MostComplaints from './MostComplaints'
+import HateEveryone from './HateEveryone'
+import Milk from './Milk'
 
 const TheEnd = () => {
   const slides = [
-    <WorstFlatmate />,
+    <FlatFun />,
     <YourRanking />,
+    <MostComplaints />,
     <WhosBeenTalking />,
+    <HateEveryone />,
+    <WorstFlatmate />,
+    <Milk />,
     <ComplaintsUserCulprit />,
   ]
   return (

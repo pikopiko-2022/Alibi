@@ -3,7 +3,7 @@ import { fetchFlatmates } from '../../actions/flatmates'
 import { useSelector, useDispatch } from 'react-redux'
 import Avatar from '../widgets/Avatar'
 
-const FlatFun = () => {
+const Milk = () => {
   const dispatch = useDispatch()
   const flatmates = useSelector((state) => state.flatmates)
   const token = useSelector((state) => state.user?.token)
@@ -27,4 +27,4 @@ const FlatFun = () => {
   )
 }
 
-export default FlatFun
+export default Milk
