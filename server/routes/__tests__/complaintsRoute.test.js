@@ -48,24 +48,26 @@ getComplaintsForUser.mockReturnValue(
 updateCulpritDb.mockReturnValue(Promise.resolve(1, 1))
 
 getHighestComplainant.mockReturnValue(
-  Promise.resolve({
-    id: 1,
-    auth0_id: '1',
-    flat_id: 1,
-    name: 'Gertrude',
-    description: 'lazy and selfish',
-    img_seed: 'https://pbs.twimg.com/media/EVU8UYAUEAI-csw.jpg',
-    rating: 5,
-    had_enough: 0,
-    issue_id: 1,
-    image:
-      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2017%2F09%2F01%2Fsink-of-dishes-2000.jpg',
-    complaint_raised_by: 1,
-    date_raised: 1664318696921,
-    culprit_id: null,
-    resolved: 0,
-    count: 2,
-  })
+  Promise.resolve([
+    {
+      id: 1,
+      auth0_id: '1',
+      flat_id: 1,
+      name: 'Gertrude',
+      description: 'lazy and selfish',
+      img_seed: 'https://pbs.twimg.com/media/EVU8UYAUEAI-csw.jpg',
+      rating: 5,
+      had_enough: 0,
+      issue_id: 1,
+      image:
+        'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2017%2F09%2F01%2Fsink-of-dishes-2000.jpg',
+      complaint_raised_by: 1,
+      date_raised: 1664318696921,
+      culprit_id: null,
+      resolved: 0,
+      count: 2,
+    },
+  ])
 )
 
 getAllComplaints.mockReturnValue(
@@ -173,8 +175,8 @@ describe('GET /api/v1/complaints/count', () => {
     return request(server)
       .get('/api/v1/complaints/count')
       .then((res) => {
-        expect(res.body).toHaveProperty('count', 2)
-        expect(res.body).tohavelength(1)
+        expect(res.body[0]).toHaveProperty('count', 2)
+        expect(res.body).toHaveLength(1)
       })
   })
   it('return status 500 and consoles error when fails', () => {
