@@ -15,7 +15,10 @@ const WhosBeenTalking = () => {
       .catch((err) => console.error(err.message))
   }, [])
   return (
-    <div className={styles.slideContainer} style={{ backgroundColor: 'green' }}>
+    <div
+      className={styles.slideContainer}
+      style={{ backgroundColor: '#FF7651' }}
+    >
       <div className={styles.slideTitle}>{`WHO'S BEEN TALKING ABOUT YOU?`}</div>
       <div className={styles.slideTitle}>
         What were the other flatmates saying behind your back?

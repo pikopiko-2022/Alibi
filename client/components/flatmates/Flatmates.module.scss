@@ -1,18 +1,17 @@
 .flatmatesContainer {
   flex: 0 1 35%;
   border-radius: 15px;
-  margin-right: 15px;
+  margin: 0px 15px;
   padding: 0px 10px;
-  border-radius: 15px;
   border: 8px solid #13082a;
-  margin-left: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .flatmatesScrollContainer {
-  max-height: calc(100vh - 150px);
+  min-height: calc(100vh - 160px);
   overflow-y: scroll;
   overflow-x: hidden;
+  width: 100%;
 }

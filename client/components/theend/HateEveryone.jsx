@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchFlatmates } from '../../actions/flatmates'
 import { useSelector, useDispatch } from 'react-redux'
 import Avatar from '../widgets/Avatar'
+import styles from './TheEnd.module.scss'
 
 const HateEveryone = () => {
   const dispatch = useDispatch()
@@ -15,10 +16,15 @@ const HateEveryone = () => {
   }, [])
 
   return (
-    <div>
+    <div
+      className={styles.slideContainer}
+      style={{ backgroundColor: '#FFB84C' }}
+    >
       <blockquote>
-        <h1>I Hate Everyone!</h1>
-        <cite>-{randomMate.name}</cite>
+        <h1 style={{ color: 'white', margin: '30px' }}>I Hate Everyone!</h1>
+        <cite style={{ color: 'white', margin: '30px' }}>
+          -{randomMate.name}
+        </cite>
       </blockquote>
       <div>
         <Avatar seedData={randomMate.img_seed} size={300} />

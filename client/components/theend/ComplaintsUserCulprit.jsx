@@ -18,7 +18,10 @@ const ComplaintsUserCulprit = () => {
   }, [])
   console.log(complaint)
   return (
-    <div className={styles.slideContainer} style={{ backgroundColor: 'blue' }}>
+    <div
+      className={styles.slideContainer}
+      style={{ backgroundColor: '#E23468' }}
+    >
       {complaint ? (
         <>
           <div

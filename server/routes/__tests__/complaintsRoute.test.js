@@ -45,7 +45,7 @@ getComplaintsForUser.mockReturnValue(
     { id: 2, complaint: 'Yo' },
   ])
 )
-updateCulpritDb.mockReturnValue(Promise.resolve(1, 1))
+updateCulpritDb.mockReturnValue(Promise.resolve(1))
 
 getHighestComplainant.mockReturnValue(
   Promise.resolve([

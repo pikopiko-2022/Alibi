@@ -44,7 +44,10 @@ const SendMessage = () => {
         onChange={(e) => setMessage(e.target.value)}
         placeholder={'Type a message...'}
       />
-      <button className={styles.sendButton}>{`>`}</button>
+      <button
+        className={styles.sendButton}
+        disabled={message === ''}
+      >{`>`}</button>
     </form>
   )
 }

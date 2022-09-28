@@ -2,12 +2,11 @@
 }
 
 .complaintText {
-  font-size: 14px;
-  background-color: white;
-  color: black;
+  font-size: 20px;
+  color: white;
   margin: 15px;
   padding: 15px;
-  border-radius: 25px;
+  
 }
 
 .complaintIssue {
@@ -18,5 +17,6 @@
   object-fit: cover;
   width: 350px;
   height: 350px;
-  border-radius: 25px;
+  border-radius: 15px;
+  
 }
