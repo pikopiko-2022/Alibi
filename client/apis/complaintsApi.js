@@ -46,7 +46,6 @@ export function getComplaintCount() {
 }
 
 export function getComplaintsForUserCulprit(token) {
-  console.log('getting complaints')
   return request
     .get(`${rootUrl}/complaints/culprit`)
     .set('authorization', `Bearer ${token}`)

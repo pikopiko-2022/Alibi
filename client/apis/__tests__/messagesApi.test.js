@@ -32,6 +32,8 @@ afterEach(() => {
 
 const errorMessage = 'something went wrong'
 
+//sendMessages()
+
 //sendCustomMessage()
 describe('POST /api/v1/messages', () => {
   it('sends custom message', () => {
