@@ -27,6 +27,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .slideshowItem {
@@ -43,3 +44,13 @@
   position: relative;
   overflow: hidden;
 }
+
+.finalVid {
+  position: absolute;
+  width: 100vw;
+  height: 50vw;
+  z-index: 0;
+  object-fit: contain;
+  top: 0;
+  left: 0;
+  }

@@ -11,6 +11,8 @@ import MostComplaints from './MostComplaints'
 import HateEveryone from './HateEveryone'
 import Milk from './Milk'
 
+import finalVid from '../../../server/public/videos/trash.mp4'
+
 const TheEnd = () => {
   const slides = [
     <FlatFun />,
@@ -31,6 +33,9 @@ const TheEnd = () => {
           </SlideshowItem>
         ))}
       </Slideshow>
+      <div className={styles.finalVid}>
+        <video src={finalVid} autoPlay loop muted />
+      </div>
     </div>
   )
 }
