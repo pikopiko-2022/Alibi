@@ -6,7 +6,7 @@ import styles from './App.module.scss'
 import navStyles from './Nav.module.scss'
 import { updateUserEnough } from '../actions/user'
 import { IfAuthenticated } from './widgets/Authenticated'
-import videoBg from '../../server/public/videos/galaxy.mp4'
+import videoBg from '../../server/public/videos/purplesmoke.mp4'
 import alibiLogo from '../../server/public/assets/Alibi-Logo.png'
 
 function Nav() {

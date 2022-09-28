@@ -5,7 +5,9 @@ import styles from './Flatmate.module.scss'
 const Flatmate = ({ flatmate }) => {
   return (
     <div className={styles.flatmateContainer}>
-      <Avatar seedData={flatmate.img_seed} size={150} />
+      <div className={styles.flatmateAvatar}>
+        <Avatar seedData={flatmate.img_seed} size={150} />
+      </div>
       <div className={styles.flatmateDetailsContainer}>
         <div className={styles.flatmateName}>{flatmate.name}</div>
         <div className={styles.flatmateDescription}>{flatmate.description}</div>

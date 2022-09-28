@@ -12,6 +12,10 @@
   width: 30%;
 }
 
+.complaintSelect {
+  width: 100%;
+}
+
 .lastUploadedContainer {
   padding: 32px;
   width: 20%;
@@ -63,6 +67,7 @@
 
 .addImageInput {
   width: 100%;
+  box-sizing: border-box;
   margin-top: 8px;
   margin-bottom: 16px;
 }
