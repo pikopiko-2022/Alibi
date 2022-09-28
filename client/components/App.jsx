@@ -55,25 +55,22 @@ function App() {
   }, [isAuthenticated])
 
   return (
-    <>
-      <Nav />
-      <div className="app">
-        <IfAuthenticated>
-          {user?.id && <Nav />}
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/complaint" element={<Complaint />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/waiting" element={<Waiting />} />
-            <Route path="/theend" element={<TheEnd />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <SignIn />
-        </IfNotAuthenticated>
-      </div>
-    </>
+    <div className="app">
+      <IfAuthenticated>
+        {user?.id && <Nav />}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/complaint" element={<Complaint />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/waiting" element={<Waiting />} />
+          <Route path="/theend" element={<TheEnd />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </IfAuthenticated>
+      <IfNotAuthenticated>
+        <SignIn />
+      </IfNotAuthenticated>
+    </div>
   )
 }
 export default App

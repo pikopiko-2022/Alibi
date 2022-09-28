@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
-import styles from './Nav.module.scss'
+import styles from './App.module.scss'
+import navStyles from './Nav.module.scss'
 import { updateUserEnough } from '../actions/user'
 import { IfAuthenticated, IfNotAuthenticated } from './widgets/Authenticated'
 import videoBg from '../../server/public/videos/galaxy.mp4'
@@ -30,16 +31,16 @@ function Nav() {
         <div></div>
       ) : (
         <div>
-          <div className={styles.logo}>
-            <div className={styles.vidDiv}>
+          <div className={navStyles.logo}>
+            <div className={navStyles.vidDiv}>
               <video src={videoBg} autoPlay loop muted />
             </div>
-            <div className={styles.content}>
+            <div className={navStyles.content}>
               <Link to="/">
                 <img src={alibiLogo} alt="logo" />
               </Link>
             </div>
-            <div className={styles.content}>
+            <div className={navStyles.content}>
               <IfAuthenticated>
                 <div className={styles.actionsContainer}>
                   <Link to="/complaint">
@@ -63,16 +64,6 @@ function Nav() {
                   </Link>
                 </div>
               </IfAuthenticated>
-              <IfNotAuthenticated>
-                <Link to="/">
-                  <button
-                    className={styles.actionButton}
-                    onClick={handleSignIn}
-                  >
-                    Sign In
-                  </button>
-                </Link>
-              </IfNotAuthenticated>
             </div>
           </div>
         </div>
