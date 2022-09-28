@@ -50,7 +50,7 @@ describe('GET /api/v1/lifeG', () => {
       .then((res) => {
         console.log(res.text)
         expect(res.status).toBe(200)
-        expect(mockLifeG[0].message).toBe("Here's a handy timer")
+        expect(res.text).toBe('1')
       })
   })
   it('should return status 500 and an error message when database by id fails.', () => {

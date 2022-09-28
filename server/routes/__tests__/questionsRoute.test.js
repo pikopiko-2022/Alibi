@@ -40,9 +40,8 @@ describe('GET /api/v1/lifeG', () => {
     return request(server)
       .get('/api/v1/questions/:id')
       .then((res) => {
-        console.log(res.body)
         expect(res.status).toBe(200)
-        expect(mockQuestions[0].question).toBe('When did you last wash?')
+        expect(res.text).toBe('1')
       })
   })
   it('should return status 500 and an error message when database by id fails.', () => {

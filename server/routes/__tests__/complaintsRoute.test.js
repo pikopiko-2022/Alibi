@@ -14,8 +14,9 @@ jest.mock('../../db/dbComplaints')
 jest.mock('../../db/dbUsers')
 jest.spyOn(console, 'error')
 
-beforeEach(() => {
+afterEach(() => {
   console.error.mockReset()
+  jest.clearAllMocks()
 })
 
 const checkJwt = require('../../auth0')
@@ -63,7 +64,6 @@ describe('POST /api/v1/complaints', () => {
       .post('/api/v1/complaints')
       .then((res) => {
         expect(res.status).toBe(500)
-        expect(console.error).toHaveBeenCalledWith('fail')
         return null
       })
   })
@@ -79,19 +79,18 @@ describe('GET /api/v1/complaints/current', () => {
         expect(res.body.complaint).toBe('You left dirty clothes everywhere')
       })
   })
-  // it('return status 500 and consoles error when fails', () => {
-  //   getCurrentComplaints.mockImplementation(() =>
-  //     Promise.reject(new Error('fail'))
-  //   )
-  //   console.error.mockImplementation(() => {})
-  //   return request(server)
-  //     .get('/api/v1/complaints/current')
-  //     .then((res) => {
-  //       expect(res.status).toBe(500)
-  //       expect(console.error).toHaveBeenCalledWith('fail')
-  //       return null
-  //     })
-  // })
+  it('return status 500 and consoles error when fails', () => {
+    getCurrentComplaints.mockImplementation(() =>
+      Promise.reject(new Error('fail'))
+    )
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .get('/api/v1/complaints/current')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
+      })
+  })
 })
 
 describe('GET /api/v1/complaints/culprit', () => {
@@ -104,6 +103,18 @@ describe('GET /api/v1/complaints/culprit', () => {
         expect(res.body[1].complaint).toBe('Yo')
       })
   })
+  it('return status 500 and consoles error when fails', () => {
+    getComplaintsForUser.mockImplementation(() =>
+      Promise.reject(new Error('fail'))
+    )
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .get('/api/v1/complaints/culprit')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
+      })
+  })
 })
 
 describe('PUT /api/v1/complaints/:complaintsId', () => {
@@ -113,6 +124,16 @@ describe('PUT /api/v1/complaints/:complaintsId', () => {
       .send({ answerId: 1 })
       .then((res) => {
         expect(res.body).toBe(1)
+      })
+  })
+  it('return status 500 and consoles error when fails', () => {
+    updateCulpritDb.mockImplementation(() => Promise.reject(new Error('fail')))
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .put('/api/v1/complaints/1')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
       })
   })
 })
