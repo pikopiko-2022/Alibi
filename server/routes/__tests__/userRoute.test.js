@@ -42,7 +42,7 @@ describe('GET /api/v1/user', () => {
         expect(res.body.name).toBe('Fred')
       })
   })
-  it('should return status 500 and an error message when database fails.', () => {
+  it('return status 500 when getUser fails', () => {
     expect.assertions(2)
     getUser.mockImplementation(() =>
       Promise.reject(new Error('Something went wrong'))
@@ -88,7 +88,7 @@ describe('PUT /api/v1/user', () => {
         expect(res.text).toContain('This not working')
       })
   })
-  it('should return status 500 and an error message when database fails.', () => {
+  it('returns status 500 when updateUserEnough fails', () => {
     expect.assertions(2)
     updateUserEnough.mockImplementation(() =>
       Promise.reject(new Error('Something went wrong'))
