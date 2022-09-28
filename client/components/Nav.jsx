@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import styles from './App.module.scss'
 import navStyles from './Nav.module.scss'
 import { updateUserEnough } from '../actions/user'
-import { IfAuthenticated, IfNotAuthenticated } from './widgets/Authenticated'
+import { IfAuthenticated } from './widgets/Authenticated'
 import videoBg from '../../server/public/videos/galaxy.mp4'
 import alibiLogo from '../../server/public/assets/Alibi-Logo.png'
 
