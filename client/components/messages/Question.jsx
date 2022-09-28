@@ -94,9 +94,9 @@ const Question = ({ message }) => {
                   ? styles.questionAnswerDisabled
                   : styles.questionAnswer
               }
-              onClick={() => handleAnswerSelect(answer)}
+              onClick={() => (disabled ? null : handleAnswerSelect(answer))}
               role="button"
-              onKeyDown={(e) => handleAnswerKey(e, answer)}
+              onKeyDown={(e) => (disabled ? null : handleAnswerKey(e, answer))}
               tabIndex={i + 1}
             >
               {answer?.answer}

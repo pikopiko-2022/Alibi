@@ -16,9 +16,13 @@
 .messagesScrollContainer {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 160px);
   overflow-y: scroll;
-  padding: 0px 10px;
+  background-color: whitesmoke;
+  padding: 0px 20px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .messagesScrollContainer > :first-child {

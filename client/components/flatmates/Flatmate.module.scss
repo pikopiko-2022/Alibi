@@ -1,5 +1,6 @@
 .flatmateContainer {
   display: flex;
+  align-items: center;
   padding: 20px;
 }
 
@@ -9,6 +10,9 @@
 
 .flatmateDetailsContainer {
   margin-left: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: white;
 }
 
 .flatmateImage {
@@ -26,12 +30,7 @@
   font-style: italic;
 }
 
-.flatmateRating {
-  color: maroon;
-  font-size: 18;
-}
-
 .flatmateEnough {
-  color: red;
+  color: #da5161;
   font-size: 18px;
 }
