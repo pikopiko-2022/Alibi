@@ -117,7 +117,13 @@ exports.seed = async function (knex) {
       is_bad: 1,
       is_alibi: 0,
     },
-    { id: 22, question_id: 9, answer: 'Indica', is_bad: 0, is_alibi: 1 },
+    {
+      id: 22,
+      question_id: 9,
+      answer: 'In da car, maaaan',
+      is_bad: 0,
+      is_alibi: 1,
+    },
     {
       id: 23,
       question_id: 10,
