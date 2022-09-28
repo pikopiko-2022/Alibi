@@ -10,7 +10,8 @@
 }
 
 .flatmatesScrollContainer {
-  max-height: calc(100vh - 150px);
+  min-height: calc(100vh - 160px);
   overflow-y: scroll;
   overflow-x: hidden;
+  width: 100%;
 }

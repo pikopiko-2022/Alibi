@@ -25,8 +25,8 @@ io.on('connection', (socket) => {
   socket.on('update coins', ({ coins }) =>
     socket.broadcast.emit('update coins', { coins })
   )
-  socket.on('coin collected', ({ coinId }) =>
-    socket.broadcast.emit('coin collected', { coinId })
+  socket.on('coin collected', ({ coin }) =>
+    socket.broadcast.emit('coin collected', { coin })
   )
   socket.on('coin added', ({ coin }) =>
     socket.broadcast.emit('coin added', { coin })

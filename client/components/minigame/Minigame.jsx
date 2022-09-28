@@ -24,6 +24,7 @@ const Minigame = () => {
   })
   const [time, setTime] = useState(0)
   const [moving, setMoving] = useState(null)
+  const [hidden, setHidden] = useState(false)
   const speed = 9
 
   const dropCoinSound = useMemo(() => new Audio('/assets/drop-coin.wav'), [])
@@ -45,8 +46,8 @@ const Minigame = () => {
     socket.current.on('update coins', ({ coins }) => {
       setCoins(coins)
     })
-    socket.current.on('coin collected', ({ coinId }) => {
-      handleOtherPlayerCollectsCoin(coinId)
+    socket.current.on('coin collected', ({ coin }) => {
+      handleOtherPlayerCollectsCoin(coin)
     })
     socket.current.on('coin added', ({ coin }) => {
       handleAddCoin(coin)
@@ -80,31 +81,36 @@ const Minigame = () => {
 
   const handleCollectCoin = (coin) => {
     playGetSound(coin)
-    setPlayer((player) => ({ ...player, debt: player.debt + 1 }))
+    setPlayer((player) => ({ ...player, debt: player.debt + coin.value }))
     setCoins((coins) =>
       coins.filter((coinCollection) => coin.id !== coinCollection.id)
     )
-    socket.current.emit('coin collected', { coindId: coin.id })
+    socket.current.emit('coin collected', { coin })
   }
 
-  const handlePlayerCollision = (otherPlayer) => {
+  const handlePlayerCollision = () => {
     hitPlayerSound.play()
+    blinkPlayer()
   }
 
-  const handleOtherPlayerCollectsCoin = (coinId) => {
-    setPlayer((player) => ({ ...player, debt: player.debt - 1 }))
-    setCoins((coins) => coins.filter((coin) => coinId !== coin.id))
+  const handleOtherPlayerCollectsCoin = (otherCoin) => {
+    setPlayer((player) => ({ ...player, debt: player.debt - otherCoin.value }))
+    setCoins((coins) => coins.filter((coin) => otherCoin.id !== coin.id))
   }
 
   const createNewCoin = () => {
     const jewelArr = Array.from({ length: 15 }).fill('jewel')
     const coinsArr = Array.from({ length: 50 }).fill('coin')
     const options = [...jewelArr, ...coinsArr, 'chest']
+    console.log(options)
+    const type = options[getRandomNumber(0, options.length - 1)]
+    const values = { coin: 1, jewel: 5, chest: 20 }
     const coin = {
       id: uuid(),
       top: getRandomNumber(0, height),
       left: getRandomNumber(0, width),
-      type: options[getRandomNumber(0, options.length - 1)],
+      type,
+      value: values[type],
     }
     handleAddCoin(coin)
     socket.current.emit('coin added', { coin })
@@ -144,6 +150,22 @@ const Minigame = () => {
     if (coinCollision) handleCollectCoin(coinCollision)
     if (playerCollision) handlePlayerCollision(playerCollision)
   }
+
+  const blinkPlayer = () => {
+    for (let i = 1; i < 6; i++) {
+      blinkForTime(i, i * 400, Boolean(i % 2))
+    }
+  }
+
+  function blinkForTime(id, blinkTime, isHidden) {
+    console.log(isHidden)
+    setInterval(setHidden(isHidden), blinkTime)
+  }
+
+  // function stopBlinking(id) {
+  //   clearInterval(idArray[id]);
+  //   document.getElementById(id).style.color = defaultColor;
+  // }
 
   const handleKeyDown = (e) => {
     if (['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'].includes(e.key)) {
@@ -221,7 +243,7 @@ const Minigame = () => {
           {Object.values(players)?.map((otherPlayer) => (
             <Player key={otherPlayer?.id} player={otherPlayer} />
           ))}
-          <Player player={player} />
+          <Player player={player} hidden={hidden} />
         </div>
       </div>
     </div>
