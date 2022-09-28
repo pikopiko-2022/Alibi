@@ -69,17 +69,17 @@ export function SlideshowItem({ name, children }) {
   }, [context])
 
   let left = 0
-  let zIndex = 0
+  let zIndex = 1
   switch (stage) {
     case 'ready':
       left = '100%'
       break
     case 'on':
       left = '0'
-      zIndex = 1
+      zIndex = 2
       break
     case 'off':
-      zIndex = 0
+      zIndex = 1
       break
     default:
   }

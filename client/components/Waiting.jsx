@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { fetchFlatmates } from '../actions/flatmates'
@@ -14,6 +14,18 @@ const Waiting = () => {
 
   useEffect(() => {
     socket.on('users updated', () => dispatch(fetchFlatmates()))
+  }, [])
+
+  const gameMusic = useMemo(() => new Audio('/assets/game-music.mp3'), [])
+
+  useEffect(() => {
+    gameMusic.volume = 0.1
+    gameMusic.loop = true
+    gameMusic.play()
+    return () => {
+      gameMusic.pause()
+      gameMusic.src = ''
+    }
   }, [])
 
   const nuclear = () => {
@@ -36,12 +48,14 @@ const Waiting = () => {
   }, [flatmates])
 
   //timeout for manually testing theend slideshow
-  // setTimeout(() => navigate('/theend'), 2000)
+  // setTimeout(() => navigate('/theend'), 5000)
 
   return (
     <>
-      <div>Your Flatmates Still Like You.......</div>
-      <div>Please Wait</div>
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+        <h2>Your Flatmates Still Like You.......</h2>
+        <h3>Please Wait</h3>
+      </div>
       <Minigame />
     </>
   )

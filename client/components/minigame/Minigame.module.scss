@@ -10,8 +10,14 @@
   width: 650px;
   padding: 25px;
   position: relative;
-  border: 1px solid blueviolet;
-  background-color: navy;
+  background-image: radial-gradient(
+    circle,
+    #5026a9,
+    #3d2188,
+    #2c1a67,
+    #1d1348,
+    #13082a
+  );
 }
 
 .minigamePlayer {
@@ -53,4 +59,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.minigameImage {
+  height: 30px;
+  width: 30px;
+  position: absolute;
 }

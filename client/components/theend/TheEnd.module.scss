@@ -9,15 +9,14 @@
   font-size: 24px;
   color: white;
   translate: rotate(-15deg);
+  margin: 30px
 }
 
 .slideText {
   font-size: 14px;
-  background-color: white;
-  color: black;
-  margin: 15px;
-  padding: 15px;
-  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  margin: 30px
 }
 
 .slideshowContainer {
@@ -27,6 +26,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .slideshowItem {
@@ -39,7 +39,19 @@
 
 .slideshow {
   height: 600px;
-  width: 400px;
+  width: 700px;
   position: relative;
   overflow: hidden;
+  border-radius: 25px;
+  
 }
+
+.finalVid {
+  position: absolute;
+  width: 100vw;
+  height: 50vw;
+  z-index: 0;
+  object-fit: contain;
+  top: 0;
+  left: 0;
+  }

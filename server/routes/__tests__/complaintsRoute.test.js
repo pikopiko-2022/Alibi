@@ -45,7 +45,7 @@ getComplaintsForUser.mockReturnValue(
     { id: 2, complaint: 'Yo' },
   ])
 )
-updateCulpritDb.mockReturnValue(Promise.resolve(1, 1))
+updateCulpritDb.mockReturnValue(Promise.resolve(1))
 
 getHighestComplainant.mockReturnValue(
   Promise.resolve([
@@ -209,6 +209,7 @@ describe('PUT /api/v1/complaints/:complaintsId', () => {
       .put('/api/v1/complaints/1')
       .then((res) => {
         expect(res.status).toBe(500)
+        expect(res.text).toBe('fail')
         return null
       })
   })
