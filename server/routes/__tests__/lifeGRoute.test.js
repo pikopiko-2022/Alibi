@@ -48,7 +48,6 @@ describe('GET /api/v1/lifeG', () => {
     return request(server)
       .get('/api/v1/lifeG/issue/:id')
       .then((res) => {
-        console.log(res.text)
         expect(res.status).toBe(200)
         expect(res.text).toBe('1')
       })
