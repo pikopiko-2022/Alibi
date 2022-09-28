@@ -3,9 +3,11 @@ const server = require('../../server')
 
 const {
   addComplaint,
-  getCurrentComplaints,
-  getComplaintsForUser,
   updateCulpritDb,
+  getCurrentComplaints,
+  getAllComplaints,
+  getHighestComplainant,
+  getComplaintsForUser,
 } = require('../../db/dbComplaints')
 
 const { getUserIdByAuth0Id } = require('../../db/dbUsers')
@@ -44,6 +46,34 @@ getComplaintsForUser.mockReturnValue(
   ])
 )
 updateCulpritDb.mockReturnValue(Promise.resolve(1, 1))
+
+getHighestComplainant.mockReturnValue(
+  Promise.resolve({
+    id: 1,
+    auth0_id: '1',
+    flat_id: 1,
+    name: 'Gertrude',
+    description: 'lazy and selfish',
+    img_seed: 'https://pbs.twimg.com/media/EVU8UYAUEAI-csw.jpg',
+    rating: 5,
+    had_enough: 0,
+    issue_id: 1,
+    image:
+      'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2017%2F09%2F01%2Fsink-of-dishes-2000.jpg',
+    complaint_raised_by: 1,
+    date_raised: 1664318696921,
+    culprit_id: null,
+    resolved: 0,
+    count: 2,
+  })
+)
+
+getAllComplaints.mockReturnValue(
+  Promise.resolve([
+    { id: 1, complaint: 'Hey' },
+    { id: 2, complaint: 'Yo' },
+  ])
+)
 
 describe('POST /api/v1/complaints', () => {
   it('posts complaint to complaints array', () => {
@@ -110,6 +140,50 @@ describe('GET /api/v1/complaints/culprit', () => {
     console.error.mockImplementation(() => {})
     return request(server)
       .get('/api/v1/complaints/culprit')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
+      })
+  })
+})
+
+describe('GET /api/v1/complaints/all', () => {
+  it('should return all complaints', () => {
+    return request(server)
+      .get('/api/v1/complaints/all')
+      .then((res) => {
+        expect(res.body).toHaveLength(2)
+        expect(res.body[0]).toMatchObject({ id: 1, complaint: 'Hey' })
+      })
+  })
+  it('return status 500 and consoles error when fails', () => {
+    getAllComplaints.mockImplementation(() => Promise.reject(new Error('fail')))
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .get('/api/v1/complaints/all')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
+      })
+  })
+})
+
+describe('GET /api/v1/complaints/count', () => {
+  it('returns users object with count values', () => {
+    return request(server)
+      .get('/api/v1/complaints/count')
+      .then((res) => {
+        expect(res.body).toHaveProperty('count', 2)
+        expect(res.body).tohavelength(1)
+      })
+  })
+  it('return status 500 and consoles error when fails', () => {
+    getHighestComplainant.mockImplementation(() =>
+      Promise.reject(new Error('fail'))
+    )
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .get('/api/v1/complaints/count')
       .then((res) => {
         expect(res.status).toBe(500)
         return null
