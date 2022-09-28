@@ -6,6 +6,8 @@ const {
   addComplaint,
   updateCulpritDb,
   getCurrentComplaints,
+  getAllComplaints,
+  getHighestComplainant,
   getComplaintsForUser,
 } = require('../dbComplaints')
 
@@ -30,6 +32,15 @@ beforeEach(() => {
 
 afterAll(() => {
   testCon.destroy()
+})
+
+describe('getAllComplaints', () => {
+  it('get all complaints', () => {
+    return getAllComplaints(testCon).then((complaints) => {
+      expect(complaints).toHaveLength(3)
+      expect(complaints[0]).toHaveProperty('issue_id', 1)
+    })
+  })
 })
 
 describe('addComplaint', () => {
@@ -70,6 +81,15 @@ describe('getComplaintsForUser', () => {
     return getComplaintsForUser(2, testCon).then((complaints) => {
       expect(complaints[0]).toHaveProperty('culprit_id', 2)
       expect(complaints).toHaveLength(1)
+    })
+  })
+})
+
+describe('getHighestComplainant', () => {
+  it('get highest amount of commplaints made by one person', () => {
+    return getHighestComplainant(testCon).then((user) => {
+      expect(user[0].name).toBe('Gertrude')
+      expect(user[0]).toHaveProperty('count', 2)
     })
   })
 })
