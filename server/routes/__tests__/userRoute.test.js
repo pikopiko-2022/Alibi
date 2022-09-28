@@ -67,9 +67,6 @@ describe('PUT /api/v1/user', () => {
         expect(emit).toHaveBeenCalledWith('users updated')
       })
   })
-})
-
-describe('PUT /api/v1/user/enough', () => {
   it('updates culprit for a complaint', () => {
     return request(server)
       .put('/api/v1/user/enough')
@@ -81,11 +78,23 @@ describe('PUT /api/v1/user/enough', () => {
   })
   it('should return status 500 and an error message when database fails.', () => {
     expect.assertions(2)
+    updateUserScore.mockImplementation(() =>
+      Promise.reject(new Error('This not working'))
+    )
+    return request(server)
+      .put('/api/v1/user')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('This not working')
+      })
+  })
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
     updateUserEnough.mockImplementation(() =>
       Promise.reject(new Error('Something went wrong'))
     )
     return request(server)
-      .get('/api/v1/user')
+      .put('/api/v1/user/enough')
       .then((res) => {
         expect(res.status).toBe(500)
         expect(res.text).toContain('Something went wrong')
@@ -109,13 +118,24 @@ describe('POST /api/v1/user', () => {
         expect(emit).toHaveBeenCalledWith('users updated')
       })
   })
+  it('should return status 403 when username is taken', () => {
+    userExists.mockImplementation(() =>
+      Promise.reject(new Error('Username Taken'))
+    )
+    return request(server)
+      .post('/api/v1/user')
+      .then((res) => {
+        expect(res.status).toBe(403)
+        expect(res.text).toContain('Username Taken')
+      })
+  })
   it('should return status 500 and an error message when database fails.', () => {
     expect.assertions(2)
     userExists.mockImplementation(() =>
       Promise.reject(new Error('Something went wrong'))
     )
     return request(server)
-      .get('/api/v1/user')
+      .post('/api/v1/user')
       .then((res) => {
         expect(res.status).toBe(500)
         expect(res.text).toContain('Something went wrong')

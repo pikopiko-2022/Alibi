@@ -32,7 +32,7 @@ describe('<Question />', () => {
       ],
     }),
   }
-  it('displays a question title and the date based on the id passed in message', () => {
+  it('displays a question title and the date based on the id passed in message', async () => {
     render(
       <Provider store={fakeStore}>
         <Question
@@ -45,12 +45,12 @@ describe('<Question />', () => {
         />
       </Provider>
     )
-    const datetime = screen.getByRole('time')
+    const datetime = await screen.findByRole('time')
     expect(datetime.innerHTML).toContain('22 April 2022')
-    // const questionTitle = screen.getByText('How old are you?')
-    // expect(questionTitle).toBeDefined()
+    const questionTitle = screen.getByText('How old are you?')
+    expect(questionTitle).toBeDefined()
   })
-  it('displays a list of answers based on the question id when clicked', () => {
+  it('displays a list of answers based on the question id when clicked', async () => {
     render(
       <Provider store={fakeStore}>
         <Question
@@ -62,14 +62,16 @@ describe('<Question />', () => {
         />
       </Provider>
     )
-    const buttons = screen.queryAllByRole('button')
-    expect(buttons).toHaveLength(1)
+
+    const buttons = await screen.findAllByRole('button')
     fireEvent.click(buttons[0])
-    // const buttonsExpanded = screen.queryAllByRole('button')
-    // console.log(buttonsExpanded)
-    // expect(buttonsExpanded).toHaveLength(4)
-    // fireEvent.click(buttons[1])
-    // expect(dispatch).toHaveBeenCalledTimes(3)
-    // expect(buttons).toHaveLength(1)
+    expect(buttons).toHaveLength(1)
+
+    const buttonsExpanded = await screen.findAllByRole('button')
+    expect(buttonsExpanded).toHaveLength(4)
+    fireEvent.click(buttonsExpanded[1])
+
+    expect(dispatch).toHaveBeenCalledTimes(3)
+    expect(buttons).toHaveLength(1)
   })
 })
