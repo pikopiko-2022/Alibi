@@ -70,17 +70,21 @@ label {
   cursor: pointer;
   padding: 15px;
   border-radius: 15px;
-  margin: 10px;
   background-color: #791088;
   color: #e8f3f1;
   text-decoration: none;
   width: 100%;
   text-align: center;
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .actionButton:hover {
   background-color: hsl(293, 79%, 40%);
+}
+
+.spacer {
+  width: 20px;
 }
 
 .signInPage {

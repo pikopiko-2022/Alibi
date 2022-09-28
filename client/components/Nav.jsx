@@ -36,6 +36,7 @@ function Nav() {
             <Link to="/complaint" className={styles.actionButton}>
               Add Complaint
             </Link>
+            <div className={styles.spacer} />
             <Link
               to="/waiting"
               className={styles.actionButton}
@@ -43,6 +44,7 @@ function Nav() {
             >
               {`I've Had Enough`}
             </Link>
+            <div className={styles.spacer} />
             <Link to="/" className={styles.actionButton} onClick={handleLogOff}>
               Log off
             </Link>
