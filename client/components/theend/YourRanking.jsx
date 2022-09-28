@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 const YourRanking = () => {
   const flatmates = useSelector((state) => state.flatmates)
   const user = useSelector((state) => state.user)
+
   const rank = flatmates
     ?.sort((a, b) => a.rating - b.rating)
     .map((flatmate) => flatmate?.id)

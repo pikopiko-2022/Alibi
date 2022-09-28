@@ -15,6 +15,7 @@ const Message = ({ message }) => {
   const sender = flatmates?.find(
     (flatmate) => message.sender_id === flatmate.id
   )?.name
+
   return (
     <div
       className={isMine ? styles.myMessageContainer : styles.messageContainer}

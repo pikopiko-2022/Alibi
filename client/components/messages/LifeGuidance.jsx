@@ -1,7 +1,7 @@
 import React from 'react'
+import MessageDate from './MessageDate'
 import styles from './Message.module.scss'
 import { useSelector } from 'react-redux'
-import MessageDate from './MessageDate'
 
 function LifeGuidance({ message }) {
   const lifeGuidances = useSelector((state) => state.lifeG)

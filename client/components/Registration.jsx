@@ -1,25 +1,25 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
 import Avatar from './widgets/Avatar'
-import { getRandomNumber } from '../apis/messagesApi'
+
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
+import { getRandomNumber } from '../apis/messagesApi'
+
 import styles from './App.module.scss'
 
 function Register() {
-  const user = useSelector((state) => state.user)
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const user = useSelector((state) => state.user)
   const [seedData, setSeedData] = useState(getRandomNumber(1, 10000))
-
   const [form, setForm] = useState({
     name: '',
     flatId: '',
     description: '',
   })
-
   const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (evt) => {

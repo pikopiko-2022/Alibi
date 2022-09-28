@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react'
-import { useSelector } from 'react-redux'
-import { v4 as uuid } from 'uuid'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
-import { getRandomNumber } from '../../apis/messagesApi'
+import { v4 as uuid } from 'uuid'
+import { useSelector } from 'react-redux'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import Coin from './Coin'
-import styles from './Minigame.module.scss'
 import Money from './Money'
 import Player from './Player'
+import { getRandomNumber } from '../../apis/messagesApi'
+import styles from './Minigame.module.scss'
 
 const Minigame = () => {
-  const height = 600
+  const speed = 9
   const width = 600
+  const height = 600
   const user = useSelector((state) => state.user)
   const [players, setPlayers] = useState({})
   const [coins, setCoins] = useState([])
@@ -24,8 +25,7 @@ const Minigame = () => {
   })
   const [time, setTime] = useState(0)
   const [moving, setMoving] = useState(null)
-  const speed = 9
-
+  const [stunned, setStunned] = useState(false)
   const dropCoinSound = useMemo(() => new Audio('/assets/drop-coin.wav'), [])
   const dropJewelSound = useMemo(() => new Audio('/assets/drop-jewel.wav'), [])
   const dropChestSound = useMemo(() => new Audio('/assets/drop-chest.wav'), [])
@@ -45,8 +45,8 @@ const Minigame = () => {
     socket.current.on('update coins', ({ coins }) => {
       setCoins(coins)
     })
-    socket.current.on('coin collected', ({ coinId }) => {
-      handleOtherPlayerCollectsCoin(coinId)
+    socket.current.on('coin collected', ({ coin }) => {
+      handleOtherPlayerCollectsCoin(coin)
     })
     socket.current.on('coin added', ({ coin }) => {
       handleAddCoin(coin)
@@ -80,31 +80,35 @@ const Minigame = () => {
 
   const handleCollectCoin = (coin) => {
     playGetSound(coin)
-    setPlayer((player) => ({ ...player, debt: player.debt + 1 }))
+    setPlayer((player) => ({ ...player, debt: player.debt + coin.value }))
     setCoins((coins) =>
       coins.filter((coinCollection) => coin.id !== coinCollection.id)
     )
-    socket.current.emit('coin collected', { coindId: coin.id })
+    socket.current.emit('coin collected', { coin })
   }
 
-  const handlePlayerCollision = (otherPlayer) => {
+  const handlePlayerCollision = () => {
     hitPlayerSound.play()
+    stunPlayer()
   }
 
-  const handleOtherPlayerCollectsCoin = (coinId) => {
-    setPlayer((player) => ({ ...player, debt: player.debt - 1 }))
-    setCoins((coins) => coins.filter((coin) => coinId !== coin.id))
+  const handleOtherPlayerCollectsCoin = (otherCoin) => {
+    setPlayer((player) => ({ ...player, debt: player.debt - otherCoin.value }))
+    setCoins((coins) => coins.filter((coin) => otherCoin.id !== coin.id))
   }
 
   const createNewCoin = () => {
     const jewelArr = Array.from({ length: 15 }).fill('jewel')
     const coinsArr = Array.from({ length: 50 }).fill('coin')
     const options = [...jewelArr, ...coinsArr, 'chest']
+    const type = options[getRandomNumber(0, options.length - 1)]
+    const values = { coin: 1, jewel: 5, chest: 20 }
     const coin = {
       id: uuid(),
       top: getRandomNumber(0, height),
       left: getRandomNumber(0, width),
-      type: options[getRandomNumber(0, options.length - 1)],
+      type,
+      value: values[type],
     }
     handleAddCoin(coin)
     socket.current.emit('coin added', { coin })
@@ -133,16 +137,21 @@ const Minigame = () => {
     })
     Object.values(players)?.forEach((otherPlayer) => {
       if (
-        otherPlayer.top > player.top + playerOffset - radius &&
-        otherPlayer.top < player.top + playerOffset + radius &&
-        otherPlayer.left > player.left + playerOffset - radius &&
-        otherPlayer.left < player.left + playerOffset + radius
+        otherPlayer.top > player.top - playerOffset &&
+        otherPlayer.top < player.top + playerOffset &&
+        otherPlayer.left > player.left - playerOffset &&
+        otherPlayer.left < player.left + playerOffset
       ) {
         playerCollision = otherPlayer
       }
     })
     if (coinCollision) handleCollectCoin(coinCollision)
     if (playerCollision) handlePlayerCollision(playerCollision)
+  }
+
+  const stunPlayer = () => {
+    setStunned(true)
+    setTimeout(() => setStunned(false), 1000)
   }
 
   const handleKeyDown = (e) => {
@@ -221,7 +230,7 @@ const Minigame = () => {
           {Object.values(players)?.map((otherPlayer) => (
             <Player key={otherPlayer?.id} player={otherPlayer} />
           ))}
-          <Player player={player} />
+          <Player player={player} stunned={stunned} />
         </div>
       </div>
     </div>

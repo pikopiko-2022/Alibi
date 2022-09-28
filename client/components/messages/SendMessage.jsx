@@ -5,11 +5,12 @@ import styles from './SendMessage.module.scss'
 
 const SendMessage = () => {
   const dispatch = useDispatch()
-  const flatmates = useSelector((state) => state.flatmates)
   const user = useSelector((state) => state.user)
+  const flatmates = useSelector((state) => state.flatmates)
   const token = useSelector((state) => state.user?.token)
-  const [message, setMessage] = useState('')
   const [recipient, setRecipient] = useState('')
+  const [message, setMessage] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(
@@ -24,6 +25,7 @@ const SendMessage = () => {
     )
     setMessage('')
   }
+
   return (
     <form onSubmit={handleSubmit} className={styles.sendMessageContainer}>
       <select
@@ -44,7 +46,10 @@ const SendMessage = () => {
         onChange={(e) => setMessage(e.target.value)}
         placeholder={'Type a message...'}
       />
-      <button className={styles.sendButton}>{`>`}</button>
+      <button
+        className={styles.sendButton}
+        disabled={message === ''}
+      >{`>`}</button>
     </form>
   )
 }

@@ -1,16 +1,15 @@
 /* eslint-disable react/jsx-key */
 import React, { useMemo, useEffect } from 'react'
-import { Slideshow, SlideshowItem } from './Slideshow'
-import styles from './TheEnd.module.scss'
-import ComplaintsUserCulprit from './ComplaintsUserCulprit'
-import WhosBeenTalking from './WhosBeenTalking'
-import YourRanking from './YourRanking'
-import WorstFlatmate from './WorstFlatmate'
-import FlatFun from './FlatFun'
-import MostComplaints from './MostComplaints'
-import HateEveryone from './HateEveryone'
 import Milk from './Milk'
-
+import FlatFun from './FlatFun'
+import YourRanking from './YourRanking'
+import HateEveryone from './HateEveryone'
+import WorstFlatmate from './WorstFlatmate'
+import MostComplaints from './MostComplaints'
+import WhosBeenTalking from './WhosBeenTalking'
+import { Slideshow, SlideshowItem } from './Slideshow'
+import ComplaintsUserCulprit from './ComplaintsUserCulprit'
+import styles from './TheEnd.module.scss'
 import finalVid from '../../../server/public/videos/trash.mp4'
 
 const TheEnd = () => {
