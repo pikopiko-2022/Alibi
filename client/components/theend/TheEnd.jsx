@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useMemo, useEffect } from 'react'
 import { Slideshow, SlideshowItem } from './Slideshow'
 import styles from './TheEnd.module.scss'
 import ComplaintsUserCulprit from './ComplaintsUserCulprit'
@@ -22,6 +22,21 @@ const TheEnd = () => {
     <Milk />,
     <ComplaintsUserCulprit />,
   ]
+  const backgroundMusic = useMemo(
+    () => new Audio('/assets/slide-music.mp3'),
+    []
+  )
+
+  useEffect(() => {
+    backgroundMusic.volume = 1
+    backgroundMusic.loop = true
+    backgroundMusic.play()
+    return () => {
+      backgroundMusic.pause()
+      backgroundMusic.src = ''
+    }
+  }, [])
+
   return (
     <div className={styles.slideshowContainer}>
       <Slideshow>
