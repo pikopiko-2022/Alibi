@@ -32,7 +32,6 @@ router.put('/', checkJwt, (req, res) => {
     })
 })
 
-//do I need 'enough' route?
 router.put('/enough', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   db.getUserIdByAuth0Id(auth0_id)
