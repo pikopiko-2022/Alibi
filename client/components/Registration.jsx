@@ -6,7 +6,6 @@ import { getRandomNumber } from '../apis/messagesApi'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
 import styles from './App.module.scss'
-// import videoBg from '../../server/public/assets/videoBG.mp4'
 
 function Register() {
   const user = useSelector((state) => state.user)
@@ -53,7 +52,7 @@ function Register() {
     <div className={styles.registrationPage}>
       <div className={styles.registrationContainer}>
         <h1>ALIBI</h1>
-        {/* <video src={videoBg} autoPlay loop muted /> */}
+
         <Avatar seedData={seedData} />
         <button
           className={styles.actionButton}
