@@ -28,10 +28,10 @@ const YourRanking = () => {
   return (
     <div
       className={styles.slideContainer}
-      style={{ backgroundColor: 'orange' }}
+      style={{ backgroundColor: '#A40080' }}
     >
       <div className={styles.slideTitle}>{heading}</div>
-      <div className={styles.slideText}>{body}</div>
+      <div className={styles.slideTitle}>{body}</div>
     </div>
   )
 }
