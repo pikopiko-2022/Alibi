@@ -1,15 +1,18 @@
 .sendMessageContainer {
   display: flex;
+  height: 72px;
 }
 
 .sendMessageSelect {
   border-radius: 15px 0px 0px 15px;
   margin-bottom: 0px;
+  border: 3px solid #13082a;
 }
 
 .sendMessageInput {
   border-radius: 0px;
   margin-bottom: 0px;
+  border: 3px solid #13082a;
 }
 
 .sendButton {
@@ -19,5 +22,5 @@
   padding: 5px;
   width: 50px;
   color: #13082a;
-  border: 2px solid #13082a;
+  border: 3px solid #13082a;
 }
