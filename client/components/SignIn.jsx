@@ -13,7 +13,7 @@ const SignIn = () => {
   return (
     <div className={styles.signInPage}>
       <div className={styles.signInContainer}>
-        <h1>ALIBI</h1>
+        <h1>alī·b·ī</h1>
         <div className={styles.spacer} />
         <Link to="/" className={styles.actionButton} onClick={handleSignIn}>
           Sign In
