@@ -110,7 +110,7 @@ label {
 .homepageLayout {
   display: flex;
   width: 100%;
-  max-height: calc(100vh - 130px);
-  overflow-y: scroll;
+  max-height: calc(100vh - 160px);
+  overflow: hidden;
 }
 
