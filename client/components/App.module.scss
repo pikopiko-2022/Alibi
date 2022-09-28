@@ -1,5 +1,6 @@
 h1 {
   color: #791088;
+  font-size: 52px;
 }
 
 ::selection {
@@ -12,7 +13,15 @@ input {
   width: 100%;
   margin-bottom: 12px;
   margin-top: 8px;
-  border: 1px solid #791088;
+  border: 2px solid #791088;
+}
+
+input:focus {
+  border: 2px solid #3dccb7;
+}
+
+label {
+  font-size: 12px;
 }
 
 .navContainer {
@@ -24,6 +33,11 @@ input {
   padding: 15px;
 }
 
+.actionsContainer {
+  display: flex;
+  align-items: center;
+}
+
 .registrationPage {
   height: 100vh;
   width: 100vw;
@@ -33,9 +47,22 @@ input {
   align-items: center;
 }
 
+.registrationContainer {
+  max-height: 70vh;
+  flex: 1 0 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  border: 5px solid #791088;
+  border-radius: 25px;
+}
+
 .registrationForm {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .actionButton {
@@ -49,6 +76,7 @@ input {
   text-decoration: none;
   width: 100%;
   text-align: center;
+  white-space: nowrap;
 }
 
 .actionButton:hover {
@@ -60,6 +88,12 @@ input {
   width: 100vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signInContainer {
+  display: flex;
   justify-content: center;
   align-items: center;
 }

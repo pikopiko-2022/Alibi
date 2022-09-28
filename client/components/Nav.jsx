@@ -33,19 +33,18 @@ function Nav() {
             </Link>
           </div>
           <div className={styles.actionsContainer}>
-            <Link to="/complaint">
-              <button className={styles.actionButton}>Add Complaint</button>
+            <Link to="/complaint" className={styles.actionButton}>
+              Add Complaint
             </Link>
-            <Link to="/waiting">
-              <button
-                className={styles.actionButton}
-                onClick={handleAbort}
-              >{`I've Had Enough`}</button>
+            <Link
+              to="/waiting"
+              className={styles.actionButton}
+              onClick={handleAbort}
+            >
+              {`I've Had Enough`}
             </Link>
-            <Link to="/">
-              <button className={styles.actionButton} onClick={handleLogOff}>
-                Log off
-              </button>
+            <Link to="/" className={styles.actionButton} onClick={handleLogOff}>
+              Log off
             </Link>
           </div>
         </div>

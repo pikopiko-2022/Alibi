@@ -51,49 +51,51 @@ function Register() {
 
   return (
     <div className={styles.registrationPage}>
-      <h1>ALIBI</h1>
-      {/* <video src={videoBg} autoPlay loop muted /> */}
-      <Avatar seedData={seedData} />
-      <button
-        className={styles.actionButton}
-        onClick={() => setSeedData(getRandomNumber(1, 10000))}
-      >
-        Refresh Avatar
-      </button>
-      <h2>Complete profile set up</h2>
-      {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
-      <form onSubmit={handleSubmit} className={styles.registrationForm}>
-        <label htmlFor="name">Username:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-        />
-        <label htmlFor="flat_Id">Which FlatID are you joining?</label>
-        <input
-          type="text"
-          id="flatId"
-          name="flatId"
-          value={form.flatId}
-          onChange={handleChange}
-        />
-        <label htmlFor="description">Enter a description of yourself</label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          value={form.description}
-          onChange={handleChange}
-        />
+      <div className={styles.registrationContainer}>
+        <h1>ALIBI</h1>
+        {/* <video src={videoBg} autoPlay loop muted /> */}
+        <Avatar seedData={seedData} />
         <button
           className={styles.actionButton}
-          disabled={!(form.name && form.flatId && form.description)}
+          onClick={() => setSeedData(getRandomNumber(1, 10000))}
         >
-          Save Profile
+          Refresh Avatar
         </button>
-      </form>
+        <h2>Complete profile set up</h2>
+        {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
+        <form onSubmit={handleSubmit} className={styles.registrationForm}>
+          <label htmlFor="name">Username:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+          />
+          <label htmlFor="flatId">Which FlatID are you joining?</label>
+          <input
+            type="text"
+            id="flatId"
+            name="flatId"
+            value={form.flatId}
+            onChange={handleChange}
+          />
+          <label htmlFor="description">Enter a description of yourself</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+          />
+          <button
+            className={styles.actionButton}
+            disabled={!(form.name && form.flatId && form.description)}
+          >
+            Save Profile
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

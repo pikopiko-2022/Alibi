@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createComplaint } from '../../apis/complaintsApi'
 import styles from './Complaint.module.scss'
+import appStyles from '../App.module.scss'
 import LoadingSpinner from '../widgets/LoadingSpinner'
 
 export default function Complaint() {
@@ -100,7 +101,7 @@ export default function Complaint() {
         <div>
           <button
             onClick={handleSubmit}
-            className={styles.addFoodButton}
+            className={appStyles.actionButton}
             disabled={!selectedIssue}
           >
             ADD COMPLAINT
