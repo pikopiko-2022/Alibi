@@ -7,6 +7,7 @@ const {
   addUser,
   userExists,
   updateUserScore,
+  updateUserEnough,
 } = require('../../db/dbUsers')
 
 jest.mock('../../db/dbUsers')
@@ -69,9 +70,27 @@ describe('PUT /api/v1/user', () => {
 })
 
 describe('PUT /api/v1/user/enough', () => {
-  it.todo(
-    'changes had_enough to false -- or do we use it for setting back to true as well?'
-  )
+  it('updates culprit for a complaint', () => {
+    return request(server)
+      .put('/api/v1/user/enough')
+      .send({ userId: 1 })
+      .then((res) => {
+        //fix res
+        expect(emit).toHaveBeenCalledWith('users updated')
+      })
+  })
+  it('should return status 500 and an error message when database fails.', () => {
+    expect.assertions(2)
+    updateUserEnough.mockImplementation(() =>
+      Promise.reject(new Error('Something went wrong'))
+    )
+    return request(server)
+      .get('/api/v1/user')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Something went wrong')
+      })
+  })
 })
 
 describe('POST /api/v1/user', () => {
