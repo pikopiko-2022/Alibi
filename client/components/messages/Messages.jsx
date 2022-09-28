@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchMessages, addMessage } from '../../actions/messages'
-import Question from './Question'
-import LifeGuidance from './LifeGuidance'
-import Message from './Message'
-import styles from './Messages.module.scss'
-import appStyles from '../App.module.scss'
-import SendMessage from './SendMessage'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Message from './Message'
+import Question from './Question'
+import SendMessage from './SendMessage'
+import LifeGuidance from './LifeGuidance'
+import styles from './Messages.module.scss'
+import appStyles from '../App.module.scss'
+import { fetchMessages, addMessage } from '../../actions/messages'
 
 const Messages = () => {
   const dispatch = useDispatch()

@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+
 import { useAuth0 } from '@auth0/auth0-react'
+
 import styles from './App.module.scss'
 import navStyles from './Nav.module.scss'
+
 import { updateUserEnough } from '../actions/user'
 import { IfAuthenticated } from './widgets/Authenticated'
+
 import videoBg from '../../server/public/videos/purplesmoke.mp4'
 import alibiLogo from '../../server/public/assets/Alibi-Logo.png'
 
 function Nav() {
   const { logout } = useAuth0()
-  const token = useSelector((state) => state.user?.token)
   const dispatch = useDispatch()
   const [noNav, setNoNav] = useState(false)
+  const token = useSelector((state) => state.user?.token)
 
   const handleLogOff = (e) => {
     e.preventDefault()

@@ -1,8 +1,9 @@
 import React from 'react'
 
-import DisplayUser from './user/DisplayUser'
 import Messages from './messages/Messages'
+import DisplayUser from './user/DisplayUser'
 import Flatmates from './flatmates/Flatmates'
+
 import styles from './App.module.scss'
 
 const HomePage = () => {

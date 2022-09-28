@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { fetchFlatmates } from '../../actions/flatmates'
 import { useSelector, useDispatch } from 'react-redux'
 import Avatar from '../widgets/Avatar'
+import { fetchFlatmates } from '../../actions/flatmates'
 import styles from './TheEnd.module.scss'
 
 const Milk = () => {

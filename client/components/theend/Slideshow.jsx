@@ -7,9 +7,6 @@ import React, {
 } from 'react'
 import styles from './TheEnd.module.scss'
 
-// Sourced from
-// https://dev.to/anxiny/create-a-slideshow-with-react-1pb1
-
 const SlideshowContext = createContext()
 
 export function Slideshow({ children }) {

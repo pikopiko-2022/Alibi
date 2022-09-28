@@ -13,7 +13,6 @@ export default function ErrorPage() {
           Our Apologies but this link is currently in development.
           <br />
           If you have any question or complaints please contact us here
-          {/*TODO contactUs page link  */}
         </p>
       </div>
     </>

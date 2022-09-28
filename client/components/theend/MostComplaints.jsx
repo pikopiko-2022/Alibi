@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
-import { fetchComplaintCount } from '../../actions/complaints'
 import { useSelector, useDispatch } from 'react-redux'
 import Avatar from '../widgets/Avatar'
+import { fetchComplaintCount } from '../../actions/complaints'
 import styles from './TheEnd.module.scss'
 
 const MostComplaints = () => {
   const dispatch = useDispatch()
   const complaints = useSelector((state) => state.complaints)
   const token = useSelector((state) => state.user?.token)
-  // const [whinger, updateWhinger] = useState({})
 
   useEffect(() => {
     dispatch(fetchComplaintCount(token))
   }, [])
+
   const whinger = complaints[0] || {}
   return (
     <div

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import Message from '../messages/Message'
 import { getWhosBeenTalking } from '../../apis/messagesApi'
 import styles from './TheEnd.module.scss'
-import { useSelector } from 'react-redux'
 
 const WhosBeenTalking = () => {
   const [messages, setMessages] = useState([])
   const token = useSelector((state) => state.user?.token)
+
   useEffect(() => {
     getWhosBeenTalking(token)
       .then((messages) => {
@@ -14,6 +15,7 @@ const WhosBeenTalking = () => {
       })
       .catch((err) => console.error(err.message))
   }, [])
+
   return (
     <div
       className={styles.slideContainer}

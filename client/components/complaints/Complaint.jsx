@@ -1,22 +1,24 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { createComplaint } from '../../apis/complaintsApi'
-import styles from './Complaint.module.scss'
-import appStyles from '../App.module.scss'
+
 import LoadingSpinner from '../widgets/LoadingSpinner'
 
-export default function Complaint() {
-  const token = useSelector((state) => state?.user?.token)
-  const navigate = useNavigate()
-  const [selectedFile, setSelectedFile] = useState(null)
-  const [selectedIssue, setSelectedIssue] = useState(null)
-  const [previewURL, setPreviewURL] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
+import { createComplaint } from '../../apis/complaintsApi'
 
+import styles from './Complaint.module.scss'
+import appStyles from '../App.module.scss'
+
+export default function Complaint() {
+  const navigate = useNavigate()
+  const token = useSelector((state) => state?.user?.token)
   const user = useSelector((state) => state.user)
   const issues = useSelector((state) => state.issues)
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [previewURL, setPreviewURL] = useState(null)
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [selectedIssue, setSelectedIssue] = useState(null)
 
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0])

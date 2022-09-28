@@ -1,22 +1,24 @@
+import { useNavigate } from 'react-router-dom'
 import React, { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { fetchFlatmates } from '../actions/flatmates'
-// eslint-disable-next-line import/no-named-as-default
-import io from 'socket.io-client'
+
 import Minigame from './minigame/Minigame'
 
+import { fetchFlatmates } from '../actions/flatmates'
+
+// eslint-disable-next-line import/no-named-as-default
+import io from 'socket.io-client'
+
 const Waiting = () => {
-  const flatmates = useSelector((state) => state.flatmates)
+  const socket = io()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const socket = io()
+  const flatmates = useSelector((state) => state.flatmates)
+  const gameMusic = useMemo(() => new Audio('/assets/game-music.mp3'), [])
 
   useEffect(() => {
     socket.on('users updated', () => dispatch(fetchFlatmates()))
   }, [])
-
-  const gameMusic = useMemo(() => new Audio('/assets/game-music.mp3'), [])
 
   useEffect(() => {
     gameMusic.volume = 0.1
@@ -35,7 +37,6 @@ const Waiting = () => {
         count++
       }
     })
-
     if (count == 0) {
       return true
     } else return false
