@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
-import Flatmate from './Flatmate'
-import Flat from './Flat'
-import styles from './Flatmates.module.scss'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import Flat from './Flat'
+import Flatmate from './Flatmate'
 import { fetchFlatmates } from '../../actions/flatmates'
+import styles from './Flatmates.module.scss'
 
 function Flatmates() {
   const socket = io()
   const dispatch = useDispatch()
+  const token = useSelector((state) => state.user?.token)
   const flatmates = useSelector((state) => state.flatmates)
 
-  const token = useSelector((state) => state.user?.token)
   useEffect(() => {
     dispatch(fetchFlatmates(token))
     socket.on('users updated', () => {

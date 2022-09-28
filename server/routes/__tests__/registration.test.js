@@ -79,7 +79,6 @@ describe('POST /api/v1/user', () => {
     return request(server)
       .post('/api/v1/user')
       .then((res) => {
-        // console.log(res)
         expect(res.status).toBe(500)
         expect(res.text).toContain('Something went wrong')
       })

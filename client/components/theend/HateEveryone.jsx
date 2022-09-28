@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { fetchFlatmates } from '../../actions/flatmates'
 import { useSelector, useDispatch } from 'react-redux'
 import Avatar from '../widgets/Avatar'
 import styles from './TheEnd.module.scss'
+import { fetchFlatmates } from '../../actions/flatmates'
 
 const HateEveryone = () => {
   const dispatch = useDispatch()

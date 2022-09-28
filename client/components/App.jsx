@@ -4,38 +4,39 @@ import { useNavigate, Routes, Route } from 'react-router-dom'
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { useCacheUser } from '../auth0-utils'
+
 import Nav from './Nav'
-import Complaint from './complaints/Complaint'
-import HomePage from './HomePage'
-import Register from './Registration'
+import SignIn from './SignIn'
 import Waiting from './Waiting'
-import TheEnd from './theend/TheEnd'
+import HomePage from './HomePage'
 import ErrorPage from './ErrorPage'
+import TheEnd from './theend/TheEnd'
+import Register from './Registration'
+import Complaint from './complaints/Complaint'
 
 import { fetchMessages } from '../actions/messages'
 import { fetchQuestions } from '../actions/questions'
 import { fetchLifeG } from '../actions/lifeG'
 import { fetchIssues } from '../actions/issues'
-
 import { updateLoggedInUser, clearLoggedInUser } from '../actions/user'
+
 import { getUser } from '../apis/userApi'
 import { IfAuthenticated, IfNotAuthenticated } from './widgets/Authenticated'
-import SignIn from './SignIn'
 
 function App() {
   useCacheUser()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
   const user = useSelector((state) => state.user)
   const token = useSelector((state) => state.user?.token)
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0()
 
   useEffect(() => {
     if (token) {
       dispatch(fetchIssues())
+      dispatch(fetchLifeG(token))
       dispatch(fetchMessages(token))
       dispatch(fetchQuestions(token))
-      dispatch(fetchLifeG(token))
     }
   }, [token])
 

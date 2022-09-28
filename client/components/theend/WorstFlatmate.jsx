@@ -7,7 +7,6 @@ const WorstFlatmate = () => {
   const flatmates = useSelector((state) => state.flatmates)
 
   const badUser = flatmates.sort((a, b) => a.rating - b.rating)[0] || {}
-  console.log(badUser)
 
   return (
     <>

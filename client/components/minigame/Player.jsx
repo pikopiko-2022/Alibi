@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
-import { getRandomNumber } from '../../apis/messagesApi'
 import Avatar from '../widgets/Avatar'
 import styles from './Minigame.module.scss'
+import { getRandomNumber } from '../../apis/messagesApi'
 
 const Player = ({ player, stunned }) => {
   const animations = [

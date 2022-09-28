@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchFlat } from '../../actions/flat'
+
 import LoadingSpinner from '../widgets/LoadingSpinner'
+
+import { fetchFlat } from '../../actions/flat'
+
 import styles from './Flat.module.scss'
 
 const Flat = () => {
-  const flat = useSelector((state) => state.flat)
   const dispatch = useDispatch()
+  const flat = useSelector((state) => state.flat)
+
   useEffect(() => {
     dispatch(fetchFlat())
   }, [])

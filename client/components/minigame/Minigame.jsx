@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react'
-import { useSelector } from 'react-redux'
-import { v4 as uuid } from 'uuid'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
-import { getRandomNumber } from '../../apis/messagesApi'
+import { v4 as uuid } from 'uuid'
+import { useSelector } from 'react-redux'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import Coin from './Coin'
-import styles from './Minigame.module.scss'
 import Money from './Money'
 import Player from './Player'
+import { getRandomNumber } from '../../apis/messagesApi'
+import styles from './Minigame.module.scss'
 
 const Minigame = () => {
-  const height = 600
+  const speed = 9
   const width = 600
+  const height = 600
   const user = useSelector((state) => state.user)
   const [players, setPlayers] = useState({})
   const [coins, setCoins] = useState([])
@@ -25,8 +26,6 @@ const Minigame = () => {
   const [time, setTime] = useState(0)
   const [moving, setMoving] = useState(null)
   const [stunned, setStunned] = useState(false)
-  const speed = 9
-
   const dropCoinSound = useMemo(() => new Audio('/assets/drop-coin.wav'), [])
   const dropJewelSound = useMemo(() => new Audio('/assets/drop-jewel.wav'), [])
   const dropChestSound = useMemo(() => new Audio('/assets/drop-chest.wav'), [])

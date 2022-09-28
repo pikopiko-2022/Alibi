@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { getComplaintsForUserCulprit } from '../../apis/complaintsApi'
-import styles from './TheEnd.module.scss'
 import { useSelector } from 'react-redux'
-import { getRandomNumber } from '../../apis/messagesApi'
 import Complaint from './Complaint'
+import { getComplaintsForUserCulprit } from '../../apis/complaintsApi'
+import { getRandomNumber } from '../../apis/messagesApi'
+import styles from './TheEnd.module.scss'
 
 const ComplaintsUserCulprit = () => {
   const [complaint, setComplaint] = useState(null)
   const token = useSelector((state) => state.user?.token)
+
   useEffect(() => {
     getComplaintsForUserCulprit(token)
       .then((complaints) => {
-        console.log(complaints)
         setComplaint(complaints?.[getRandomNumber(0, complaints?.length - 1)])
       })
       .catch((err) => console.error(err.message))
   }, [])
-  console.log(complaint)
+
   return (
     <div
       className={styles.slideContainer}

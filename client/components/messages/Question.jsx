@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import styles from './Message.module.scss'
-import { getAnswersByQuestionApi } from '../../apis/answersApi'
-import { updateCulprit } from '../../actions/answers'
-import { updateUserScore } from '../../actions/user'
-import { updateMessageAnswer, addLifeGMessage } from '../../actions/messages'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRandomNumber } from '../../apis/messagesApi'
 import MessageDate from './MessageDate'
+import { updateUserScore } from '../../actions/user'
+import { updateCulprit } from '../../actions/answers'
+import { getRandomNumber } from '../../apis/messagesApi'
+import { getAnswersByQuestionApi } from '../../apis/answersApi'
+import { updateMessageAnswer, addLifeGMessage } from '../../actions/messages'
+import styles from './Message.module.scss'
 
 const Question = ({ message }) => {
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.user?.token)
   const userId = useSelector((state) => state.user?.id)
+  const token = useSelector((state) => state.user?.token)
   const questions = useSelector((state) => state.questions)
-
   const [expanded, setExpanded] = useState(false)
   const [question, setQuestion] = useState([])
   const [answers, setAnswers] = useState([])
-
   const disabled = Boolean(message.answer_id)
 
   const handleAnswerSelect = (answer) => {
