@@ -9,15 +9,14 @@
   font-size: 24px;
   color: white;
   translate: rotate(-15deg);
+  margin: 30px
 }
 
 .slideText {
   font-size: 14px;
-  background-color: white;
-  color: black;
-  margin: 15px;
-  padding: 15px;
-  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  margin: 30px
 }
 
 .slideshowContainer {
@@ -39,7 +38,7 @@
 
 .slideshow {
   height: 600px;
-  width: 400px;
+  width: 700px;
   position: relative;
   overflow: hidden;
 }
