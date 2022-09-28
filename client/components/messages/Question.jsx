@@ -23,23 +23,21 @@ const Question = ({ message }) => {
   const handleAnswerSelect = (answer) => {
     let culpritScore = 0
     if (message.complaint_id === null) {
-      console.log('This is a dummy question')
+      // This is a dummy question
     } else if (answer.is_alibi === 1) {
-      console.log('is an alibi answer')
+      // This is an alibi answer
     } else if (answer.is_bad === 1) {
-      console.log('is a bad answer')
+      // This is a bad answer
       culpritScore = -1
       setTimeout(
         () => dispatch(addLifeGMessage(userId, question.issue_id, token)),
         getRandomNumber(500, 10000)
       )
     } else {
-      console.log('is a good answer')
+      // This is a good answer
       culpritScore = 1
     }
-    console.log('clicked: ', answer)
     if (message.complaint_id !== null) {
-      console.log('updating culprit and score')
       dispatch(updateCulprit(message.complaint_id, token))
       dispatch(updateUserScore(culpritScore, token))
     }
