@@ -37,9 +37,14 @@ const Messages = () => {
 
   return (
     <div className={styles.messagesContainer}>
-      <div>
-        <div className={styles.messagesTitle}>Messages</div>
-        <button onClick={sendQuestionToUser} className={appStyles.actionButton}>
+      <div className={styles.messagesTitle}>
+        <h2>Messages</h2>
+        <div className={styles.messagesSpacer} />
+        <button
+          onClick={sendQuestionToUser}
+          className={appStyles.actionButton}
+          style={{ maxWidth: '200px' }}
+        >
           Ask Me Anything
         </button>
       </div>

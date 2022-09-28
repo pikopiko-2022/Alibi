@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCustomMessage } from '../../actions/messages'
 import styles from './SendMessage.module.scss'
+import appStyles from '../App.module.scss'
 
 const SendMessage = () => {
   const dispatch = useDispatch()
@@ -34,11 +35,7 @@ const SendMessage = () => {
           </option>
         ))}
       </select>
-      <input
-        className={styles.messageInput}
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
+      <input value={message} onChange={(e) => setMessage(e.target.value)} />
       <button className={styles.sendButton}>{`>`}</button>
     </form>
   )

@@ -1,7 +1,5 @@
 .messagesContainer {
   flex: 0 1 45%;
-  background-color: whitesmoke;
-  // min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,11 +7,15 @@
   max-height: calc(100vh - 120px);
 }
 
+.messagesTitle {
+  padding: 0px 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .messagesScrollContainer {
   display: flex;
   flex-direction: column;
-  // justify-content: flex-end;
-  // flex-grow: 1;
   height: calc(100vh - 150px);
   overflow-y: scroll;
   padding: 0px 10px;
