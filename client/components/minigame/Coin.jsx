@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import styles from './Minigame.module.scss'
 
@@ -15,12 +14,14 @@ const Coin = ({ coin }) => {
       src={'/assets/jewel.png'}
       className={styles.minigameImage}
       style={{ top: `${coin?.top}px`, left: `${coin?.left}px` }}
+      alt=""
     />
   ) : coin.type === 'chest' ? (
     <img
       src={'/assets/treasure.png'}
       className={styles.minigameImage}
       style={{ top: `${coin?.top}px`, left: `${coin?.left}px` }}
+      alt=""
     />
   ) : (
     <div />
