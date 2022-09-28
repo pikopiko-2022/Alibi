@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from './Nav.module.scss'
+import styles from './App.module.scss'
 import { useAuth0 } from '@auth0/auth0-react'
 
 const SignIn = () => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
-import styles from './Nav.module.scss'
+import styles from './App.module.scss'
 import { updateUserEnough } from '../actions/user'
 
 function Nav() {
@@ -29,7 +29,7 @@ function Nav() {
         <div className={styles.navContainer}>
           <div>
             <Link to="/">
-              <h1>Alibi</h1>
+              <h1>ALIBI</h1>
             </Link>
           </div>
           <div className={styles.actionsContainer}>

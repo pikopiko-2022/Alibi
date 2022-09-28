@@ -1,3 +1,72 @@
 h1 {
-  color: #faefbe;
+  color: #791088;
+}
+
+::selection {
+  background-color: hsl(293, 79%, 60%);
+}
+
+input {
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 12px;
+  margin-top: 8px;
+  border: 1px solid #791088;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 120px;
+  color: #791088;
+  padding: 15px;
+}
+
+.registrationPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.actionButton {
+  all: unset;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 10px;
+  background-color: #791088;
+  color: #e8f3f1;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+}
+
+.actionButton:hover {
+  background-color: hsl(293, 79%, 40%);
+}
+
+.signInPage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepageLayout {
+  display: flex;
+  width: 100%;
+  max-height: calc(100vh - 130px);
+  overflow-y: scroll;
 }
