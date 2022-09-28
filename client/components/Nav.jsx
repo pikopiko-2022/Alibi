@@ -9,7 +9,7 @@ import videoBg from '../../server/public/videos/galaxy.mp4'
 import alibiLogo from '../../server/public/assets/Alibi-Logo.png'
 
 function Nav() {
-  const { logout, loginWithRedirect } = useAuth0()
+  const { logout } = useAuth0()
   const token = useSelector((state) => state.user?.token)
   const dispatch = useDispatch()
   const [noNav, setNoNav] = useState(false)
@@ -17,11 +17,6 @@ function Nav() {
   const handleLogOff = (e) => {
     e.preventDefault()
     logout()
-  }
-
-  const handleSignIn = (e) => {
-    e.preventDefault()
-    loginWithRedirect()
   }
 
   const handleAbort = () => {

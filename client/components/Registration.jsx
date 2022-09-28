@@ -5,8 +5,7 @@ import Avatar from './widgets/Avatar'
 import { getRandomNumber } from '../apis/messagesApi'
 import { newUser } from '../apis/userApi'
 import { updateLoggedInUser } from '../actions/user'
-import videoBg from '../../server/public/assets/videoBG.mp4'
-import styles from './Registration.module.scss'
+import styles from './App.module.scss'
 
 function Register() {
   const user = useSelector((state) => state.user)
@@ -38,7 +37,9 @@ function Register() {
       ...form,
     }
     newUser(userInfo, user.token)
-      .then(() => dispatch(updateLoggedInUser(userInfo)))
+      .then((id) => {
+        dispatch(updateLoggedInUser({ ...userInfo, id }))
+      })
       .catch((err) => setErrorMsg(err.message))
     navigate('/')
   }
@@ -48,14 +49,20 @@ function Register() {
   }
 
   return (
-    <div className={styles.container}>
-      <video src={videoBg} autoPlay loop muted />
-      <div className={styles.content}>
-        <Avatar seedData={seedData} />
+    <div className={styles.registrationPage}>
+      <div className={styles.registrationContainer}>
+        <h1>ALIBI</h1>
 
+        <Avatar seedData={seedData} />
+        <button
+          className={styles.actionButton}
+          onClick={() => setSeedData(getRandomNumber(1, 10000))}
+        >
+          Refresh Avatar
+        </button>
         <h2>Complete profile set up</h2>
         {errorMsg && <error onClick={hideError}>Error: {errorMsg}</error>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.registrationForm}>
           <label htmlFor="name">Username:</label>
           <input
             type="text"
@@ -64,7 +71,7 @@ function Register() {
             value={form.name}
             onChange={handleChange}
           />
-          <label htmlFor="flat_Id">Which FlatID are you joining?</label>
+          <label htmlFor="flatId">Which FlatID are you joining?</label>
           <input
             type="text"
             id="flatId"
@@ -80,13 +87,13 @@ function Register() {
             value={form.description}
             onChange={handleChange}
           />
-          <button disabled={!(form.name && form.flatId && form.description)}>
+          <button
+            className={styles.actionButton}
+            disabled={!(form.name && form.flatId && form.description)}
+          >
             Save Profile
           </button>
         </form>
-        <button onClick={() => setSeedData(getRandomNumber(1, 10000))}>
-          Refresh Avatar
-        </button>
       </div>
     </div>
   )

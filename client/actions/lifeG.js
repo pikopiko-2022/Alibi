@@ -16,7 +16,7 @@ export function fetchLifeG() {
         dispatch(setLifeG(advice))
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err.message)
       })
   }
 }

@@ -35,6 +35,7 @@ const Waiting = () => {
     } else return null
   }, [flatmates])
 
+  //timeout for manually testing theend slideshow
   // setTimeout(() => navigate('/theend'), 2000)
 
   return (

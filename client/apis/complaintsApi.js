@@ -33,8 +33,19 @@ export function addCulpritToComplaint(complaintId, token) {
     .set('authorization', `Bearer ${token}`)
 }
 
+export function getAllComplaints() {
+  return request.get(`${rootUrl}/complaints/all`).then((res) => {
+    return res.body
+  })
+}
+
+export function getComplaintCount() {
+  return request.get(`${rootUrl}/complaints/count`).then((res) => {
+    return res.body
+  })
+}
+
 export function getComplaintsForUserCulprit(token) {
-  console.log('getting complaints')
   return request
     .get(`${rootUrl}/complaints/culprit`)
     .set('authorization', `Bearer ${token}`)

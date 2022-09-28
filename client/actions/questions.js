@@ -14,7 +14,7 @@ export function fetchQuestions() {
     return getQuestionsApi()
       .then((questions) => dispatch(setQuestions(questions)))
       .catch((err) => {
-        console.error(err)
+        console.error(err.message)
       })
   }
 }

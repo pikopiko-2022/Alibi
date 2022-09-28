@@ -5,6 +5,7 @@ import Question from './Question'
 import LifeGuidance from './LifeGuidance'
 import Message from './Message'
 import styles from './Messages.module.scss'
+import appStyles from '../App.module.scss'
 import SendMessage from './SendMessage'
 // eslint-disable-next-line import/no-named-as-default
 import io from 'socket.io-client'
@@ -36,9 +37,16 @@ const Messages = () => {
 
   return (
     <div className={styles.messagesContainer}>
-      <div>
-        <div className={styles.messagesTitle}>Messages</div>
-        <button onClick={sendQuestionToUser}>Ask Me Anything</button>
+      <div className={styles.messagesTitle}>
+        <h2>Messages</h2>
+        <div className={styles.messagesSpacer} />
+        <button
+          onClick={sendQuestionToUser}
+          className={appStyles.actionButton}
+          style={{ maxWidth: '200px' }}
+        >
+          Ask Me Anything
+        </button>
       </div>
       <div className={styles.messagesScrollContainer} role="log" id="messages">
         {messages?.map((message) =>

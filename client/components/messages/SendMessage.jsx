@@ -34,11 +34,7 @@ const SendMessage = () => {
           </option>
         ))}
       </select>
-      <input
-        className={styles.messageInput}
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
+      <input value={message} onChange={(e) => setMessage(e.target.value)} />
       <button className={styles.sendButton}>{`>`}</button>
     </form>
   )
