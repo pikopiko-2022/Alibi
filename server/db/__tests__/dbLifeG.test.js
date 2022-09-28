@@ -23,3 +23,17 @@ describe('getLifeG', () => {
     })
   })
 })
+describe('getLifeGforIssue', () => {
+  it('gets life guidance relevant to issue', () => {
+    return getLifeGforIssue(1, testCon).then((advice) => {
+      expect(advice[0]).toMatchObject({
+        id: 1,
+        issue_id: 1,
+        message: "Here's a handy timer",
+        url: 'https://www.timerminutes.com/7-minutes-timer',
+      })
+      expect(advice).toHaveLength(1)
+      expect(advice[0]).not.toHaveProperty('issue_id', !1)
+    })
+  })
+})
