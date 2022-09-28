@@ -3,7 +3,6 @@ const config = require('../knexfile')
 const testCon = knex(config.test)
 
 const { getQuestions, getQuestionsForIssue } = require('../dbQuestions')
-const { compilation } = require('webpack')
 
 beforeAll(() => {
   return testCon.migrate.latest()

@@ -58,6 +58,16 @@ describe('GET /api/v1/messages', () => {
         expect(res.body[1].message).toBe('Howdy')
       })
   })
+  it('return status 500 and consoles error when problem', () => {
+    getMessages.mockImplementation(() => Promise.reject(new Error('fail')))
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .get('/api/v1/messages')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
+      })
+  })
 })
 
 describe('GET /api/v1/messages/name/:userName', () => {
@@ -67,6 +77,18 @@ describe('GET /api/v1/messages/name/:userName', () => {
       .then((res) => {
         expect(res.body).toHaveLength(2)
         expect(res.body[0].message).toBe('Hey Billy')
+      })
+  })
+  it('return status 500 and consoles error when problem', () => {
+    getMessagesByName.mockImplementation(() =>
+      Promise.reject(new Error('fail'))
+    )
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .get('/api/v1/messages/name')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
       })
   })
 })
@@ -91,6 +113,16 @@ describe('POST /api/v1/messages', () => {
         expect(emit).toHaveBeenCalledTimes(0)
       })
   })
+  it('return status 500 and consoles error when problem', () => {
+    addMessage.mockImplementation(() => Promise.reject(new Error('fail')))
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .post('/api/v1/messages')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
+      })
+  })
 })
 
 describe('PUT /api/v1/messages', () => {
@@ -100,6 +132,16 @@ describe('PUT /api/v1/messages', () => {
       .send({ answerId: 2 })
       .then((res) => {
         expect(res.body).toBe(1)
+      })
+  })
+  it('return status 500 and consoles error when problem', () => {
+    updateMessage.mockImplementation(() => Promise.reject(new Error('fail')))
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .put('/api/v1/messages/2')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        return null
       })
   })
 })

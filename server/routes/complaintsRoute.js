@@ -29,10 +29,33 @@ router.get('/current', checkJwt, (req, res) => {
     })
 })
 
+router.get('/all', (req, res) => {
+  db.getAllComplaints()
+    .then((complaints) => {
+      res.json(complaints)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
+router.get('/count', (req, res) => {
+  db.getHighestComplainant()
+    .then((complaints) => {
+      res.json(complaints)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.get('/culprit', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
   getUserIdByAuth0Id(auth0_id)
     .then(({ userId }) => db.getComplaintsForUser(userId))
+
     .then((complaints) => {
       res.json(complaints)
       return null

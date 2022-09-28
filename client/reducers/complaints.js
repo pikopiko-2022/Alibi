@@ -1,4 +1,4 @@
-import { SET_COMPLAINT } from '../actions/complaints'
+import { SET_COMPLAINT, SET_COMPLAINTS } from '../actions/complaints'
 
 const initialState = []
 
@@ -8,6 +8,10 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case SET_COMPLAINT:
       return payload
+
+    case SET_COMPLAINTS:
+      return payload
+
     default:
       return state
   }
