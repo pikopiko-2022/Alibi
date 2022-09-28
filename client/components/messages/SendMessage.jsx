@@ -26,7 +26,11 @@ const SendMessage = () => {
   }
   return (
     <form onSubmit={handleSubmit} className={styles.sendMessageContainer}>
-      <select value={recipient} onChange={(e) => setRecipient(e.target.value)}>
+      <select
+        className={styles.sendMessageSelect}
+        value={recipient}
+        onChange={(e) => setRecipient(e.target.value)}
+      >
         <option value={''}>Everyone</option>
         {flatmates?.map((flatmate) => (
           <option key={flatmate.id} value={flatmate.id}>
@@ -34,7 +38,12 @@ const SendMessage = () => {
           </option>
         ))}
       </select>
-      <input value={message} onChange={(e) => setMessage(e.target.value)} />
+      <input
+        className={styles.sendMessageInput}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder={'Type a message...'}
+      />
       <button className={styles.sendButton}>{`>`}</button>
     </form>
   )

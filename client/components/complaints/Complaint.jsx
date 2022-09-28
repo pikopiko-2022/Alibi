@@ -50,8 +50,12 @@ export default function Complaint() {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
-        <div className="issues">
-          <select className="select" onChange={handleSelect} defaultValue="">
+        <div>
+          <select
+            className={styles.complaintSelect}
+            onChange={handleSelect}
+            defaultValue=""
+          >
             <option value="" disabled hidden>
               Pick an issue
             </option>

@@ -23,11 +23,13 @@ function Flatmates() {
   return (
     <div className={styles.flatmatesContainer}>
       <Flat />
-      {flatmates
-        ?.sort((a, b) => b.rating - a.rating)
-        ?.map((flatmate) => (
-          <Flatmate key={flatmate.id} flatmate={flatmate} />
-        ))}
+      <div className={styles.flatmatesScrollContainer}>
+        {flatmates
+          ?.sort((a, b) => b.rating - a.rating)
+          ?.map((flatmate) => (
+            <Flatmate key={flatmate.id} flatmate={flatmate} />
+          ))}
+      </div>
     </div>
   )
 }

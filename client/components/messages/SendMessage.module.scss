@@ -2,7 +2,22 @@
   display: flex;
 }
 
-.messageInput {
-  width: 100%;
+.sendMessageSelect {
+  border-radius: 15px 0px 0px 15px;
+  margin-bottom: 0px;
+}
+
+.sendMessageInput {
+  border-radius: 0px;
+  margin-bottom: 0px;
+}
+
+.sendButton {
+  border-radius: 0px 15px 15px 0px;
+  margin-top: 8px;
+  margin-bottom: 0px;
   padding: 5px;
+  width: 50px;
+  color: #13082a;
+  border: 2px solid #13082a;
 }
