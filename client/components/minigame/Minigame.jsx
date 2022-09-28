@@ -24,7 +24,7 @@ const Minigame = () => {
   })
   const [time, setTime] = useState(0)
   const [moving, setMoving] = useState(null)
-  const [hidden, setHidden] = useState(false)
+  const [stunned, setStunned] = useState(false)
   const speed = 9
 
   const dropCoinSound = useMemo(() => new Audio('/assets/drop-coin.wav'), [])
@@ -90,7 +90,7 @@ const Minigame = () => {
 
   const handlePlayerCollision = () => {
     hitPlayerSound.play()
-    blinkPlayer()
+    stunPlayer()
   }
 
   const handleOtherPlayerCollectsCoin = (otherCoin) => {
@@ -102,7 +102,6 @@ const Minigame = () => {
     const jewelArr = Array.from({ length: 15 }).fill('jewel')
     const coinsArr = Array.from({ length: 50 }).fill('coin')
     const options = [...jewelArr, ...coinsArr, 'chest']
-    console.log(options)
     const type = options[getRandomNumber(0, options.length - 1)]
     const values = { coin: 1, jewel: 5, chest: 20 }
     const coin = {
@@ -139,10 +138,10 @@ const Minigame = () => {
     })
     Object.values(players)?.forEach((otherPlayer) => {
       if (
-        otherPlayer.top > player.top + playerOffset - radius &&
-        otherPlayer.top < player.top + playerOffset + radius &&
-        otherPlayer.left > player.left + playerOffset - radius &&
-        otherPlayer.left < player.left + playerOffset + radius
+        otherPlayer.top > player.top - playerOffset &&
+        otherPlayer.top < player.top + playerOffset &&
+        otherPlayer.left > player.left - playerOffset &&
+        otherPlayer.left < player.left + playerOffset
       ) {
         playerCollision = otherPlayer
       }
@@ -151,21 +150,10 @@ const Minigame = () => {
     if (playerCollision) handlePlayerCollision(playerCollision)
   }
 
-  const blinkPlayer = () => {
-    for (let i = 1; i < 6; i++) {
-      blinkForTime(i, i * 400, Boolean(i % 2))
-    }
+  const stunPlayer = () => {
+    setStunned(true)
+    setTimeout(() => setStunned(false), 1000)
   }
-
-  function blinkForTime(id, blinkTime, isHidden) {
-    console.log(isHidden)
-    setInterval(setHidden(isHidden), blinkTime)
-  }
-
-  // function stopBlinking(id) {
-  //   clearInterval(idArray[id]);
-  //   document.getElementById(id).style.color = defaultColor;
-  // }
 
   const handleKeyDown = (e) => {
     if (['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp'].includes(e.key)) {
@@ -243,7 +231,7 @@ const Minigame = () => {
           {Object.values(players)?.map((otherPlayer) => (
             <Player key={otherPlayer?.id} player={otherPlayer} />
           ))}
-          <Player player={player} hidden={hidden} />
+          <Player player={player} stunned={stunned} />
         </div>
       </div>
     </div>
