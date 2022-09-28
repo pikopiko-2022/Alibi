@@ -17,7 +17,7 @@ function Nav() {
 
   const handleLogOff = (e) => {
     e.preventDefault()
-    logout({ returnTo: 'https://alibi-pikopiko22.herokuapp.com/' })
+    logout({ returnTo: window.location.origin })
   }
 
   const handleAbort = () => {
