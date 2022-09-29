@@ -22,6 +22,15 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
+      { test: /\.mp4$/, use: 'file-loader?name=videos/[name].[ext]' },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
       {
         test: /\.(sa|sc|c)ss$/,
         use: [

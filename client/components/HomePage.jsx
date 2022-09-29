@@ -1,12 +1,14 @@
 import React from 'react'
-import DisplayUser from './DisplayUser'
-import Messages from './temp/Messages'
-import Flatmates from './Flatmates'
-import styles from './HomePage.module.scss'
+
+import Messages from './messages/Messages'
+import DisplayUser from './user/DisplayUser'
+import Flatmates from './flatmates/Flatmates'
+
+import styles from './App.module.scss'
 
 const HomePage = () => {
   return (
-    <div className={styles.layout}>
+    <div className={styles.homepageLayout}>
       <DisplayUser />
       <Messages />
       <Flatmates />

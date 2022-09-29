@@ -1,4 +1,41 @@
 .navContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  max-height: 120px;
+  color: #13082a;
+  padding: 15px;
+  position: relative;
+}
+
+.logoContainer {
+  z-index: 2;
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.logo {
+  height: 100px;
+}
+
+video {
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vidDiv {
+  position: absolute;
+  width: 100vw;
+  height: 120px;
+  z-index: 0;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }

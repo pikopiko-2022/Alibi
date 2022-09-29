@@ -1,4 +1,5 @@
 import { getAnswersApi } from '../apis/answersApi'
+import { addCulpritToComplaint } from '../apis/complaintsApi'
 
 export const SET_ANSWERS = 'SET_ANSWERS'
 
@@ -16,9 +17,15 @@ export function fetchAnswers() {
         dispatch(setAnswers(answers))
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err.message)
       })
   }
 }
 
-//get answers at answers.question_ID
+export function updateCulprit(complaintId, token) {
+  return (dispatch) => {
+    return addCulpritToComplaint(complaintId, token)
+      .then((answers) => dispatch(setAnswers(answers)))
+      .catch((err) => console.error(err.message))
+  }
+}

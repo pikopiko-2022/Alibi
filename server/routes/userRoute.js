@@ -32,20 +32,43 @@ router.put('/', checkJwt, (req, res) => {
     })
 })
 
+router.put('/enough', checkJwt, (req, res) => {
+  const auth0_id = req.user?.sub
+  db.getUserIdByAuth0Id(auth0_id)
+    .then(({ userId }) => {
+      return db.updateUserEnough(userId)
+    })
+    .then((result) => {
+      req.io.emit('users updated')
+      res.json(result)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 router.post('/', checkJwt, (req, res) => {
   const auth0_id = req.user?.sub
-  const { username, flatID } = req.body
+  const { name, flatId, description, img_seed } = req.body
   const userDetails = {
     auth0_id,
-    name: username,
-    flat_id: flatID,
+    name: name,
+    flat_id: flatId,
+    description: description,
+    img_seed: img_seed,
   }
-  db.userExists(username)
+
+  db.userExists(name)
     .then((usernameTaken) => {
       if (usernameTaken) throw new Error('Username Taken')
     })
     .then(() => db.addUser(userDetails))
-    .then(() => res.sendStatus(201))
+    .then((id) => {
+      req.io.emit('users updated')
+      res.json(id?.[0])
+      return null
+    })
     .catch((err) => {
       console.error(err)
       if (err.message === 'Username Taken') {

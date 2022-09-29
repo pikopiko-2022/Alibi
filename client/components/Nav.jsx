@@ -1,53 +1,66 @@
-import React from 'react'
-// import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
-import styles from './Nav.module.scss'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import { useAuth0 } from '@auth0/auth0-react'
+
+import styles from './App.module.scss'
+import navStyles from './Nav.module.scss'
+
+import { updateUserEnough } from '../actions/user'
+import { IfAuthenticated } from './widgets/Authenticated'
+
+import videoBg from '../../server/public/videos/purplesmoke.mp4'
+import alibiLogo from '../../server/public/assets/Alibi-Logo.png'
 
 function Nav() {
-  const { logout, loginWithRedirect } = useAuth0()
+  const { logout } = useAuth0()
+  const dispatch = useDispatch()
+  const [noNav, setNoNav] = useState(false)
+  const token = useSelector((state) => state.user?.token)
 
   const handleLogOff = (e) => {
     e.preventDefault()
-    console.log('log off')
-    logout()
-  }
-
-  const handleSignIn = (e) => {
-    e.preventDefault()
-    console.log('sign in')
-    loginWithRedirect()
+    logout({ returnTo: window.location.origin })
   }
 
   const handleAbort = () => {
-    // TODO set user property has_aborted to true
+    setNoNav(true)
+    dispatch(updateUserEnough(token))
   }
 
   return (
-    <div className={styles.navContainer}>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
-      <div>
-        <IfAuthenticated>
-          <div className={styles.actionsContainer}>
-            <Link to="/waiting">
-              <button onClick={handleAbort}>{`I've Had Enough`}</button>
+    !noNav && (
+      <div className={navStyles.navContainer}>
+        <div className={navStyles.logoContainer}>
+          <Link to="/">
+            <img className={navStyles.logo} src={alibiLogo} alt="logo" />
+          </Link>
+        </div>
+        <div className={navStyles.actionsContainer}>
+          <IfAuthenticated>
+            <Link to="/complaint" className={styles.actionButton}>
+              Add Complaint
             </Link>
-            <Link to="/" onClick={handleLogOff}>
+            <div className={styles.spacer} />
+            <Link
+              to="/waiting"
+              className={styles.actionButton}
+              onClick={handleAbort}
+            >
+              {`I've Had Enough`}
+            </Link>
+            <div className={styles.spacer} />
+            <Link to="/" className={styles.actionButton} onClick={handleLogOff}>
               Log off
             </Link>
-          </div>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
-          <Link to="/" onClick={handleSignIn}>
-            Sign In
-          </Link>
-        </IfNotAuthenticated>
+          </IfAuthenticated>
+        </div>
+        <div className={navStyles.vidDiv}>
+          <video src={videoBg} autoPlay loop muted />
+        </div>
       </div>
-    </div>
+    )
   )
 }
 

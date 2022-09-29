@@ -1,10 +1,6 @@
 import { UPDATE_LOGGED_IN_USER, CLEAR_LOGGED_IN_USER } from '../actions/user'
 
-const emptyUser = {
-  auth0Id: '',
-  username: '',
-  flat_Id: '',
-}
+const emptyUser = {}
 
 export default function user(state = emptyUser, action) {
   const { type, payload } = action
